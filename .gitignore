@@ -60,6 +60,12 @@ captures/
 unity/Assets/StreamingAssets/content/
 unity/Assets/StreamingAssets/content.meta
 unity/Builds/
+# Pending-rights local prototypes: AI-generated Tripo models PrototypeImport copies in for local testing, never committed
+# or shipped (see docs/art-prototypes.md). Nothing else is in Art yet, so its folder metas stay local too.
+unity/Assets/Art/Settlements/Prototype/
+unity/Assets/Art/Settlements/Prototype.meta
+unity/Assets/Art.meta
+unity/Assets/Art/Settlements.meta
 
 # local secrets, licences and agent workspaces
 .env

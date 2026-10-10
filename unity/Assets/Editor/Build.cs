@@ -48,12 +48,22 @@ namespace Statecraft.Game.EditorTools
         public static string? GateRefusal(string[] args, Statecraft.Sim.Content c) =>
             Array.IndexOf(args, "-shareable") >= 0 ? ShareableRefusal(c) : null;
 
-        /// <summary>Logs "BUILD REFUSED ..." and exits 1 when the gate refuses this build; true if it did.</summary>
+        /// <summary>Why a -shareable build may not be made while local prototype art exists, or null. Everything under its
+        /// Resources folder ships in every player, and those Tripo models are pending-rights local prototypes
+        /// (docs/art-prototypes.md). Kept out of GateRefusal, whose tests expect the content gate alone.</summary>
+        public static string? PrototypeRefusal(string[] args, bool prototypesPresent) =>
+            Array.IndexOf(args, "-shareable") >= 0 && prototypesPresent
+                ? $"{PrototypeImport.Folder} holds pending-rights prototype models that would ship in this build (see docs/art-prototypes.md); move it out of the project first"
+                : null;
+
+        /// <summary>Logs "BUILD REFUSED ..." and exits 1 when a -shareable build is refused (local prototype art, then the
+        /// sensitivity gate); true if it did.</summary>
         static bool RefuseUnlessShareable()
         {
             var args = Environment.GetCommandLineArgs();
             if (Array.IndexOf(args, "-shareable") < 0) return false;
-            if (!(GateRefusal(args, Statecraft.Sim.ContentLoader.Load(Paths.Content)) is string refusal)) return false;
+            if (!((PrototypeRefusal(args, Directory.Exists(PrototypeImport.Folder))
+                ?? GateRefusal(args, Statecraft.Sim.ContentLoader.Load(Paths.Content))) is string refusal)) return false;
             Debug.LogError("BUILD REFUSED " + refusal);
             EditorApplication.Exit(1);
             return true;
@@ -103,6 +113,39 @@ namespace Statecraft.Game.EditorTools
             var s = report.summary;
             Debug.Log($"BUILD {s.result} {target} -> {location}: {OutputMegabytes(location):0.0} MB on disk, {s.totalErrors} errors, {s.totalTime.TotalSeconds:0}s");
             return s.result == BuildResult.Succeeded;
+        }
+    }
+
+    /// <summary>Every player build, from Build.Web/Mac or the Build Profiles window, while local prototype art exists: warns
+    /// before, and after puts <see cref="Marker"/> in a WebGL build folder, which tools/package_release.py refuses to zip
+    /// even once the art is gone. A local test build stays allowed (docs/art-prototypes.md), so nothing here refuses one. A Mac bundle
+    /// is not marked: a file inside it would change the bundle.</summary>
+    public sealed class PrototypeBuildMark : IPreprocessBuildWithReport, IPostprocessBuildWithReport
+    {
+        public const string Marker = "PENDING-RIGHTS-PROTOTYPES.txt";
+
+        public int callbackOrder => 0;
+
+        public void OnPreprocessBuild(BuildReport report)
+        {
+            if (Directory.Exists(PrototypeImport.Folder))
+                Debug.LogWarning($"BUILD includes {PrototypeImport.Folder} (pending-rights prototype models in Resources): keep this build local, never share it");
+        }
+
+        public void OnPostprocessBuild(BuildReport report)
+        {
+            if (report.summary.platform == BuildTarget.WebGL) Mark(report.summary.outputPath, Directory.Exists(PrototypeImport.Folder));
+        }
+
+        /// <summary>Marks <paramref name="buildDir"/> when the prototypes were present, else drops a stale marker (a rebuild
+        /// into the same folder may keep files it did not write). Public for the tests.</summary>
+        public static void Mark(string buildDir, bool prototypesPresent)
+        {
+            if (!Directory.Exists(buildDir)) return;
+            var marker = Path.Combine(buildDir, Marker);
+            if (prototypesPresent)
+                File.WriteAllText(marker, $"This build includes pending-rights local prototype models ({PrototypeImport.Folder}; see docs/art-prototypes.md). Keep it local: never upload, deploy or share it.\n");
+            else if (File.Exists(marker)) File.Delete(marker);
         }
     }
 }

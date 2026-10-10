@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements">
     <Style src="Statecraft.uss" />
+    <Style src="UiPreview.uss" />
     <!-- "loading" until GameRoot has started the game: only the loading line shows (playtest 2, P2-1). -->
     <ui:VisualElement name="root" class="root loading" picking-mode="Ignore">
         <ui:Label name="loading" text="Loading the map of 1948…" class="loading-line" picking-mode="Ignore" />

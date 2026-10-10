@@ -4,8 +4,8 @@ run on the content INSIDE the build folder, so it checks exactly what would ship
 
   python3 tools/package_release.py [--build unity/Builds/Web-brotli] [--zip unity/Builds/statecraft-m3-web.zip]
 
-Exit 0 and "PACKAGED <zip> <bytes>" on success; exit 1 and "PACKAGE REFUSED ..." when the gate refuses or the build is
-not a WebGL build folder.
+Exit 0 and "PACKAGED <zip> <bytes>" on success; exit 1 and "PACKAGE REFUSED ..." when the gate refuses, the build is
+not a WebGL build folder, or it was built with the pending-rights local prototypes (Build.cs marks such a folder).
 """
 import argparse
 import subprocess
@@ -14,6 +14,7 @@ import zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
+PROTOTYPE_MARKER = "PENDING-RIGHTS-PROTOTYPES.txt"   # Build.cs PrototypeBuildMark.Marker
 
 
 def gate(content_dir: Path):
@@ -27,6 +28,10 @@ def gate(content_dir: Path):
 def package(build: Path, zip_path: Path) -> int:
     if not (build / "index.html").is_file():
         print(f"PACKAGE REFUSED: {build} has no index.html (not a WebGL build folder)")
+        return 1
+    if (build / PROTOTYPE_MARKER).exists():   # the models' rights are pending (docs/art-prototypes.md)
+        print(f"PACKAGE REFUSED: {build} was built with the local prototype models; move unity/Assets/Art/Settlements/Prototype "
+              "out of the project and rebuild")
         return 1
     content = build / "StreamingAssets" / "content"
     if not content.is_dir():

@@ -43,3 +43,11 @@ def test_packaging_writes_the_zip_once_all_are_reviewed(tmp_path, capsys):
     assert "index.html" in names                                       # at the zip root, as itch.io needs
     assert "StreamingAssets/content/events/altalena.yaml" in names
     assert "PACKAGED" in capsys.readouterr().out
+
+
+def test_packaging_is_refused_for_a_build_made_with_the_local_prototypes(tmp_path, capsys):
+    build, zip_path = fake_build(tmp_path, reviewed=True), tmp_path / "out.zip"
+    (build / package_release.PROTOTYPE_MARKER).write_text("pending-rights")   # as Build.cs PrototypeBuildMark writes it
+    assert package_release.main(["--build", str(build), "--zip", str(zip_path)]) == 1
+    assert not zip_path.exists()
+    assert "PACKAGE REFUSED" in capsys.readouterr().out

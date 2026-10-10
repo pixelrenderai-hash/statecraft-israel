@@ -127,6 +127,9 @@ namespace Statecraft.Game.UI
             DiagLog.BootPhase($"session started (turn {session.State.Turn}, replayed)");
             var bridge = Bridge = new SimBridge(session, text);
             var root = document.rootVisualElement;
+            UiPreview.Apply(root, UiPreview.Requested(Application.absoluteURL, Environment.GetCommandLineArgs(),
+                Application.platform == RuntimePlatform.WebGLPlayer), text);
+            BuildingPreview.Apply(map, BuildingPreview.Requested(), BuildingPreview.LoadFromResources);
 
             // The toast first: the autosave (below) must report a failed write after the toast has shown the turn's refusals.
             var toast = Own(new ToastPresenter(root, bridge, text));

@@ -1,0 +1,124 @@
+/* Approval preview: every selector is opt-in (it starts with .ui-preview or .preview-<direction>, classes UiPreview.Apply
+   sets on #root; UiPreviewTests guards this) and targets only the top bar, the event card, the info panel, the minimap,
+   the toast or the Cabinet. Keep the shipped panel positions, typography assets and all presenter element names. */
+.ui-preview #top-bar { padding-left: 20px; padding-right: 20px; }
+.ui-preview #top-bar .meter-name { font-size: 15px; }
+.ui-preview #top-bar .meter-value { font-size: 26px; }
+.ui-preview #top-bar .meter { padding-left: 12px; padding-right: 12px; }
+.ui-preview #top-bar .nav Button { border-color: transparent; padding-left: 10px; padding-right: 10px; }
+.ui-preview #top-bar .nav Button:hover, .ui-preview #top-bar Button:focus { border-color: var(--gold); }
+.ui-preview #top-bar .end-turn { -unity-text-align: middle-center; padding-left: 18px; padding-right: 18px; }
+.ui-preview #screen-cabinet { padding: 20px; }
+.ui-preview #screen-cabinet .screen-header { padding-bottom: 12px; margin-bottom: 12px; }
+.ui-preview #screen-cabinet .title { font-size: 28px; }
+.ui-preview #screen-cabinet #cabinet-coalition { font-size: 16px; white-space: normal; flex-shrink: 1; }
+.ui-preview #screen-cabinet .seat { min-height: 64px; padding: 10px 12px; margin: 0 0 4px 0; }
+.ui-preview #screen-cabinet .seat Label { white-space: normal; flex-grow: 1; flex-shrink: 1; min-width: 0; font-size: 19px; }
+.ui-preview #screen-cabinet .seat-portrait { width: 44px; height: 52px; margin-right: 12px; flex-shrink: 0; }
+.ui-preview #screen-cabinet #cabinet-pick { padding-left: 16px; }
+.ui-preview #screen-cabinet #cabinet-pick-title { font-size: 19px; margin-bottom: 8px; }
+.ui-preview #screen-cabinet .candidate { flex-direction: column; align-items: stretch; margin-bottom: 10px; }
+.ui-preview #screen-cabinet .candidate Button { white-space: normal; padding: 10px 12px; }
+.ui-preview #screen-cabinet .candidate .reason { white-space: normal; font-size: 16px; padding: 0 12px; }
+.ui-preview #screen-cabinet #cabinet-status { white-space: normal; flex-shrink: 0; font-size: 17px; margin-top: 8px; }
+.ui-preview #screen-cabinet Button:focus { border-color: var(--gold); }
+
+/* A: archival cabinet. Warm paper, ink, and a sparing brass selection. */
+.preview-archive #top-bar { background-color: rgb(29, 37, 41); }
+.preview-archive #top-bar .end-turn, .preview-archive #top-bar .nav-selected { background-color: rgb(196, 160, 92); color: rgb(29, 37, 41); }
+.preview-archive #screen-cabinet { background-color: rgb(235, 227, 207); color: rgb(40, 46, 43); border-color: rgb(128, 115, 89); }
+.preview-archive #screen-cabinet .title { color: rgb(40, 46, 43); }
+.preview-archive #screen-cabinet .muted, .preview-archive #screen-cabinet .reason, .preview-archive #screen-cabinet .meter-name { color: rgb(94, 95, 83); }
+.preview-archive #screen-cabinet Button { background-color: rgb(224, 215, 194); color: rgb(40, 46, 43); border-color: transparent; }
+.preview-archive #screen-cabinet .seat-selected { background-color: rgb(212, 196, 155); border-color: rgb(128, 105, 63); }
+.preview-archive #screen-cabinet Button:disabled { color: rgb(108, 105, 95); border-color: transparent; }
+.preview-archive #screen-cabinet .appointed { color: rgb(99, 76, 34); }
+
+/* B: clear strategy. Opaque slate, open rows, cool selected state. */
+.preview-clear #top-bar { background-color: rgb(28, 37, 43); border-color: rgb(93, 121, 130); }
+.preview-clear #top-bar .nav Button { background-color: transparent; }
+.preview-clear #top-bar .end-turn, .preview-clear #top-bar .nav .nav-selected { background-color: rgb(166, 201, 200); color: rgb(28, 37, 43); border-color: rgb(166, 201, 200); }
+.preview-clear #screen-cabinet { background-color: rgb(28, 37, 43); border-color: rgb(93, 121, 130); }
+.preview-clear #screen-cabinet .screen-header { border-color: rgb(93, 121, 130); }
+.preview-clear #screen-cabinet .seat { background-color: rgb(35, 46, 52); border-color: transparent; }
+.preview-clear #screen-cabinet .seat-selected { background-color: rgb(50, 72, 78); border-color: rgb(166, 201, 200); }
+.preview-clear #screen-cabinet Button:hover, .preview-clear #screen-cabinet Button:focus { border-color: rgb(166, 201, 200); }
+
+
+/* C: map table (the owner's choice, option 3; the HTML mockup's Option C). An olive timber rail, pale paper folios with
+   ink text, squared corners, sparing brass and green. USS has no box-shadow: a heavier bottom border stands in for the
+   mockup's offset shadows. */
+/* Timber rail. Opaque, as the shipped bar (map labels must not show through it); every row still fits its 96px. */
+.preview-table #top-bar { background-color: rgb(56, 59, 49); color: rgb(244, 238, 220); border-color: rgb(133, 124, 97); border-bottom-width: 3px; }
+.preview-table #top-bar .date-box, .preview-table #top-bar .meter { border-color: rgb(101, 103, 84); }
+.preview-table #top-bar .meter-name { font-size: 13px; letter-spacing: 1px; color: rgb(185, 184, 160); }   /* small tracked captions; the text stays Title Case (HudTests) */
+.preview-table #top-bar .muted { color: rgb(185, 184, 160); }
+.preview-table #top-bar #attention { font-size: 15px; }
+.preview-table #top-bar .delta-up { color: rgb(185, 200, 156); }
+.preview-table #top-bar .delta-down { color: rgb(223, 164, 136); }
+/* Screen buttons read as tabs; New Game stays, quieter; End Turn is the strongest action. */
+.preview-table #top-bar .nav Button { background-color: transparent; color: rgb(232, 226, 204); border-radius: 0; }
+.preview-table #top-bar .nav .nav-selected { background-color: rgb(229, 220, 198); color: rgb(56, 59, 49); border-color: rgb(229, 220, 198); }
+.preview-table #top-bar #new-game { font-size: 15px; color: rgb(185, 184, 160); padding-left: 6px; padding-right: 6px; margin-left: 10px; }
+.preview-table #top-bar .end-turn { background-color: rgb(193, 177, 133); color: rgb(40, 46, 34); border-color: rgb(215, 204, 167); border-bottom-color: rgb(21, 27, 21); border-bottom-width: 3px; border-radius: 0; }
+.preview-table #top-bar .end-turn:hover { background-color: rgb(209, 194, 152); }
+.preview-table #top-bar .end-turn:focus { border-bottom-color: rgb(21, 27, 21); }
+.preview-table #top-bar .end-turn:disabled { background-color: rgb(110, 108, 88); color: rgb(56, 59, 49); border-color: rgb(101, 103, 84); }
+
+/* Paper folios: the event card, the info panel and the toast. Ink on pale docket, an olive edge and a heavier foot. The
+   event portrait keeps its 96x128 box (EventCardPresenter frames the face for it). */
+.preview-table #event-card, .preview-table #info-panel, .preview-table #toast { background-color: rgb(229, 220, 198); color: rgb(50, 56, 42); border-color: rgb(103, 112, 82); border-bottom-color: rgb(74, 80, 60); border-bottom-width: 4px; border-radius: 0; }
+.preview-table #event-card Label, .preview-table #info-panel Label { color: rgb(50, 56, 42); }
+.preview-table #event-card .muted, .preview-table #info-panel .muted, .preview-table #info-panel .reason { color: rgb(92, 96, 72); }
+.preview-table #event-card .draft { color: rgb(160, 62, 44); }
+.preview-table #event-card Button, .preview-table #info-panel Button { background-color: rgb(239, 232, 212); color: rgb(50, 56, 42); border-color: rgb(179, 166, 129); border-bottom-color: rgb(150, 138, 104); border-bottom-width: 2px; border-radius: 0; }
+.preview-table #event-card Button:hover, .preview-table #info-panel Button:hover, .preview-table #event-card Button:focus, .preview-table #info-panel Button:focus { background-color: rgb(246, 241, 226); border-color: rgb(80, 103, 76); }
+.preview-table #event-card Button:disabled, .preview-table #info-panel Button:disabled { background-color: rgb(222, 213, 190); color: rgb(104, 104, 84); border-color: rgb(204, 194, 168); }
+/* Eyebrow captions (UiPreview.Apply, and the Cabinet's selected office): small, tracked, muted. No label padding: every
+   pixel comes out of the event card's text, which must not scroll in a window as tall as 1366x657 (UiLayoutTests). */
+.preview-table #event-card .preview-eyebrow, .preview-table #info-panel .preview-eyebrow, .preview-table #screen-cabinet .preview-eyebrow { font-size: 13px; letter-spacing: 1.5px; color: rgb(92, 96, 72); padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 2px; }
+.preview-table #event-card .event-heading .preview-eyebrow { -unity-text-align: middle-center; }   /* above the centred title */
+/* The minimap framed to match: colours only, because MinimapPresenter fits the picture to this box's content. */
+.preview-table #minimap { background-color: rgb(56, 59, 49); border-color: rgb(201, 191, 160); border-radius: 0; }
+
+/* Cabinet: a paper folio with a roster (structured rows, which CabinetPresenter builds only under this direction) and a
+   narrower column with the selected office above its candidates. */
+.preview-table #screen-cabinet { background-color: rgb(229, 220, 198); color: rgb(50, 56, 42); border-color: rgb(103, 112, 82); border-bottom-color: rgb(74, 80, 60); border-bottom-width: 4px; border-radius: 0; }
+.preview-table #screen-cabinet .title { color: rgb(50, 56, 42); }
+.preview-table #screen-cabinet .screen-header { border-color: rgb(184, 173, 143); }
+.preview-table #screen-cabinet .muted, .preview-table #screen-cabinet .reason, .preview-table #screen-cabinet .meter-name { color: rgb(92, 96, 72); }
+.preview-table #screen-cabinet Button { background-color: rgb(239, 232, 212); color: rgb(50, 56, 42); border-color: rgb(179, 166, 129); border-radius: 0; }
+.preview-table #screen-cabinet Button:disabled { color: rgb(104, 104, 84); }
+.preview-table #screen-cabinet .appointed { color: rgb(65, 89, 48); }
+/* Two columns that degrade at 5:4 (about 546px of screen): the pick column keeps 200-320px, the roster takes the rest. */
+.preview-table #screen-cabinet #cabinet-seats { flex-grow: 1; flex-shrink: 1; flex-basis: 0; min-width: 0; }
+.preview-table #screen-cabinet #cabinet-pick { flex-grow: 0; flex-shrink: 0; width: 38%; min-width: 200px; max-width: 320px; margin-left: 12px; padding-left: 14px; border-left-width: 1px; border-color: rgb(184, 173, 143); }
+.preview-table #screen-cabinet #cabinet-candidates { min-height: 120px; }   /* the selected office never squeezes the Appoint list away */
+/* Roster rows: office, holder, party and ratings; a green rail marks the selected office. The combined holder label is
+   kept (tests read its text) and hidden here. */
+.preview-table #screen-cabinet .seat { background-color: rgb(234, 226, 204); border-color: rgb(194, 183, 152); border-bottom-color: rgb(168, 155, 118); border-left-width: 4px; border-bottom-width: 2px; }
+.preview-table #screen-cabinet .seat:hover { background-color: rgb(241, 235, 218); }
+.preview-table #screen-cabinet .seat-selected { background-color: rgb(217, 217, 191); border-left-color: rgb(80, 103, 76); }
+.preview-table #screen-cabinet .seat-selected:hover { background-color: rgb(208, 209, 181); }   /* after .seat:hover, same specificity: the pointer rests here after the click */
+.preview-table #screen-cabinet .seat-selected:focus { border-left-color: rgb(80, 103, 76); }
+.preview-table #screen-cabinet .seat .preview-seat-summary { display: none; }
+.preview-table #screen-cabinet .seat .preview-seat-who { flex-grow: 1; flex-shrink: 1; min-width: 0; }
+.preview-table #screen-cabinet .seat .preview-seat-scores { flex-shrink: 0; align-items: flex-end; margin-left: 8px; }
+.preview-table #screen-cabinet .seat .preview-seat-office { flex-grow: 0; font-size: 13px; letter-spacing: 1px; color: rgb(92, 96, 72); }
+.preview-table #screen-cabinet .seat .preview-seat-name { flex-grow: 0; font-size: 21px; -unity-font-definition: url("project://database/Assets/UI/Fonts/EBGaramond-SemiBold.ttf"); }
+.preview-table #screen-cabinet .seat .preview-seat-party { flex-grow: 0; font-size: 15px; color: rgb(92, 96, 72); }
+.preview-table #screen-cabinet .seat .preview-seat-score { flex-grow: 0; font-size: 16px; white-space: nowrap; -unity-text-align: middle-right; }
+.preview-table #screen-cabinet .seat .preview-tag, .preview-table #screen-cabinet .preview-detail .preview-tag { flex-grow: 0; align-self: flex-start; font-size: 13px; letter-spacing: 1px; color: rgb(244, 238, 220); background-color: rgb(80, 103, 76); padding: 1px 6px; margin-top: 2px; }
+/* The selected office, view only, above its candidates. */
+.preview-table #screen-cabinet .preview-detail { flex-shrink: 0; padding-bottom: 10px; margin-bottom: 10px; border-bottom-width: 1px; border-color: rgb(184, 173, 143); }
+.preview-table #screen-cabinet .preview-detail-frame { align-self: flex-start; padding: 5px; margin: 4px 0 8px 0; background-color: rgb(244, 238, 219); border-width: 1px; border-color: rgb(194, 183, 152); }
+.preview-table #screen-cabinet .preview-detail-portrait { width: 120px; height: 150px; background-size: cover; }   /* CabinetPresenter.DetailPortraitWidth/Height */
+.preview-table #screen-cabinet .preview-detail-name { font-size: 24px; white-space: normal; -unity-font-definition: url("project://database/Assets/UI/Fonts/EBGaramond-SemiBold.ttf"); }
+.preview-table #screen-cabinet .preview-detail-office, .preview-table #screen-cabinet .preview-detail-party { font-size: 15px; white-space: normal; color: rgb(92, 96, 72); }
+.preview-table #screen-cabinet .preview-detail-score { font-size: 17px; }
+/* Candidates: an enabled Appoint is a raised docket; a refused one is flat and muted, with its reason beneath. */
+.preview-table #screen-cabinet .candidate Button { background-color: rgb(239, 232, 212); color: rgb(50, 56, 42); border-color: rgb(179, 166, 129); border-bottom-color: rgb(150, 138, 104); border-bottom-width: 2px; }
+.preview-table #screen-cabinet .candidate Button:hover { background-color: rgb(246, 241, 226); border-color: rgb(80, 103, 76); }
+.preview-table #screen-cabinet .candidate Button:focus { border-color: rgb(196, 160, 92); }
+.preview-table #screen-cabinet .candidate Button:disabled { background-color: rgb(222, 213, 190); color: rgb(104, 104, 84); border-color: rgb(204, 194, 168); }
+.preview-table #screen-cabinet .candidate .reason { color: rgb(92, 96, 72); }

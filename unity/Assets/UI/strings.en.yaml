@@ -64,6 +64,14 @@ cabinet.no_party: "no party"
 cabinet.appointed: " (your appointee)"
 cabinet.pick: "Appoint to {0}"
 cabinet.queued: "Ordered: {0} to {1}, at End Turn"
+# Map table preview (UiPreview "table"): a seat's parts as separate labels and the selected office. Competence and
+# loyalty are content integers from 0 to 10.
+cabinet.appointee: "Your appointee"
+cabinet.competence: "Competence {0}"
+cabinet.loyalty: "Loyalty {0}"
+cabinet.selected: "Selected office"
+cabinet.competence_of: "Competence {0} of 10"
+cabinet.loyalty_of: "Loyalty {0} of 10"
 info.hint: "Click the map to inspect a hex"
 info.off_map: "Off the map"
 info.hex: "{0} · elevation {1:N0} m"
@@ -87,3 +95,6 @@ save.unreadable: "Your saved game could not be loaded ({0}). A new game has star
 save.reason_other: "the file could not be read or replayed"
 boot.failed: "Statecraft could not start: {0}. Reload the page."
 save.write_failed: "Your game could not be saved."
+# Map table preview (UiPreview "table"): view-only captions heading the event card and the info panel.
+preview.event_eyebrow: "Current decision"
+preview.info_eyebrow: "Location"

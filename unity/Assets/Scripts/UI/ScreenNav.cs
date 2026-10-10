@@ -43,7 +43,10 @@ namespace Statecraft.Game.UI
         {
             Current = screen;
             foreach (var s in Screens)
+            {
                 root.Q<VisualElement>("screen-" + s).style.display = s == screen ? DisplayStyle.Flex : DisplayStyle.None;
+                root.Q<Button>("nav-" + s).EnableInClassList("nav-selected", s == screen);
+            }
         }
     }
 }
