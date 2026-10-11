@@ -12,8 +12,9 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   readable appointment refusal reasons and selected navigation states. Map Table (`?ui-preview=table`) adds paper
   panels with captions, a structured Cabinet roster and a view-only selected-office detail. The default interface is
   unchanged.
-- Opt-in local 3D building prototypes (`?building-preview`) on kibbutz, Tel Aviv and arab-town markers, from models kept
-  outside the repository while their rights are reviewed; a `-shareable` build and the release packager refuse them.
+- Opt-in local 3D building prototypes (`?building-preview`) on settlement markers, transit camps and housing, with
+  ambient ships, an aircraft, a truck, a fort and figures, from models kept outside the repository while their rights
+  are reviewed; a `-shareable` build and the release packager refuse them.
 - Browser-playable 1948–1951 (milestone M3): HUD, Cabinet with appointments, Budget, Events, Defence and "Why did this
   happen?" screens over the 3D hex map; sourced content to 31 December 1951; saves; a calibrated economy; the golden
   hash checked in WebGL and macOS players.

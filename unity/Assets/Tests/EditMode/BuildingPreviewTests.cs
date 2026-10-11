@@ -29,6 +29,8 @@ public class BuildingPreviewTests
     [TearDown]
     public void DiscardScene()
     {
+        var map = Object.FindFirstObjectByType<MapScene>();
+        if (map != null) BuildingPreview.Apply(map, false, _ => null);   // the next fixture's PlacementLayer must not see it on
         if (template != null) Object.DestroyImmediate(template);
         template = null;
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -111,11 +113,13 @@ public class BuildingPreviewTests
     {
         static Settlement S(string id, string type) => new Settlement { Id = id, Type = type };
         Assert.AreEqual("tel-aviv-white-city-v1", BuildingPreview.PrototypeFor(S("tel_aviv", "city")), "by id, before its type");
-        Assert.AreEqual("kibbutz-dining-hall-v1", BuildingPreview.PrototypeFor(S("degania_alef", "kibbutz")));
+        CollectionAssert.AreEqual(new[] { "kibbutz-compound-v2", "kibbutz-dining-hall-v1" }, BuildingPreview.CandidatesFor(S("degania_alef", "kibbutz")),
+            "the compound, else the first batch's hall");
         Assert.AreEqual("stone-village-v1", BuildingPreview.PrototypeFor(S("lod", "arab_town")));
-        foreach (var (id, type) in new[] { ("jerusalem", "city"), ("haifa", "city"), ("petah_tikva", "town"), ("nahalal", "moshav"), ("somewhere", "village") })
+        foreach (var (id, type) in new[] { ("netanya", "town"), ("tiberias", "town"), ("safed", "town"), ("somewhere", "village"), ("somewhere", "city") })
             Assert.IsNull(BuildingPreview.PrototypeFor(S(id, type)), id + " keeps its box");
-        CollectionAssert.AreEquivalent(new[] { "kibbutz-dining-hall-v1", "tel-aviv-white-city-v1", "stone-village-v1" }, BuildingPreview.Prototypes);
+        CollectionAssert.IsSubsetOf(new[] { "kibbutz-dining-hall-v1", "tel-aviv-white-city-v1", "stone-village-v1" }, BuildingPreview.Prototypes.ToList());
+        CollectionAssert.AllItemsAreUnique(BuildingPreview.Prototypes.ToList());
         Assert.IsNull(BuildingPreview.LoadFromResources("no-such-prototype"), "a missing prefab loads as null");
     }
 
@@ -283,8 +287,9 @@ public class BuildingPreviewTests
         finally { Directory.Delete(build, true); }
     }
 
-    /// <summary>A missing source fails the import before anything is copied: one MISSING line per prototype, and the local
-    /// folder exactly as it was, whether absent (a clean clone) or holding a real import.</summary>
+    /// <summary>An empty source, or one incomplete folder beside a complete one, fails the import before anything is copied:
+    /// a MISSING line for the incomplete one, and the local folder exactly as it was, whether absent (a clean clone) or
+    /// holding a real import.</summary>
     [Test]
     public void AnImportWithMissingSourcesChangesNothing()
     {
@@ -292,11 +297,19 @@ public class BuildingPreviewTests
         try
         {
             var before = FolderState(ImportFolder());
-            foreach (var name in BuildingPreview.Prototypes) LogAssert.Expect(LogType.Error, new Regex("PROTOTYPE " + Regex.Escape(name) + " MISSING"));
             var e = Assert.Throws<TargetInvocationException>(() => ImportMethod("Import").Invoke(null, new object[] { empty }));
             Assert.IsInstanceOf<FileNotFoundException>(e.InnerException);
-            StringAssert.Contains("3 of 3 prototypes missing", e.InnerException!.Message);
+            StringAssert.Contains("no prototype under", e.InnerException!.Message);
             CollectionAssert.AreEqual(before, FolderState(ImportFolder()), "nothing was copied");
+
+            var whole = Path.Combine(empty, "tegart-fort-v1", "fbx");
+            Directory.CreateDirectory(Path.Combine(whole, "a.fbm"));
+            File.WriteAllBytes(Path.Combine(whole, "a.fbx"), new byte[0]); File.WriteAllBytes(Path.Combine(whole, "a.fbm", "base.jpg"), new byte[0]);
+            Directory.CreateDirectory(Path.Combine(empty, "altalena-lst-v1", "fbx"));                  // no model
+            LogAssert.Expect(LogType.Error, new Regex("PROTOTYPE altalena-lst-v1 MISSING"));
+            e = Assert.Throws<TargetInvocationException>(() => ImportMethod("Import").Invoke(null, new object[] { empty }));
+            StringAssert.Contains("1 of 2 prototypes incomplete", e.InnerException!.Message);
+            CollectionAssert.AreEqual(before, FolderState(ImportFolder()), "the complete one was not copied either");
         }
         finally { Directory.Delete(empty, true); }
     }
@@ -319,9 +332,9 @@ public class BuildingPreviewTests
             var (found, missing) = ((List<(string name, string fbx, string image)>, List<string>))ImportMethod("Sources").Invoke(null, new object[] { source })!;
             Assert.AreEqual(1, found.Count);
             Assert.AreEqual(("kibbutz-dining-hall-v1", hall, jpeg), found[0]);
-            Assert.AreEqual(2, missing.Count);
-            StringAssert.Contains("PROTOTYPE tel-aviv-white-city-v1 MISSING: 2 .fbx files", missing[0]);
-            StringAssert.Contains("PROTOTYPE stone-village-v1 MISSING: 0 base-colour JPEGs", missing[1]);
+            Assert.AreEqual(2, missing.Count);   // in ordinal order of name
+            StringAssert.Contains("PROTOTYPE stone-village-v1 MISSING: 0 base-colour JPEGs", missing[0]);
+            StringAssert.Contains("PROTOTYPE tel-aviv-white-city-v1 MISSING: 2 .fbx files", missing[1]);
         }
         finally { Directory.Delete(source, true); }
     }
