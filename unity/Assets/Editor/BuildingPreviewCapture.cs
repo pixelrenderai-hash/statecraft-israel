@@ -34,21 +34,29 @@ public static class BuildingPreviewCapture
     /// WebGL shot of every pose in PromoPose.cs). Gameplay03 is the art checkpoint's own frame. A pose looks at its point at
     /// y = 0, the heightmap's floor (PromoPose.Apply, as the game's camera does), 1.3 km below the sea and more below land,
     /// so at these zooms the frame's centre falls kilometres south of the point (at Jerusalem's own coordinates the city
-    /// would sit above the top edge). The second batch's points are therefore set north of their subjects, worked out from
-    /// the heightmap with the rig's pitch and FOV at 16:9; the comment gives what is in frame.</summary>
+    /// would sit above the top edge). The second and third batches' points are therefore set north of their subjects, worked
+    /// out from the heightmap with the rig's pitch and FOV at 16:9; the comment gives what is in frame.</summary>
     public static IReadOnlyList<PromoPose> Poses { get; } = new[]
     {
         new PromoPose("tel_aviv", 34.78, 32.075, 9000f, 10f),          // the White City cluster close up
-        new PromoPose("lod_ramla", 34.88, 31.94, 9000f, 10f),          // the stone-village stand-in on two arab_towns
+        new PromoPose("lod_ramla", 34.88, 31.94, 9000f, 10f),          // the stone-village stand-in on two arab_towns, the locomotive top left
         new PromoPose("degania", 35.5747, 32.7081, 6000f, 10f),        // a kibbutz at the 6 km hero zoom, the farmer south of it
         new PromoPose("jerusalem", 35.233, 31.813, 9000f, 10f),        // the stone city in the centre
         new PromoPose("haifa_port", 35.021, 32.846, 9000f, 10f),       // the steamer in the bay, the port city lower left
-        new PromoPose("haifa_carmel", 35.004, 32.812, 6000f, 10f),     // the immigrant woman on the Carmel, below the centre
+        new PromoPose("haifa_carmel", 35.004, 32.812, 6000f, 10f),     // the immigrant woman below the centre, the elder left, the boy bottom right
         new PromoPose("latrun", 35.001, 31.833, 9000f, 10f),           // the fort and the soldier left, the truck on the Bab al-Wad road right
-        new PromoPose("lod_airport", 34.887, 32.017, 9000f, 10f),      // the C-54 over the airport, just above the centre
+        new PromoPose("lod_airport", 34.887, 32.017, 9000f, 10f),      // the C-54 overhead, the Yemenite immigrant right, the nurse cut off top left
         new PromoPose("tel_aviv_shore", 34.76, 32.083, 9000f, 10f),    // the Altalena off the beach, the White City right of it
-        new PromoPose("nahalal", 35.199, 32.703, 6000f, 10f),          // the moshav in the centre
-        new PromoPose("rishon_lezion", 34.803, 31.963, 7000f, 10f),    // a moshava in the centre
+        new PromoPose("nahalal", 35.199, 32.703, 6000f, 10f),          // the moshav in the centre, the horse wagon right
+        new PromoPose("rishon_lezion", 34.803, 31.963, 7000f, 10f),    // a moshava in the centre, the builder in the top-left corner
+        new PromoPose("carmel_family", 35.002, 32.806, 6000f, 10f),    // the immigrant woman centred, the boy right, the elder left
+        new PromoPose("ein_harod", 35.395, 32.565, 7000f, 10f),        // the kibbutz above the centre, the field worker left, the tractor right
+        new PromoPose("nazareth", 35.313, 32.698, 9000f, 10f),         // the villager below the centre, Nazareth at the top
+        new PromoPose("hadera", 34.891, 32.438, 9000f, 10f),           // the fishing boat left, the bus right, the moshava at the top
+        new PromoPose("tel_hashomer", 34.845, 32.059, 7000f, 10f),     // the nurse in the centre
+        new PromoPose("lod_junction", 34.867, 31.968, 7000f, 10f),     // the locomotive left of the centre, Lod at the right edge
+        new PromoPose("rehovot", 34.83, 31.911, 7000f, 10f),           // the moshava left, the citrus truck right
+        new PromoPose("revivim", 34.723, 31.053, 9000f, 10f),          // the kibbutz above the centre, the jeep left, the scout lower right
         PromoPose.Gameplay03,
     };
 

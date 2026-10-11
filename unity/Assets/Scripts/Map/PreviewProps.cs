@@ -6,13 +6,14 @@ using UnityEngine;
 
 namespace Statecraft.Game.Map
 {
-    /// <summary>Opt-in ambient dressing for the building preview: ships, an aircraft, a vehicle, a fort and figures from the
-    /// same git-ignored prototype prefabs, at fixed spots under one "PreviewProps" root beside "Settlements".
-    /// BuildingPreview.Apply places and removes it (so GameRoot is unchanged), and MapScene.Build's Clear destroys it with
-    /// the rest of the map. Art dressing, not sourced content: the spots are approximate, chosen to read at the 6-9 km zoom
-    /// and to clear every settlement's prototype footprint (BuildingPreviewDressingTests checks the table against the
-    /// settlements). Nothing here touches the simulation, and nothing has a collider, so map clicks still pick only the
-    /// terrain (MapPointer). An entry none of whose prefabs loads places nothing.</summary>
+    /// <summary>Opt-in ambient dressing for the building preview: ships, a fishing boat, an aircraft, vehicles, a
+    /// locomotive, a fort and figures from the same git-ignored prototype prefabs, at fixed spots under one "PreviewProps"
+    /// root beside "Settlements". BuildingPreview.Apply places and removes it (so GameRoot is unchanged), and
+    /// MapScene.Build's Clear destroys it with the rest of the map. Art dressing, not sourced content: the spots are
+    /// approximate, chosen to read at the 6-9 km zoom and to clear every settlement's prototype footprint
+    /// (BuildingPreviewDressingTests checks the table against the settlements). Nothing here touches the simulation, and
+    /// nothing has a collider, so map clicks still pick only the terrain (MapPointer). An entry none of whose prefabs loads
+    /// places nothing.</summary>
     public static class PreviewProps
     {
         public const string RootName = "PreviewProps", InstancePrefix = "prop-";
@@ -21,6 +22,10 @@ namespace Statecraft.Game.Map
         /// 1.8 km), and a true-size 100 m ship would be a few pixels at the 6-9 km zoom: ships near a city box, figures about
         /// a fifth of one.</summary>
         public const float ShipM = 1600f, AircraftM = 900f, VehicleM = 450f, FortM = 800f, FigureM = 350f;
+        /// <summary>Props those sizes do not fit: a small fishing boat beside the ship hulls (at ShipM it would be as long as
+        /// the LST), a locomotive with tender (long and slim: at VehicleM it would read smaller than the truck), and a child
+        /// (at FigureM the boy stood as tall as the adults beside him: about 0.7 of their height).</summary>
+        public const float BoatM = 500f, TrainM = 700f, ChildM = 250f;
         /// <summary>Height of an airborne prop's bottom above the highest ground under it: low, on approach.</summary>
         public const float AirAltitudeM = 600f;
         /// <summary>Share of a floating hull's height below the sea surface, so it sits in the water rather than on it.</summary>
@@ -69,6 +74,39 @@ namespace Statecraft.Game.Map
             new Prop(35.578, 32.697, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-pioneer-farmer-v1-tpose", "figure-pioneer-farmer-v1"),
             new Prop(35.000, 32.790, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-immigrant-woman-v1"),
             new Prop(34.970, 31.835, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-soldier-1948-v1"),
+            // A kibbutz field worker in the Harod valley fields, 1.6 km west of Ein Harod.
+            new Prop(35.374, 32.558, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-kibbutz-woman-v1"),
+            // A Palmach scout on a Negev trek, 1.8 km south-south-east of Revivim.
+            new Prop(34.728, 31.028, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-palmach-scout-v1"),
+            // A field nurse at Tel HaShomer, the army hospital opened in 1948 east of Tel Aviv.
+            new Prop(34.842, 32.046, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-nurse-1948-v1"),
+            // An immigrant boy on a Carmel crest about 1 km east-south-east of the immigrant woman, turned a little toward her.
+            new Prop(35.009, 32.786, 230f, ChildM, Kind.Land, Motion.Idle, "figure-immigrant-child-v1"),
+            // An elderly immigrant 1.1 km west of the immigrant woman, turned a little toward her.
+            new Prop(34.988, 32.791, 170f, FigureM, Kind.Land, Motion.Idle, "figure-elder-immigrant-v1"),
+            // A Yemenite immigrant on Lod airfield under the C-54's approach: the 1949-50 airlift from Aden landed at Lod.
+            new Prop(34.901, 32.000, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-yemenite-immigrant-v1"),
+            // A Galilee village farmer in the fields 2.7 km south-south-east of Nazareth.
+            new Prop(35.315, 32.680, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-arab-villager-v1"),
+            // A builder 4 km north-west of Rishon LeZion, toward a growing Holon.
+            new Prop(34.770, 31.975, BuildingPreview.DefaultYaw, FigureM, Kind.Land, Motion.Idle, "figure-builder-1950-v1"),
+            // Vehicles, angled to the camera (the locomotive broadside). The jeep, tractor and truck are long along their own z;
+            // the bus, wagon and locomotive along x with the front at +x, so they head to bearing yaw + 90; the boat's bow is
+            // at -x, so it heads to yaw + 270 (turntable renders, 11 October 2026).
+            // An unarmed jeep on the track 1.9 km west of Revivim, heading for it.
+            new Prop(34.701, 31.042, 140f, VehicleM, Kind.Land, Motion.None, "vehicle-willys-jeep-v1"),
+            // An intercity bus on the coast road 3 km south-south-west of Hadera, bound for Tel Aviv.
+            new Prop(34.905, 32.425, 140f, VehicleM, Kind.Land, Motion.None, "vehicle-intercity-bus-v1"),
+            // A kibbutz tractor ploughing the Harod valley floor, 2.4 km east-south-east of Ein Harod.
+            new Prop(35.415, 32.553, 235f, VehicleM, Kind.Land, Motion.None, "vehicle-farm-tractor-v1"),
+            // A truck loaded with orange crates in the groves 2.7 km east of Rehovot.
+            new Prop(34.845, 31.900, 225f, VehicleM, Kind.Land, Motion.None, "vehicle-citrus-truck-v1"),
+            // A moshav farmer's horse wagon with hay and milk churns in the valley fields 1.5 km east of Nahalal, heading home.
+            new Prop(35.213, 32.690, 155f, VehicleM, Kind.Land, Motion.None, "vehicle-horse-wagon-v1"),
+            // A steam locomotive with tender on the line from Tel Aviv into the Lod junction, 3.5 km west of Lod.
+            new Prop(34.852, 31.958, 10f, TrainM, Kind.Land, Motion.None, "vehicle-steam-locomotive-v1"),
+            // A wooden fishing boat just off the beach west of Hadera, heading out (open sea all round).
+            new Prop(34.860, 32.430, 340f, BoatM, Kind.Sea, Motion.Bob, "vehicle-fishing-boat-v1"),
         };
 
         /// <summary>Places <see cref="All"/> (BuildingPreview.Apply's call); off, as on GameRoot's default path, it does not
