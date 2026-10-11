@@ -28,18 +28,21 @@ the current one. It composes with `?building-preview` and `?ui-preview=table`.
   weights `BiomeBlender` already computes and by slope and elevation from the heightmap. Placement uses a fixed seed, so it
   is deterministic and capture-stable. Density follows `QualityTierValues` (fewer on the low tier). Nothing is placed in the
   sea, on steep slopes or inside a settlement footprint.
-- **Towns read as towns.** Tel Aviv, Jaffa, Haifa and Jerusalem become clusters of several buildings: instanced repeats of
-  existing prototypes and CC0 blocks, kept under the label anchor (`MarkerHeightM`).
-- **Lines on the land.** The 1948 railway (Haifa–Lod–Jerusalem and the coast line) and main roads as hand-placed
-  polylines with sources cited in the data file, drawn as thin terrain decals or meshes. Fishing boats and steamers off the
+- **Towns read as towns.** Every city, town and arab town gets a ring of flat-roofed blocks (white plaster or sandstone)
+  outside its marker, kept under the label anchor (`MarkerHeightM`).
+- **Lines on the land.** The railway as it stood on 15 May 1948 and the Tel Aviv–Jerusalem road as hand-placed
+  polylines, each route sourced (or dropped), drawn as thin terrain decals or meshes. Fishing boats and steamers off the
   coast reuse the wave-3 props.
 - **Picture.** A `map-look` grade profile: less tilt-shift blur, warmer and more saturated colour, more contrast, a richer
   sea. It is applied only under the switch; the shipped `MapGrade` and `TiltShift` defaults and their tests are unchanged.
   Each piece registers a `VisualToggles` entry (`look-scatter`, `look-towns`, `look-lines`, `look-grade`) so the visual
   profile can price it.
-- **Assets.** CC0 packs only (Quaternius, Kenney, KayKit, Poly Haven), committed with `ASSETS.yaml` rows (licence CC0-1.0,
-  source URL, status verified) so they can ship publicly. No Unity Asset Store packs, because their licence does not allow
-  redistribution in an open-source repository. No Tripo spend in Step 0.
+- **Assets.** Every mesh is faceted low-poly geometry built in code: no files, downloads, `ASSETS.yaml` rows or licences,
+  so the look can ship publicly. CC0 packs (Quaternius, Kenney, Poly Haven) are the fallback if a shape cannot be made
+  well in code. No Unity Asset Store packs: their licence does not allow redistribution in an open-source repository. No
+  Tripo spend in Step 0.
+- **First checkpoint.** After the scatter and the grade, Tal sees one matched pair at the start view before towns, lines
+  and the budget pass are built.
 - **Budgets** (`docs/visual-v1.md`). The WebGL build grows by at most 15 MB. Scatter, towns and lines together cost at most
   2.5 ms median at both promo poses (headless, 1920x1080). Boot spans stay within the existing budget.
 - **Done when:** matched captures of the same deterministic turn and poses (Gameplay03, Diorama02, plus the Tel Aviv

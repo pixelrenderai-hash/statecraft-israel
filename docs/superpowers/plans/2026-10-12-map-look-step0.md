@@ -20,7 +20,8 @@ are involved. Placement is planned by pure, testable functions (`MapLookScatter.
 **Spec:** `docs/superpowers/specs/2026-10-12-look-and-play-two-options-design.md` (Step 0).
 
 **Ground rules (CLAUDE.md):**
-- **Footprint:** the original game changes by exactly three lines: two in `TiltShift.cs`, one in `GameRoot.cs`.
+- **Footprint:** the original game changes by a few lines: `TiltShift.RadiusScale` (field, use in `Params`, reset) and one
+  line in `GameRoot.cs`.
 - **Settings rewrites:** after any build or editor run, revert them before tests and commits:
   `git checkout -- unity/Assets/Settings unity/ProjectSettings/ProjectSettings.asset unity/ProjectSettings/QualitySettings.asset`.
 - **Pending-rights models:** the build is local only while the Tripo models exist (`unity/Builds/`, marked). Never use
@@ -637,10 +638,13 @@ namespace Statecraft.Game.Map
         static readonly Dictionary<string, (string shape, int groups, int per, float spacing)[]> Rules =
             new Dictionary<string, (string, int, int, float)[]>(StringComparer.Ordinal)
         {
-            ["coastal_plain"] = new[] { (MapLookShapes.Citrus, 3, 9, 420f), (MapLookShapes.Palm, 2, 3, 500f), (MapLookShapes.FieldWheat, 2, 1, 0f), (MapLookShapes.FieldGreen, 2, 1, 0f), (MapLookShapes.Olive, 1, 4, 500f) },
-            ["valley"] = new[] { (MapLookShapes.FieldWheat, 4, 1, 0f), (MapLookShapes.FieldGreen, 3, 1, 0f), (MapLookShapes.Olive, 2, 5, 500f) },
-            ["hills"] = new[] { (MapLookShapes.Olive, 4, 6, 450f), (MapLookShapes.Cypress, 3, 2, 400f), (MapLookShapes.Rock, 2, 2, 400f) },
-            ["mountains"] = new[] { (MapLookShapes.Cypress, 3, 3, 420f), (MapLookShapes.Rock, 4, 2, 400f), (MapLookShapes.Olive, 1, 4, 450f) },
+            // Sized for coverage (hexes.json: 109 coastal, 31 valley, 147 hills, 251 mountains, 332 desert land hexes of
+            // about 65 km2): a coastal hex gets about 14 km2 of orchard and field (about 22%), so the plain reads green
+            // and gold instead of tan. About 35,000 shapes in all.
+            ["coastal_plain"] = new[] { (MapLookShapes.Citrus, 8, 9, 420f), (MapLookShapes.Palm, 3, 3, 500f), (MapLookShapes.FieldWheat, 3, 1, 0f), (MapLookShapes.FieldGreen, 3, 1, 0f), (MapLookShapes.Olive, 2, 6, 450f) },
+            ["valley"] = new[] { (MapLookShapes.FieldWheat, 6, 1, 0f), (MapLookShapes.FieldGreen, 4, 1, 0f), (MapLookShapes.Olive, 4, 6, 450f) },
+            ["hills"] = new[] { (MapLookShapes.Olive, 10, 6, 420f), (MapLookShapes.Cypress, 4, 3, 380f), (MapLookShapes.Rock, 3, 2, 400f) },
+            ["mountains"] = new[] { (MapLookShapes.Cypress, 6, 3, 400f), (MapLookShapes.Rock, 5, 2, 400f), (MapLookShapes.Olive, 2, 4, 450f) },
             ["desert"] = new[] { (MapLookShapes.Rock, 3, 2, 500f) },
         };
 
@@ -677,7 +681,7 @@ namespace Statecraft.Game.Map
         {
             plant = default;
             float yaw = (float)rng.NextDouble() * 360f, k = 0.8f + 0.4f * (float)rng.NextDouble();
-            float w = 700f + 600f * (float)rng.NextDouble(), depth = 700f + 600f * (float)rng.NextDouble();
+            float w = 900f + 800f * (float)rng.NextDouble(), depth = 900f + 800f * (float)rng.NextDouble();
             float y = groundY(p);
             if (y < seaY + SeaClearanceM) return false;
             foreach (var (at, radius) in avoid)
@@ -702,6 +706,8 @@ namespace Statecraft.Game.Map
             plant = new Plant(shape, new Vector3(p.x, y - 0.03f * size, p.z), yaw, Vector3.one * size);
             return true;
         }
+
+        static bool IsTree(string shape) => shape != MapLookShapes.Rock && shape != MapLookShapes.FieldWheat && shape != MapLookShapes.FieldGreen;
 
         static float SizeOf(string shape) => shape switch
         {
@@ -729,7 +735,10 @@ namespace Statecraft.Game.Map
             float Ground(Vector3 p) => t.SampleHeight(p) + origin.y;
             float Slope(Vector3 p) => data.GetSteepness((p.x - origin.x) / data.size.x, (p.z - origin.z) / data.size.z);
             var plants = Plan(map.Hexes, map.Frame, Ground, Slope, PreviewProps.SeaLevelY(), Avoid(map));
-            assets.Emit(go.transform, "scatter", plants.Select(p => (p.Shape, p.Matrix)), shadows: true);
+            // Trees cast shadows; flat fields and low rocks would add caster geometry (the diorama02 shadow cost,
+            // QualityTierValues) for no visible gain.
+            assets.Emit(go.transform, "trees", plants.Where(p => IsTree(p.Shape)).Select(p => (p.Shape, p.Matrix)), shadows: true);
+            assets.Emit(go.transform, "ground", plants.Where(p => !IsTree(p.Shape)).Select(p => (p.Shape, p.Matrix)), shadows: false);
             return go;
         }
     }
@@ -752,6 +761,34 @@ namespace Statecraft.Game.Map
 
 - [ ] **Step 6: Commit** (revert the settings first; add the new file, its `.meta`, `MapLook.cs` and the tests):
 `feat(map): biome scatter of orchards, groves, fields and rocks for the map look`.
+
+---
+
+### Task 3b: First checkpoint for Tal (direction check)
+
+**Files:**
+- Modify: `unity/Assets/Scripts/UI/GameRoot.cs:132`
+
+- [ ] **Step 1: Add the hook** right after `BuildingPreview.Apply(map, BuildingPreview.Requested(), BuildingPreview.LoadFromResources);`:
+
+```csharp
+            MapLook.Apply(map, MapLook.Requested());
+```
+
+`GameRoot.cs` already uses `Statecraft.Game.Map` (it calls `BuildingPreview`), so no `using` is needed.
+
+- [ ] **Step 2: Build WebGL** (Task 7 Step 1's command). Serve it with the `statecraft-local-web` launch config.
+
+- [ ] **Step 3: Capture one matched pair.** Use the start view from Tal's screenshot (Tel Aviv, Lod), a 1920x1080
+viewport and the same turn:
+  - `?building-preview&ui-preview=table`
+  - `?building-preview&ui-preview=table&map-look`
+
+  Save both to the ignored `asset-staging/ui-local/2026-10-12/map-look-review/`.
+
+- [ ] **Step 4: Revert the settings rewrites, commit the hook** (`feat(map): apply the opt-in map look from GameRoot`),
+**send Tal the pair, and stop.** Tasks 4 onward start only after Tal approves the direction. Tal's changes come first:
+density, colours or blur, retuned with the constants named in Task 8.
 
 ---
 
@@ -876,12 +913,17 @@ what the test checks.
 - Modify: `unity/Assets/Scripts/Map/MapLook.cs`
 - Test: `unity/Assets/Tests/EditMode/MapLookTests.cs`
 
-- [ ] **Step 1: Verify the route points before writing them.** The values below are approximations. Check each one against
-a citable map and correct any that is off by more than about 1 km. Sources:
-  - the Survey of Palestine 1:250,000 sheets (1946);
-  - Wikipedia "Jaffa–Jerusalem railway", "Eastern Railway (Palestine)" and "Palestine Railways".
+- [ ] **Step 1: Source the routes before writing them.** The drawing shows the network on 15 May 1948, the game's
+start. The values below are approximations. Fetch the Wikipedia articles and check each station's coordinates against
+them (most station articles give coordinates):
+  - "Jaffa–Jerusalem railway"
+  - "Eastern Railway (Palestine)"
+  - "Palestine Railways"
+  - the linked station articles
 
-Record the sources you used in the class summary.
+Correct any point off by more than about 1 km, and put the article URLs in the class summary. If a route cannot be
+confirmed from those articles, drop it from `Routes` and say so in the summary; an unsourced line is a historical
+claim the content policy does not allow.
 
   - Rail, Jaffa–Jerusalem (1892):
     - Jaffa 34.765, 32.054; Lydda 34.882, 31.946; Ramla 34.872, 31.928; Na'ana 34.860, 31.875;
@@ -929,9 +971,9 @@ using UnityEngine;
 namespace Statecraft.Game.Map
 {
     /// <summary>The map look's lines on the land: the Palestine Railways network in 1948 (Jaffa–Jerusalem, Lydda–Haifa via
-    /// Tulkarm, Lydda–Gaza) and the Tel Aviv–Jerusalem road, as ribbons draped on the terrain. Route points were checked
-    /// against the Survey of Palestine 1:250,000 sheets (1946) and the Wikipedia articles "Jaffa–Jerusalem railway",
-    /// "Eastern Railway (Palestine)" and "Palestine Railways"; they are drawn at map scale, about 1 km accuracy.</summary>
+    /// Tulkarm, Lydda–Gaza) and the Tel Aviv–Jerusalem road on 15 May 1948, as ribbons draped on the terrain. Route points
+    /// were checked against (replace with the article URLs used in Step 1); drawn at map scale, about 1 km
+    /// accuracy.</summary>
     public static class MapLookLines
     {
         public readonly struct Route
@@ -1025,18 +1067,9 @@ Revert the settings first.
 
 ---
 
-### Task 6: Hook into the game and run the full suite
+### Task 6: Run the full suite
 
-**Files:**
-- Modify: `unity/Assets/Scripts/UI/GameRoot.cs:132`
-
-- [ ] **Step 1: Add the one line** right after `BuildingPreview.Apply(map, BuildingPreview.Requested(), BuildingPreview.LoadFromResources);`:
-
-```csharp
-            MapLook.Apply(map, MapLook.Requested());
-```
-
-`GameRoot.cs` already uses `Statecraft.Game.Map` (it calls `BuildingPreview`), so no `using` is needed.
+The GameRoot hook went in at Task 3b.
 
 - [ ] **Step 2: Run the full EditMode suite** (no `-testFilter`):
 
@@ -1058,7 +1091,7 @@ uv run scripts/oss/check_repo.py && uv run --with pytest==9.1.1 --with pyyaml==6
 
 Expected: `OK` and all policy tests pass. No asset row is needed: the look adds no binary or model file.
 
-- [ ] **Step 4: Commit:** `feat(map): apply the opt-in map look from GameRoot` (one line, plus nothing else).
+- [ ] **Step 4: Commit** any fixes the suite needed.
 
 ---
 
@@ -1140,7 +1173,8 @@ pose twice, once with `&map-look` and once without:
   and arab towns; the 1948 railway and the Tel Aviv–Jerusalem road; a livelier grade with lighter tilt-shift.
 - **Art:** all meshes are built in code (`MapLookShapes`). No asset files, downloads or licences are involved, so the
   look can ship publicly.
-- **Original game footprint:** `TiltShift.RadiusScale` (2 lines, default 1) and one line in `GameRoot.cs`.
+- **Original game footprint:** `TiltShift.RadiusScale` (a field, its use in `Params` and its reset; default 1) and one line in
+  `GameRoot.cs`.
 - **Verified:**
   - EditMode <N>/<N>, 0 warnings.
   - Goldens and smoke=5 PASS with and without the switch.
