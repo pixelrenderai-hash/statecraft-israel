@@ -8,6 +8,9 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
 ## [Unreleased]
 
 ### Added
+- Opt-in local Map Look scenery and two play comparisons: Living War Room (`?experience=war-room`) adds period command
+  presentation to the existing campaign; Command (`?prototype=command`) is an isolated RTS prototype with harvesting,
+  construction and convoy missions. Both comparisons protect the campaign save; default play and simulation are unchanged.
 - Opt-in local HUD and Cabinet style previews (Archive, Clear Strategy and Map Table), with wrapping minister rows,
   readable appointment refusal reasons and selected navigation states. Map Table (`?ui-preview=table`) adds paper
   panels with captions, a structured Cabinet roster and a view-only selected-office detail. The default interface is

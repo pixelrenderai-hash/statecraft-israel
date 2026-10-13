@@ -1,0 +1,77 @@
+/* Living War Room. Every selector is opt-in and removed with the presenter. Original UI defaults are untouched. */
+.war-room-active .war-room {
+    position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+    color: rgb(235, 226, 199); font-size: 16px;
+}
+.war-room-active .war-header {
+    position: absolute; left: 0; right: 0; top: 0; height: 96px;
+    flex-direction: row; align-items: center; padding: 8px 16px;
+    background-color: rgb(24, 34, 34); border-bottom-width: 3px; border-bottom-color: rgb(158, 125, 64);
+}
+.war-room-active .war-identity { width: 220px; flex-shrink: 0; padding-right: 12px; border-right-width: 1px; border-right-color: rgb(99, 94, 69); overflow: hidden; }
+.war-room-active .war-eyebrow { color: rgb(184, 166, 121); font-size: 11px; letter-spacing: 1px; padding: 0; margin: 0; }
+.war-room-active .war-brand { font-size: 19px; color: rgb(242, 225, 178); -unity-font-style: bold; margin: 0; padding: 0; white-space: nowrap; overflow: hidden; }
+.war-room-active .war-date { color: rgb(196, 203, 190); font-size: 14px; margin: 1px 0 0 0; padding: 0; }
+.war-room-active .war-resources { flex-grow: 1; flex-shrink: 1; min-width: 0; flex-direction: row; padding: 0 12px; }
+.war-room-active .war-meter { flex-grow: 1; flex-shrink: 1; flex-basis: 0; min-width: 0; padding: 0 10px; border-right-width: 1px; border-right-color: rgba(158, 125, 64, .3); }
+.war-room-active .war-meter-heading { flex-direction: row; align-items: center; height: 23px; }
+.war-room-active .war-resource-icon { width: 24px; height: 22px; font-size: 16px; -unity-font-style: bold; -unity-text-align: middle-center; margin-right: 4px; padding: 0; color: rgb(225, 194, 122); border-width: 1px; border-color: rgb(119, 108, 75); border-radius: 3px; }
+.war-room-active .war-icon-2 { border-radius: 11px; color: rgb(113, 202, 177); }
+.war-room-active .war-icon-3 { background-color: rgb(104, 92, 54); color: rgb(246, 230, 183); }
+.war-room-active .war-icon-4 { border-radius: 11px; }
+.war-room-active .war-icon-5 { color: rgb(113, 202, 177); }
+.war-room-active .war-meter-caption { font-size: 10px; white-space: normal; flex-shrink: 1; color: rgb(187, 190, 167); padding: 0; margin: 0; }
+.war-room-active .war-meter-value { font-size: 25px; -unity-font-style: bold; margin: 0; padding: 0; white-space: nowrap; }
+.war-room-active .war-meter-delta { font-size: 12px; color: rgb(160, 176, 162); padding: 0; margin: 0; white-space: nowrap; }
+.war-room-active .war-positive { color: rgb(121, 204, 166); }
+.war-room-active .war-negative { color: rgb(232, 145, 119); }
+.war-room-active .war-turn { width: 166px; flex-shrink: 0; align-items: stretch; }
+.war-room-active .war-end-turn { background-color: rgb(100, 81, 42); color: rgb(255, 237, 189); border-color: rgb(206, 171, 96); border-width: 2px; -unity-text-align: middle-center; font-size: 18px; -unity-font-style: bold; padding: 8px 3px; margin: 0; height: 44px; }
+.war-room-active .war-end-turn:hover { background-color: rgb(134, 107, 50); border-color: rgb(252, 215, 143); }
+.war-room-active .war-skip { background-color: rgba(0,0,0,0); border-width: 0; color: rgb(188, 202, 183); font-size: 11px; padding: 2px; margin: 3px 0 0 0; -unity-text-align: middle-center; height: 19px; }
+.war-room-active .war-dock { position: absolute; left: 16px; right: 360px; bottom: 16px; height: 210px; flex-direction: row; background-color: rgb(24, 34, 34); border-width: 2px; border-color: rgb(158, 125, 64); border-radius: 5px; }
+.war-room-active .war-report-pane { width: 300px; flex-shrink: 0; padding: 12px; border-right-width: 1px; border-right-color: rgb(119, 105, 69); }
+.war-room-active .war-report-head { flex-direction: row; flex-shrink: 0; align-items: center; margin-bottom: 6px; }
+.war-room-active .war-office-portrait { width: 64px; height: 62px; flex-shrink: 0; margin-right: 10px; background-color: rgb(48, 63, 53); background-size: cover; border-width: 1px; border-color: rgb(177, 148, 85); border-radius: 3px; justify-content: center; }
+.war-room-active .war-portrait-year { -unity-text-align: middle-center; color: rgb(202, 183, 128); font-size: 10px; margin: 0; padding: 0; }
+.war-room-active .war-portrait-radio { -unity-text-align: middle-center; color: rgb(122, 212, 172); font-size: 25px; margin: 0; padding: 0; }
+.war-room-active .war-portrait-caption { -unity-text-align: middle-center; color: rgb(202, 183, 128); font-size: 8px; margin: 0; padding: 0; }
+.war-room-active .war-report-heading { flex-grow: 1; flex-shrink: 1; }
+.war-room-active .war-report-title { color: rgb(243, 226, 185); font-size: 21px; white-space: normal; padding: 0; margin: 4px 0 0 0; }
+.war-room-active .war-report-scroll { flex-grow: 1; flex-shrink: 1; min-height: 0; }
+.war-room-active .war-report-text { font-size: 15px; white-space: normal; color: rgb(203, 213, 191); padding: 0 8px 0 0; margin: 0; }
+.war-room-active .war-command-pane { flex-grow: 1; flex-shrink: 1; min-width: 0; padding: 8px 12px; }
+.war-room-active .war-command-head { flex-direction: row; justify-content: space-between; align-items: center; height: 21px; flex-shrink: 0; }
+.war-room-active .war-sound { background-color: rgba(0,0,0,0); border-width: 0; font-size: 11px; color: rgb(139, 191, 162); padding: 0; margin: 0; -unity-text-align: middle-right; }
+.war-room-active .war-commands { flex-direction: row; height: 51px; flex-shrink: 0; margin-bottom: 5px; }
+.war-room-active .war-command { flex-grow: 1; flex-shrink: 1; flex-basis: 0; min-width: 0; background-color: rgb(34, 46, 45); border-width: 1px; border-color: rgb(123, 111, 76); border-radius: 2px; color: rgb(233, 221, 186); font-size: 13px; -unity-text-align: middle-center; padding: 3px; margin: 2px 3px 2px 0; white-space: normal; }
+.war-room-active .war-command:hover { background-color: rgb(53, 67, 57); border-color: rgb(221, 183, 107); }
+.war-room-active .war-brief-title { font-size: 12px; -unity-font-style: bold; color: rgb(223, 194, 133); padding: 0; margin: 0 0 3px 0; }
+.war-room-active .war-goals { flex-direction: row; flex-shrink: 0; }
+.war-room-active .war-goal { flex-grow: 1; flex-shrink: 1; flex-basis: 0; padding-right: 6px; }
+.war-room-active .war-goal-title { font-size: 12px; white-space: normal; margin: 0; padding: 0; }
+.war-room-active .war-goal-detail { font-size: 11px; color: rgb(173, 186, 163); margin: 0; padding: 0; }
+.war-room-active .war-brief-summary { font-size: 11px; white-space: normal; color: rgb(167, 175, 153); margin: 3px 0 0 0; padding: 0; }
+.war-room-active .war-next-action { font-size: 13px; white-space: normal; color: rgb(236, 220, 176); margin: 4px 0 0 0; padding: 0; }
+.war-room-active .war-legend { position: absolute; left: 20px; bottom: 232px; font-size: 10px; color: rgb(232, 224, 199); background-color: rgba(20,32,30,.82); padding: 3px 8px; margin: 0; border-radius: 2px; }
+.war-room-active .war-map-layer { position: absolute; left: 0; top: 96px; right: 360px; bottom: 248px; overflow: hidden; }
+.war-room-active .war-token-label { position: absolute; font-size: 10px; color: rgb(238, 229, 190); background-color: rgba(24, 40, 35, .90); border-width: 1px; border-color: rgb(135, 126, 82); border-radius: 2px; padding: 2px 6px; translate: -50% -100%; }
+.war-room-active .war-callout { position: absolute; font-size: 19px; -unity-font-style: bold; color: rgb(156, 240, 199); background-color: rgba(19,35,29,.92); border-width: 1px; border-color: rgb(149,194,147); padding: 5px 12px; border-radius: 3px; translate: -50% -100%; }
+.war-room-active .war-minimap-ping { position: absolute; border-width: 2px; border-color: rgb(125, 236, 185); border-radius: 50px; translate: -50% -50%; }
+/* Existing decisions and screens keep their original presenters and controls. Only this opt-in layout is scoped. */
+.root.war-room-active .right-column { right: 16px; top: 112px; width: 328px; bottom: 16px; }
+.root.war-room-active .event-card { background-color: rgb(24,34,34); border-color: rgb(158,125,64); padding: 10px; }
+.root.war-room-active .event-title { font-size: 23px; }
+.root.war-room-active .event-image { width: 64px; height: 82px; margin-right: 8px; }
+.root.war-room-active .event-text { font-size: 17px; }
+.root.war-room-active #event-options Button { background-color: rgb(35,47,41); color: rgb(235,226,199); font-size: 16px; padding: 6px 8px; }
+.root.war-room-active #event-options Button:hover, .root.war-room-active #event-options Button:focus { background-color: rgb(53,67,57); color: rgb(255,237,189); border-color: rgb(221,183,107); }
+.root.war-room-active #event-options Button:disabled { background-color: rgb(35,47,41); color: rgb(164,177,157); }
+.root.war-room-active .minimap { width: 224px; height: 250px; background-color: rgb(24,34,34); border-width: 2px; border-color: rgb(158,125,64); }
+.root.war-room-active .minimap-view { border-color: rgb(230,221,178); border-width: 2px; }
+.root.war-room-active .info-panel { left: 16px; bottom: 260px; width: 300px; background-color: rgb(24,34,34); border-color: rgb(158,125,64); font-size: 17px; }
+.root.war-room-active #info-panel Label { white-space: normal; min-width: 0; }
+.root.war-room-active #info-panel #info-title { font-size: 22px; }
+.root.war-room-active #info-panel Button { white-space: normal; flex-grow: 1; flex-shrink: 1; flex-basis: 0; min-width: 0; }
+.root.war-room-active .screen { left: 16px; right: 360px; top: 112px; bottom: 242px; background-color: rgb(24,34,34); border-color: rgb(158,125,64); }
+.root.war-room-active .toast { left: 27%; right: 31%; top: 112px; font-size: 17px; background-color: rgb(35,46,37); border-color: rgb(187,153,85); }

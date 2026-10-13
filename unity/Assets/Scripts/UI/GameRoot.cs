@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Statecraft.Game.Boot;
 using Statecraft.Game.Map;
+using Statecraft.Game.Presentation;
+using Statecraft.Game.Prototype;
 using Statecraft.Sim;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -108,7 +110,12 @@ namespace Statecraft.Game.UI
         public void Begin(GameInputs inputs) => Begin(inputs, SmokeTurns());
 
         /// <summary>Starts (or restarts) the game over the built map. <paramref name="smoke"/> &gt; 0 plays that many turns.</summary>
-        internal void Begin(GameInputs inputs, int smoke)
+        internal void Begin(GameInputs inputs, int smoke) =>
+            Begin(inputs, smoke, WarRoomPresentation.Requested(), CommandPrototype.Requested());
+
+        /// <summary>Explicit local comparison modes. Command takes precedence; either comparison starts fresh and
+        /// leaves the player's save alone. With both false the normal campaign path is unchanged.</summary>
+        internal void Begin(GameInputs inputs, int smoke, bool warRoom, bool command)
         {
             if (inputs == null) throw new ArgumentNullException(nameof(inputs));
             foreach (var (value, field) in new (UnityEngine.Object?, string)[] { (document, nameof(document)), (strings, nameof(strings)),
@@ -116,12 +123,14 @@ namespace Statecraft.Game.UI
                 if (value == null) throw new InvalidOperationException($"GameRoot: {field} is not assigned (run MapCapture.MakeScene)");
             if (map.Terrain == null) throw new InvalidOperationException("GameRoot: the map is not built (GameBoot builds it before Ready)");
             Shutdown();
+            warRoom &= !command;
+            bool comparison = warRoom || command;
 
             var text = UiText.Parse(strings.text);
             var store = Store ?? SaveStore.ForPlatform();
             var notes = new List<string>();
             // A smoke run is reproducible: a fresh game with the golden seed, never the player's autosave.
-            var session = smoke > 0
+            var session = smoke > 0 || comparison
                 ? GameStart.Begin(inputs.Content, store, () => GoldenRun.Seed, notes, text, fresh: true)
                 : GameStart.Begin(inputs.Content, store, GameStart.NewSeed, notes, text);
             DiagLog.BootPhase($"session started (turn {session.State.Turn}, replayed)");
@@ -130,6 +139,9 @@ namespace Statecraft.Game.UI
             UiPreview.Apply(root, UiPreview.Requested(Application.absoluteURL, Environment.GetCommandLineArgs(),
                 Application.platform == RuntimePlatform.WebGLPlayer), text);
             BuildingPreview.Apply(map, BuildingPreview.Requested(), BuildingPreview.LoadFromResources);
+            bool mapLook = MapLook.Requested() || comparison;
+            MapLook.Apply(map, mapLook);
+            if (mapLook) owned.Add(new Undo(() => MapLook.Apply(map, false)));
 
             // The toast first: the autosave (below) must report a failed write after the toast has shown the turn's refusals.
             var toast = Own(new ToastPresenter(root, bridge, text));
@@ -146,10 +158,18 @@ namespace Statecraft.Game.UI
             // A smoke session never touches the player's save: no autosave, and no New Game (which deletes the autosave).
             // Leaving New Game out is safer than handing it a throwaway store: no file is ever deleted, no path has to be
             // right on every platform, and the scripted run never presses it.
-            if (smoke == 0)
+            if (smoke == 0 && !comparison)
             {
                 Own(new NewGamePresenter(root, bridge, store, toast, text, GameStart.NewSeed));
                 Own(GameStart.Autosave(bridge, store, text, toast.Append));   // appends: the turn's refusals stay visible
+            }
+            else if (smoke == 0 && warRoom)
+            {
+                // Restart the comparison directly; the campaign New Game presenter deletes an autosave.
+                var restartButton = root.Q<Button>("new-game");
+                Action restart = () => Begin(inputs, 0, true, false);
+                restartButton.clicked += restart;
+                owned.Add(new Undo(() => restartButton.clicked -= restart));
             }
 
             Func<Vector2, bool> overUi = p => UiPointer.IsOverUi(root.panel, p, Screen.height);
@@ -189,6 +209,8 @@ namespace Statecraft.Game.UI
             RenderPlacementsIfChanged();
             SyncMinimap();
             root.Q("root")?.RemoveFromClassList("loading");                // ready: the bar, panels and screens may show (P2-1)
+            if (command) Own(CommandPrototype.Attach(gameObject, root, map, camRig, cameraController, pointer));
+            else if (warRoom) Own(new WarRoomPresentation(gameObject, root, bridge, map, camRig, portraits));
             DiagLog.BootPhase("screens ready");
 
             if (notes.Count > 0) toast.Show(notes);

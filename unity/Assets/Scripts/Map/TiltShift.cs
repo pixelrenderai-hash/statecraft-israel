@@ -19,6 +19,8 @@ namespace Statecraft.Game.Map
         public const float MaxRadiusUv = 14f / 1080f;
         public const float FullStrengthDistanceM = 60000f, MinStrength = 0.35f;
         public static bool Enabled = true;
+        /// <summary>Opt-in map-look blur radius multiplier; the shipped value and Reset default are one.</summary>
+        public static float RadiusScale = 1f;
 
         /// <summary>HLSL smoothstep(p.y, p.y + p.z, |y - p.x|); a zero feather is a step at the half-width.</summary>
         public static float Weight(float y, Vector4 p)
@@ -36,7 +38,7 @@ namespace Statecraft.Game.Map
             Mathf.Lerp(1f, MinStrength, Mathf.InverseLerp(FullStrengthDistanceM, CameraController.MaxDistance, distance));
 
         public static Vector4 Params(float topInset, float distance) =>
-            new Vector4(FocusCentre(topInset), HalfWidth, Feather, MaxRadiusUv * Strength(distance));
+            new Vector4(FocusCentre(topInset), HalfWidth, Feather, MaxRadiusUv * Strength(distance) * RadiusScale);
 
         public static void Apply(float topInset, float distance) => Shader.SetGlobalVector(ParamsId, Params(topInset, distance));
 
@@ -45,6 +47,7 @@ namespace Statecraft.Game.Map
         public static void Reset()
         {
             Enabled = true;
+            RadiusScale = 1f;
             Shader.SetGlobalVector(ParamsId, Vector4.zero);
         }
 
