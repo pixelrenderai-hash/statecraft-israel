@@ -98,8 +98,8 @@ namespace Statecraft.HexTiles
             var prefab = Prefab(Resolve(id, at));
             if (prefab == null) return StandInTriangles(standIn);
             int t = 0;
-            foreach (var f in prefab.GetComponentsInChildren<MeshFilter>(true)) if (f.sharedMesh != null) t += f.sharedMesh.triangles.Length / 3;
-            foreach (var s in prefab.GetComponentsInChildren<SkinnedMeshRenderer>(true)) if (s.sharedMesh != null) t += s.sharedMesh.triangles.Length / 3;
+            foreach (var f in prefab.GetComponentsInChildren<MeshFilter>(true)) if (f.sharedMesh != null) t += IndexTriangles(f.sharedMesh);
+            foreach (var s in prefab.GetComponentsInChildren<SkinnedMeshRenderer>(true)) if (s.sharedMesh != null) t += IndexTriangles(s.sharedMesh);
             return t;
         }
 
@@ -124,6 +124,16 @@ namespace Statecraft.HexTiles
             };
         }
 
-        public static int StandInTriangles(StandIn kind) => StandInParts(kind).Sum(p => p.mesh.triangles.Length / 3);
+        public static int StandInTriangles(StandIn kind) => StandInParts(kind).Sum(p => IndexTriangles(p.mesh));
+
+        /// <summary>Triangles from index counts, which a player can read on any mesh (mesh.triangles needs Read/Write).</summary>
+        public static int IndexTriangles(Mesh m)
+        {
+            // A player refuses even index counts on meshes imported without Read/Write; the counts only feed editor stats.
+            if (!m.isReadable && !Application.isEditor) return 0;
+            long n = 0;
+            for (int i = 0; i < m.subMeshCount; i++) n += m.GetIndexCount(i);
+            return (int)(n / 3);
+        }
     }
 }

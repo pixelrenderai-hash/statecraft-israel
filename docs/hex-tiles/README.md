@@ -1,7 +1,18 @@
 # Hex tiles: Civ-style prototype hexes
 
-Status: local prototype for review (Tal, lead designer). The game itself is unchanged. All code lives in an
-Editor-only assembly (`unity/Assets/Editor/HexTiles`, `Statecraft.HexTiles`), so no player build includes it.
+Status: local prototype for review (Tal, lead designer). The default game is unchanged.
+
+- **In the game, opt-in:** the board runs on the real map behind `?hex-tiles` (web) or `-hex-tiles` (desktop), wired in
+  `GameRoot` next to `?map-look`.
+- **Where the code lives:**
+  - Runtime: `unity/Assets/Scripts/Map/HexTiles/`, namespace `Statecraft.HexTiles`, inside `Statecraft.Game`. That is
+    `Core/` (the board placed by `HexRealMap`), `Prototypes/`, `Units/` and `HexTilesLook.cs` (the switch).
+  - Board files: `unity/Assets/Resources/HexTiles/Boards/`.
+  - Shipped material templates: `unity/Assets/Resources/HexTiles/Materials/`, made by the menu
+    **Statecraft/Hex Tiles/Make Materials And Local Ground**.
+  - Editor-only captures and tests: `unity/Assets/Editor/HexTiles/` (`Statecraft.HexTiles.Editor`).
+- **It becomes the default when** the whole map is covered and its models are cleared for shipping. Then the switch
+  goes.
 
 ## The idea
 
@@ -13,14 +24,38 @@ The map is drawn hex by hex, the way Civilization draws it:
   fills it with a few large pieces. Units (soldiers, vehicles) are not tile jobs: they are a separate layer on top (see
   "Units are a layer, not a tile").
 - **Prototypes are tried on a fixed board.** The first board is 37 hexes around Tel Aviv, in
-  `unity/Assets/Editor/HexTiles/Boards/tel_aviv.json`. It uses the game's own `q`/`r` coordinates, so a board maps
+  `unity/Assets/Resources/HexTiles/Boards/tel_aviv.json`. It uses the game's own `q`/`r` coordinates, so a board maps
   onto the real map later.
+
+## Boards: generated, then hand-edited
+
+`central_israel` (108 hexes, Hadera to Jerusalem, coast to the Judean hills) is what the game shows behind `?hex-tiles`.
+It is generated from the game's own hexes and 1948 settlements:
+
+```bash
+python3 tools/hex_tiles/make_board.py --id central_israel --lat 31.62 32.48 --lon 34.4 35.42
+```
+
+The generator does the following:
+
+- **Terrain:** by elevation, and game-friendly as in Civ: flat below 120 m, hills to 450 m, smooth highland above. It
+  draws no real cliffs or ravines, so units cross every land hex.
+- **Ground:** by biome.
+- **Settlements:** each gets its own tile:
+  - Tel Aviv, Jaffa and Jerusalem by id;
+  - the other towns as moshavot or Arab villages;
+  - kibbutzim and moshavim as kibbutz tiles.
+- **Every other hex:** a tile chosen by terrain, biome and coast.
+- **Connections:** roads between the main towns along hex lines, and the Yarkon.
+
+The output is a plain file: edit it by hand afterwards, and re-running overwrites it. `tel_aviv` stays the small test
+board.
 
 ## Adding a prototype hex (the contributor workflow)
 
 **One prototype is one new file** (or one unit is one new file under `Units/`). **You never edit anyone else's file.**
 
-1. **Copy the reference** `unity/Assets/Editor/HexTiles/Prototypes/TelAvivCity.cs` to
+1. **Copy the reference** `unity/Assets/Scripts/Map/HexTiles/Prototypes/TelAvivCity.cs` to
    `Prototypes/<YourName>.cs`. Then:
    - Give it a new `[HexPrototype("your_id")]`, in lower_snake_case and unique.
    - Use the namespace `Statecraft.HexTiles.Prototypes`.
@@ -167,7 +202,7 @@ Lead designer's rules (Tal, 18 October):
   | Spacing between figures | 0.15 |
   | Vehicle length | 0.48 |
 
-**Defining a unit.** One file per unit under `unity/Assets/Editor/HexTiles/Units/`, marked `[HexUnitType("your_id")]`
+**Defining a unit.** One file per unit under `unity/Assets/Scripts/Map/HexTiles/Units/`, marked `[HexUnitType("your_id")]`
 and implementing:
 
 ```csharp

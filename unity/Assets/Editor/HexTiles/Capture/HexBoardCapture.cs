@@ -25,7 +25,7 @@ namespace Statecraft.HexTiles.Capture
     ///   [-captureDir asset-staging/ui-local/hex-tiles] [-captureSize 3840x2160]</summary>
     public static class HexBoardCapture
     {
-        public const string BoardsFolder = "Assets/Editor/HexTiles/Boards";
+        public const string BoardsFolder = "Assets/Resources/HexTiles/Boards";
         /// <summary>The ground textures, local and git-ignored (Poly Haven CC0, asset-staging/kits/PROVENANCE.md). Without
         /// them the board paints flat colours.</summary>
         const string GroundFolder = "Assets/Art/Settlements/Prototype/HexSandboxGround";
@@ -49,11 +49,7 @@ namespace Statecraft.HexTiles.Capture
             }
         }
 
-        public static HexBoard LoadBoard(string id)
-        {
-            var asset = AssetDatabase.LoadAssetAtPath<TextAsset>($"{BoardsFolder}/{id}.json") ?? throw new FileNotFoundException($"no board {BoardsFolder}/{id}.json");
-            return HexBoard.FromJson(asset.text);
-        }
+        public static HexBoard LoadBoard(string id) => HexBoard.Load(id);
 
         static void Capture(string boardId, string? only, string dir, int width, int height)
         {

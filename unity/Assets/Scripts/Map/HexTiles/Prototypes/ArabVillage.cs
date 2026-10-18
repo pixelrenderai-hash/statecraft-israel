@@ -87,14 +87,14 @@ namespace Statecraft.HexTiles.Prototypes
             {
                 float bb = vy + k * (360f / 22f);
                 if (NearPath(bb, 10f) || Mathf.Abs(Mathf.DeltaAngle(bb, clusterBearing)) < 22f) continue;
-                ctx.PlaceFlat(ctx.At(bb, 0.60f), bb + 90f, 0.16f * s, 0.025f * s, Wall, WallRise);
+                ctx.PaintGround("ploughed", ctx.At(bb, 0.60f), bb + 90f, 0.16f * s, 0.03f * s, 0.4f, 0.9f);   // terrace wall line, painted
                 ctx.PaintGround("ploughed", ctx.At(bb, 0.67f), bb + 90f, 0.17f * s, 0.11f * s, 0.15f, 0.7f);
             }
             for (int k = 0; k < 28; k++)
             {
                 float bb = vy + k * (360f / 28f);
                 if (NearPath(bb, 9f)) continue;
-                ctx.PlaceFlat(ctx.At(bb, 0.74f), bb + 90f, 0.16f * s, 0.025f * s, Wall, WallRise);
+                ctx.PaintGround("ploughed", ctx.At(bb, 0.74f), bb + 90f, 0.16f * s, 0.03f * s, 0.4f, 0.9f);
             }
 
             // 4. The footpaths down the slope, painted as dirt, and limestone boulders where they cut through the upper wall.

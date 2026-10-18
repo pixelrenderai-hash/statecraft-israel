@@ -162,9 +162,7 @@ namespace Statecraft.HexTiles
             go.transform.SetParent(root, false);
             go.transform.localPosition = new Vector3(rect.x, MinY, rect.y);
             var t = go.GetComponent<Terrain>();
-            var shader = Shader.Find("Universal Render Pipeline/Terrain/Lit") ?? throw new InvalidOperationException("URP Terrain/Lit not found");
-            var m = assets.Own(new Material(shader) { name = "hex-terrain" });
-            m.EnableKeyword("_NORMALMAP");
+            var m = assets.Own(HexMaterials.New(holesOutsideLand ? HexMaterials.TerrainHoles : HexMaterials.Terrain));
             t.materialTemplate = m; t.heightmapPixelError = 2f; t.basemapDistance = 1e7f; t.drawTreesAndFoliage = false;
         }
 
@@ -222,12 +220,8 @@ namespace Statecraft.HexTiles
 
         public static Material Transparent(Color c, bool lit)
         {
-            var shader = Shader.Find(lit ? "Universal Render Pipeline/Lit" : "Universal Render Pipeline/Unlit") ?? throw new InvalidOperationException("URP shader not found");
-            var m = new Material(shader);
+            var m = HexMaterials.New(lit ? HexMaterials.Sea : HexMaterials.Edges);
             m.SetColor("_BaseColor", c);
-            m.SetFloat("_Surface", 1f); m.SetFloat("_Blend", 0f);
-            m.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha); m.SetFloat("_DstBlend", (float)BlendMode.OneMinusSrcAlpha); m.SetFloat("_ZWrite", 0f);
-            m.SetOverrideTag("RenderType", "Transparent"); m.EnableKeyword("_SURFACE_TYPE_TRANSPARENT"); m.renderQueue = (int)RenderQueue.Transparent;
             return m;
         }
 
@@ -244,8 +238,17 @@ namespace Statecraft.HexTiles
     public sealed class HexBoardAssets : MonoBehaviour
     {
         readonly List<Object> owned = new List<Object>();
+        readonly List<Action> teardown = new List<Action>();
         public T Own<T>(T o) where T : Object { owned.Add(o); return o; }
-        void OnDestroy() { foreach (var o in owned) if (o != null) { if (Application.isPlaying) Destroy(o); else DestroyImmediate(o); } owned.Clear(); }
+        /// <summary>Runs when the board is destroyed, last registered first (e.g. restoring the real map's heights).</summary>
+        public void OnTeardown(Action undo) => teardown.Add(undo);
+        void OnDestroy()
+        {
+            for (int i = teardown.Count - 1; i >= 0; i--) teardown[i]();
+            teardown.Clear();
+            foreach (var o in owned) if (o != null) { if (Application.isPlaying) Destroy(o); else DestroyImmediate(o); }
+            owned.Clear();
+        }
     }
 
     /// <summary>Draws placements: static models and stand-ins combined into one renderer per material, skinned models
@@ -258,16 +261,37 @@ namespace Statecraft.HexTiles
             var groups = new Dictionary<Material, List<CombineInstance>>();
             var parts = new Dictionary<(string, Fit), HexModels.Part[]>();
             var tints = new Dictionary<Color, Material>();
-            var lit = Shader.Find("Universal Render Pipeline/Lit") ?? throw new InvalidOperationException("URP Lit not found");
+            var pieces = new Dictionary<(Mesh, Matrix4x4), MeshRenderer>();
             Material Tinted(Color c)
             {
                 if (tints.TryGetValue(c, out var m)) return m;
-                m = assets.Own(new Material(lit) { name = "hex-" + ColorUtility.ToHtmlStringRGB(c) });
+                m = assets.Own(HexMaterials.New(HexMaterials.Lit)); m.name = "hex-" + ColorUtility.ToHtmlStringRGB(c);
                 m.SetColor("_BaseColor", c); m.SetFloat("_Smoothness", 0.05f);
                 return tints[c] = m;
             }
             void Add(Material m, Mesh mesh, int sub, Matrix4x4 world)
             {
+                // A player cannot combine meshes imported without Read/Write (the Tripo and kit models): draw those as
+                // their own renderers sharing the mesh (the SRP batcher keeps the cost down); combine the rest.
+                if (!mesh.isReadable)
+                {
+                    // One renderer per placed mesh; each of its submeshes gets its own material as the parts arrive.
+                    var key = (mesh, world);
+                    if (!pieces.TryGetValue(key, out var piece))
+                    {
+                        var go = new GameObject(mesh.name, typeof(MeshFilter), typeof(MeshRenderer));
+                        go.transform.SetParent(parent, false);
+                        go.transform.localPosition = world.GetColumn(3);
+                        go.transform.localRotation = world.rotation;
+                        go.transform.localScale = world.lossyScale;
+                        go.GetComponent<MeshFilter>().sharedMesh = mesh;
+                        piece = go.GetComponent<MeshRenderer>();
+                        piece.sharedMaterials = Enumerable.Repeat(m, mesh.subMeshCount).ToArray();
+                        pieces[key] = piece;
+                    }
+                    var mats = piece.sharedMaterials; mats[sub] = m; piece.sharedMaterials = mats;
+                    return;
+                }
                 if (!groups.TryGetValue(m, out var list)) groups[m] = list = new List<CombineInstance>();
                 list.Add(new CombineInstance { mesh = mesh, subMeshIndex = sub, transform = world });   // board space = parent's local space
             }

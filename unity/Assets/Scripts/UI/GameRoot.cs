@@ -142,6 +142,11 @@ namespace Statecraft.Game.UI
             bool mapLook = MapLook.Requested() || comparison;
             MapLook.Apply(map, mapLook);
             if (mapLook) owned.Add(new Undo(() => MapLook.Apply(map, false)));
+            if (Statecraft.HexTiles.HexTilesLook.Requested())   // opt-in hex-tile map (docs/hex-tiles/README.md)
+            {
+                Statecraft.HexTiles.HexTilesLook.Apply(map, true);
+                owned.Add(new Undo(() => Statecraft.HexTiles.HexTilesLook.Apply(map, false)));
+            }
 
             // The toast first: the autosave (below) must report a failed write after the toast has shown the turn's refusals.
             var toast = Own(new ToastPresenter(root, bridge, text));

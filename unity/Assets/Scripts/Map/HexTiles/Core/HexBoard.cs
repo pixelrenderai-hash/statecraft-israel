@@ -46,19 +46,31 @@ namespace Statecraft.HexTiles
             Enumerable.Range(0, rd.hexes.Length / 2).Select(i => HexGeometry.Centre(rd.hexes[2 * i], rd.hexes[2 * i + 1], sizeM)).ToArray()).ToList();
         public static HexBoard FromJson(string json) => new HexBoard(JsonUtility.FromJson<HexBoardFile>(json));
 
+        public const string BoardsFolder = "HexTiles/Boards";
+        /// <summary>A board shipped in Resources/HexTiles/Boards/&lt;id&gt;.json (runtime and editor alike).</summary>
+        public static HexBoard Load(string id) =>
+            FromJson((Resources.Load<TextAsset>(BoardsFolder + "/" + id) ?? throw new System.IO.FileNotFoundException($"no board Resources/{BoardsFolder}/{id}.json")).text);
+
+        /// <summary>Ground textures from Resources/HexTiles/Ground/&lt;texture&gt;_diff_2k and _nor_gl_2k (local while the
+        /// textures await their asset batch); missing ones paint the layer's flat colour.</summary>
+        public static (Texture2D?, Texture2D?) GroundFromResources(string texture) =>
+            (Resources.Load<Texture2D>($"HexTiles/Ground/{texture}_diff_2k"), Resources.Load<Texture2D>($"HexTiles/Ground/{texture}_nor_gl_2k"));
+
         public static HexTerrain TerrainOf(BoardHex h) => h.terrain switch
         {
             "hills" => HexTerrain.Hills, "mountain" => HexTerrain.Mountain, "water" => HexTerrain.Water, _ => HexTerrain.Flat,
         };
     }
 
-    /// <summary>The board's ground (Civ-style): every hex has a height profile by its terrain (water below sea level,
+    /// <summary>Heights are game-friendly, as Civ's: hills a broad dome up to ~0.5 km, highland "mountain" a raised plateau
+    /// with a smooth ~0.6 km dome (no cliffs or ravines), so units and vehicles cross every land hex.
+    /// The board's ground (Civ-style): every hex has a height profile by its terrain (water below sea level,
     /// flat a little above, hills a broad dome, mountains a raised base for the peak props), blended smoothly across edges
     /// so coasts and hill feet round off; outside the board is sea. Water is height below 0. Pure, so tiles, tests and the
     /// Unity terrain all read the same numbers.</summary>
     public sealed class HexBoardSurface : IHexSurface
     {
-        public const float SeaY = 0f, WaterY = -520f, FlatY = 80f, HillsY = 700f, MountainBaseY = 500f, MountainDomeY = 600f;
+        public const float SeaY = 0f, WaterY = -520f, FlatY = 80f, HillsY = 450f, MountainBaseY = 420f, MountainDomeY = 560f;
         const float BlendFrom = 0.5f, BlendTo = 1.12f, NoiseM = 9000f, SlopeStepM = 60f;
 
         readonly HexBoard board;
@@ -167,8 +179,8 @@ namespace Statecraft.HexTiles
         {
             ("grass", "aerial_grass_rock", 3400f, new Color(0.95f, 1.18f, 0.70f), new Color(0.47f, 0.60f, 0.27f)),
             ("plains", "grass_ground", 2800f, new Color(1.05f, 1.15f, 0.72f), new Color(0.62f, 0.62f, 0.33f)),
-            ("hills", "aerial_ground_rock", 4000f, new Color(0.98f, 1.10f, 0.80f), new Color(0.55f, 0.56f, 0.36f)),
-            ("mountain", "rocky_terrain_02", 6000f, new Color(1.05f, 1.02f, 0.95f), new Color(0.52f, 0.49f, 0.44f)),
+            ("hills", "aerial_ground_rock", 4000f, new Color(1.08f, 1.16f, 0.84f), new Color(0.55f, 0.56f, 0.36f)),
+            ("mountain", "rocky_terrain_02", 6000f, new Color(1.32f, 1.25f, 1.10f), new Color(0.52f, 0.49f, 0.44f)),
             ("desert", "aerial_sand", 4500f, new Color(1.25f, 1.08f, 0.85f), new Color(0.82f, 0.70f, 0.50f)),
             ("beach", "aerial_beach_01", 2200f, new Color(1.12f, 1.06f, 0.92f), new Color(0.86f, 0.80f, 0.64f)),
             ("seabed", "aerial_beach_01", 3000f, new Color(0.55f, 0.65f, 0.62f), new Color(0.35f, 0.45f, 0.45f)),
