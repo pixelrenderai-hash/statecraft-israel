@@ -24,6 +24,16 @@
 #
 # Every prototype must be a registered [HexPrototype] id and every ground a HexGround layer
 # (tools/tests/test_hex_regions.py checks both).
+#
+# Regional variants. The farm and forest tiles have two variants (a, b) per landscape, named
+# <type>_<landscape>_<a|b> (wheat_fields, citrus_orchard, olive_terraces, mixed_farm, forest). The nature rules below
+# pick them by this mapping of the seven regions onto three landscapes (for Tal to review):
+#   north  = north
+#   centre = coastal_plain, central_hills, jerusalem
+#   south  = negev, arava, jordan_valley
+# Open question: jordan_valley runs from the Beit She'an valley to the Dead Sea, so its northern end is greener than
+# "south" suggests; splitting it (north part to north) would need a second polygon.
+# defaults.nature still names the base tiles, for boards whose regions name no rules of their own.
 
 defaults:
   region: central_hills
@@ -33,7 +43,11 @@ defaults:
   tiers: {city: 25000, town: 5000, village: 0}
   ground: {coastal_plain: grass, lowland: grass, valley: plains, hills: hills, mountains: mountain, desert: desert, default: grass}
   # Tiles that want low ground lower a mountain hex to hills.
-  lowland: [wheat_fields, citrus_orchard, grazing_land, moshava_village, kibbutz, tel_aviv_city, tel_aviv_city_mixed, jaffa_old_city, coastal_dunes]
+  lowland: [wheat_fields, citrus_orchard, grazing_land, moshava_village, kibbutz, tel_aviv_city, tel_aviv_city_mixed, jaffa_old_city, coastal_dunes,
+            mixed_farm,
+            wheat_fields_north_a, wheat_fields_north_b, wheat_fields_centre_a, wheat_fields_centre_b, wheat_fields_south_a, wheat_fields_south_b,
+            citrus_orchard_north_a, citrus_orchard_north_b, citrus_orchard_centre_a, citrus_orchard_centre_b, citrus_orchard_south_a, citrus_orchard_south_b,
+            mixed_farm_north_a, mixed_farm_north_b, mixed_farm_centre_a, mixed_farm_centre_b, mixed_farm_south_a, mixed_farm_south_b]
   # Roads follow the traced 1948 routes (content/map/route_paths_1948.tsv) of these kinds that the map draws before
   # this date.
   roads: {kinds: [road], before: '1948-05-15'}
@@ -64,8 +78,8 @@ regions:
     title: Jerusalem and its hills
     polygon: [[35.07, 31.70], [35.32, 31.70], [35.32, 31.88], [35.07, 31.88]]
     nature:
-      - {terrain: mountain, pick: [[judean_highlands, 0.50], [olive_terraces, 0.35], [pine_forest, 0.15]]}
-      - {terrain: hills, pick: [[olive_terraces, 0.60], [pine_forest, 0.25], [grazing_land, 0.15]]}
+      - {terrain: mountain, pick: [[judean_highlands, 0.50], [olive_terraces_centre_a, 0.175], [olive_terraces_centre_b, 0.175], [forest_centre_a, 0.075], [forest_centre_b, 0.075]]}
+      - {terrain: hills, pick: [[olive_terraces_centre_a, 0.30], [olive_terraces_centre_b, 0.30], [forest_centre_a, 0.125], [forest_centre_b, 0.125], [grazing_land, 0.15]]}
     flora:
       density: 1.0
       flat:
@@ -83,9 +97,9 @@ regions:
     ground: {valley: plains, lowland: plains, coastal_plain: plains}
     nature:
       - {terrain: mountain, pick: [[desert_edge, 0.70], [grazing_land, 0.30]]}
-      - {terrain: hills, pick: [[grazing_land, 0.50], [desert_edge, 0.50]]}
+      - {terrain: hills, pick: [[grazing_land, 0.20], [olive_terraces_south_a, 0.10], [desert_edge, 0.50], [olive_terraces_south_b, 0.20]]}
       - {biome: desert, prototype: desert_edge}
-      - {pick: [[wheat_fields, 0.40], [grazing_land, 0.30], [citrus_orchard, 0.15], [desert_edge, 0.15]]}
+      - {pick: [[wheat_fields_south_a, 0.12], [wheat_fields_south_b, 0.10], [mixed_farm_south_a, 0.08], [mixed_farm_south_b, 0.08], [grazing_land, 0.14], [citrus_orchard_south_a, 0.10], [citrus_orchard_south_b, 0.07], [forest_south_a, 0.14], [forest_south_b, 0.09], [desert_edge, 0.08]]}
     flora:
       density: 0.6
       flat:
@@ -115,9 +129,9 @@ regions:
     title: Coastal plain
     polygon: [[34.20, 31.20], [34.50, 31.20], [34.72, 31.60], [34.92, 32.00], [35.00, 32.40], [35.03, 32.70], [35.12, 32.85], [35.15, 33.10], [35.05, 33.40], [34.20, 33.40]]
     nature:
-      - {coastal: true, terrain: flat, pick: [[coastal_dunes, 0.45], [citrus_orchard, 0.35], [wheat_fields, 0.20]], ground: beach}
-      - {terrain: flat, pick: [[citrus_orchard, 0.45], [wheat_fields, 0.35], [grazing_land, 0.20]]}
-      - {terrain: hills, pick: [[olive_terraces, 0.50], [grazing_land, 0.30], [pine_forest, 0.20]]}
+      - {coastal: true, terrain: flat, pick: [[coastal_dunes, 0.45], [citrus_orchard_centre_a, 0.175], [citrus_orchard_centre_b, 0.175], [wheat_fields_centre_a, 0.10], [wheat_fields_centre_b, 0.10]], ground: beach}
+      - {terrain: flat, pick: [[citrus_orchard_centre_a, 0.20], [citrus_orchard_centre_b, 0.20], [wheat_fields_centre_a, 0.13], [wheat_fields_centre_b, 0.13], [mixed_farm_centre_a, 0.09], [mixed_farm_centre_b, 0.09], [grazing_land, 0.16]]}
+      - {terrain: hills, pick: [[olive_terraces_centre_a, 0.25], [olive_terraces_centre_b, 0.25], [grazing_land, 0.30], [forest_centre_a, 0.10], [forest_centre_b, 0.10]]}
     flora:
       density: 0.9
       flat:
@@ -135,7 +149,7 @@ regions:
     ground: {valley: desert, lowland: desert, coastal_plain: desert, hills: desert, mountains: desert}
     nature:
       - {terrain: mountain, pick: [[desert_edge, 0.70], [mountain_peaks, 0.30]]}
-      - {biome: desert, terrain: flat, pick: [[desert_edge, 0.75], [grazing_land, 0.20], [wheat_fields, 0.05]]}
+      - {biome: desert, terrain: flat, pick: [[desert_edge, 0.70], [grazing_land, 0.15], [wheat_fields_south_a, 0.03], [wheat_fields_south_b, 0.03], [mixed_farm_south_a, 0.02], [mixed_farm_south_b, 0.02], [forest_south_a, 0.05]]}
       - {prototype: desert_edge}
     flora:
       density: 0.35
@@ -149,9 +163,9 @@ regions:
     title: Galilee and the north
     polygon: [[34.90, 32.40], [35.90, 32.40], [35.90, 33.40], [34.90, 33.40]]
     nature:
-      - {terrain: mountain, pick: [[pine_forest, 0.50], [judean_highlands, 0.35], [olive_terraces, 0.15]]}
-      - {terrain: hills, pick: [[pine_forest, 0.45], [olive_terraces, 0.35], [grazing_land, 0.20]]}
-      - {terrain: flat, pick: [[wheat_fields, 0.50], [grazing_land, 0.30], [citrus_orchard, 0.20]]}
+      - {terrain: mountain, pick: [[forest_north_a, 0.25], [forest_north_b, 0.25], [judean_highlands, 0.35], [olive_terraces_north_a, 0.075], [olive_terraces_north_b, 0.075]]}
+      - {terrain: hills, pick: [[forest_north_a, 0.225], [forest_north_b, 0.225], [olive_terraces_north_a, 0.175], [olive_terraces_north_b, 0.175], [grazing_land, 0.20]]}
+      - {terrain: flat, pick: [[wheat_fields_north_a, 0.14], [wheat_fields_north_b, 0.14], [citrus_orchard_north_a, 0.11], [mixed_farm_north_a, 0.10], [grazing_land, 0.31], [mixed_farm_north_b, 0.10], [citrus_orchard_north_b, 0.10]]}
     flora:
       density: 1.25
       flat:
@@ -165,6 +179,11 @@ regions:
   - id: central_hills
     title: Central hills and the Shephelah
     polygon: [[34.85, 31.35], [35.45, 31.35], [35.55, 32.45], [34.95, 32.45]]
+    # Centre variants. Each rule names the non-desert biomes, so a desert hex still takes the defaults' desert_edge.
+    nature:
+      - {terrain: mountain, biome: [coastal_plain, lowland, valley, hills, mountains], pick: [[judean_highlands, 0.60], [olive_terraces_centre_a, 0.125], [olive_terraces_centre_b, 0.125], [forest_centre_a, 0.075], [forest_centre_b, 0.075]]}
+      - {terrain: hills, biome: [coastal_plain, lowland, valley, hills, mountains], pick: [[olive_terraces_centre_a, 0.225], [olive_terraces_centre_b, 0.225], [forest_centre_a, 0.125], [forest_centre_b, 0.125], [grazing_land, 0.30]]}
+      - {terrain: flat, biome: [coastal_plain, lowland, valley, hills, mountains], pick: [[wheat_fields_centre_a, 0.17], [wheat_fields_centre_b, 0.17], [citrus_orchard_centre_a, 0.10], [citrus_orchard_centre_b, 0.10], [mixed_farm_centre_a, 0.12], [mixed_farm_centre_b, 0.12], [grazing_land, 0.22]]}
     # The built-in mix, written out: olive and carob on the flat, Tabor oak and Aleppo pine on hills.
     flora:
       density: 1.0
