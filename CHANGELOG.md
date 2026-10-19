@@ -22,6 +22,17 @@ adds a line under **Unreleased**; CI's `Changelog` job checks this (see `CONTRIB
   map editor's terrain and location overrides. The editor-only Hex Painter (Statecraft/Hex Tiles/Hex Painter) picks a
   hex in the Scene view, changes its tile, ground, unit, facing or region, rebuilds just that hex and writes the edit
   there. Still presentation only and off by default (refs #18).
+- Cities and regional landscapes for the opt-in hex-tile map.
+  - City and town tiles: Haifa (port, and its bay as the edge), Acre, Safed, Tiberias, Nazareth, Netanya, Hadera,
+    Rehovot, Ramla, Lydda and Beersheba.
+  - Jerusalem's new city with the Old City (an alternative for its hex) and a garden-quarter tile.
+  - A Galilee kibbutz, a Negev kibbutz, and a ma'abara (a painter tile for 1950 on).
+  - Landscape tiles: the Upper Galilee hills, the undrained Hula swamp, the Jezreel valley, the Carmel, the Sharon's
+    kurkar and citrus, the Shephelah terraces, the Judean desert, the Dead Sea shore, the Negev loess, the Ramon
+    highlands and the Arava's acacia and oases.
+  - The `israel` board now has 18 landscape regions and is clipped to Mandatory Palestine on land, with a fringe of
+    landscape round it. Which line bounds the play area is still a design call.
+  - Presentation only and off by default (refs #18).
 - The Cabinet disc in the side menu shows a small gold badge while a post is vacant that the player can fill this turn,
   and its tip says so in English and Hebrew. The sim's `Cabinet.Vacancies` decides it (a vacant seat, someone may be
   appointed, no appointment to it queued, the game not over, and enough Attention left after this turn's queued orders,
