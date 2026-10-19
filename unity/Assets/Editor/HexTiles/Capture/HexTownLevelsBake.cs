@@ -26,7 +26,7 @@ namespace Statecraft.HexTiles.Capture
     public static class HexTownLevelsBake
     {
         const float Tolerance = 0.005f;
-        public const string AssetPath = "Assets/Resources/" + HexTownLevels.ResourcesPath + ".asset";
+        public const string AssetPath = HexModels.TownLevelsPath;
         static string Report(string file) => Path.GetFullPath(Path.Combine(Application.dataPath, "..", "..", "asset-staging/ui-local/hex-tiles/round2/buildings", file));
 
         /// <summary>A measured level: the generator's index, its triangles, whether it keeps the shape, and its see-through.</summary>
@@ -78,13 +78,24 @@ namespace Statecraft.HexTiles.Capture
             int n = TownModels.Ids.Length;
             asset.meshes = new Mesh?[n]; asset.levels = new int[n];
             var lines = new List<string>();
-            // -floor bakes the floor policy (no level under Floor triangles) instead of the lightest whole levels.
-            bool floor = Environment.GetCommandLineArgs().Contains("-floor");
+            // The levels the aliases name ("town:<folder>@<n>"); -floor and -lightest bake those policies instead.
+            bool floor = Environment.GetCommandLineArgs().Contains("-floor"), lightestOnly = Environment.GetCommandLineArgs().Contains("-lightest");
+            var named = new Dictionary<int, int>();
+            foreach (var (_, town, _) in HexModels.TownAliases)
+            {
+                var (index, level) = HexModels.ParseTown(town);
+                if (!int.TryParse(level, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var l)) continue;
+                if (named.TryGetValue(index, out var other) && other != l) throw new InvalidDataException($"{TownModels.Ids[index]}: aliases name levels {other} and {l}; HexTownLevels holds one");
+                named[index] = l;
+            }
             for (int i = 0; i < n; i++)
             {
-                var pick = Lightest(Levels(set, i, out _), floor ? Floor : 0);
+                var levels = Levels(set, i, out _);
+                var pick = floor || lightestOnly ? Lightest(levels, floor ? Floor : 0)
+                    : named.TryGetValue(i, out var want) ? levels.First(x => x.Index == want) : levels[0];
+                if (!pick.Whole) lines.Add($"WARNING {TownModels.Ids[i]} level {pick.Index}: not whole ({pick.SeeThrough:P2}, shape {pick.Shape})");
                 asset.levels[i] = pick.Index;
-                if (pick.Index == 0) { lines.Add($"{TownModels.Ids[i]}: the full mesh (already in TownModelSet)"); continue; }
+                if (pick.Index == 0) { lines.Add($"{TownModels.Ids[i]}: not baked (full mesh or the set's mid level)"); continue; }
                 var copy = Object.Instantiate(set.meshes[i]);
                 MeshLodUtility.GenerateMeshLods(copy, -1);
                 var m = Extract(copy, pick.Index, set.meshes[i].bounds.min.z, TownModels.Ids[i] + "_hex");
@@ -217,7 +228,7 @@ namespace Statecraft.HexTiles.Capture
         static List<string> Tiles(TownModelSet set, int[] lightest, int[] floor)
         {
             var alias = HexModels.TownAliases.ToDictionary(a => a.id, a => a.town);
-            int Index(string town) => Array.IndexOf(TownModels.Ids, town.Substring(HexModels.TownPrefix.Length).Replace(HexModels.MidSuffix, ""));
+            int Index(string town) => HexModels.ParseTown(town).index;
             var lines = new List<string> { "-- triangles per building tile by the level the aliases draw --",
                 $"{"tile",-22} {"hex",-11} {"budget",7} {"sandbox",8} {"all full",9} {"set mid",8} {"lightest whole",15} {"hq full",8} {"hero full",10} {"floor",7}" };
             var board = HexBoardCapture.LoadBoard("israel");

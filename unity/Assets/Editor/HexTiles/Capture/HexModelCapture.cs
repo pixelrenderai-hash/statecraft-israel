@@ -207,10 +207,46 @@ namespace Statecraft.HexTiles.Capture
         /// <summary>How large a model stands in the shot (m across), and how far the camera stands from it.</summary>
         const float WidthM = 1000f, DistanceM = 2600f;
 
+        /// <summary>HexBoardCapture's shots of several prototypes in one run: -prototypes a,b,c [-board israel]
+        /// [-captureDir ...] [-remap id=town,...] (each prototype as HexBoardCapture.Run -prototype; -remap is an A/B of an
+        /// alias, HexModels.Redirect, not a code path).</summary>
+        public static void Boards()
+        {
+            try
+            {
+                Remap();
+                var repo = Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
+                var dir = Path.GetFullPath(Path.Combine(repo, HexBoardCapture.Arg("-captureDir") ?? "asset-staging/ui-local/hex-tiles/round2/buildings/floor"));
+                var size = (HexBoardCapture.Arg("-captureSize") ?? "3840x2160").Split('x');
+                var capture = typeof(HexBoardCapture).GetMethod("Capture", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                    ?? throw new MissingMethodException("HexBoardCapture.Capture");
+                foreach (var id in (HexBoardCapture.Arg("-prototypes") ?? throw new ArgumentException("-prototypes a,b,c")).Split(','))
+                    capture.Invoke(null, new object?[] { HexBoardCapture.Arg("-board") ?? "israel", id, dir, int.Parse(size[0]), int.Parse(size[1]) });
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("HEX MODEL CAPTURE FAILED " + e);
+                if (Application.isBatchMode) EditorApplication.Exit(1);
+                else throw;
+            }
+        }
+
+        /// <summary>-remap id=town,...: draws each id as the given town id for this run.</summary>
+        static void Remap()
+        {
+            foreach (var pair in (HexBoardCapture.Arg("-remap") ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var kv = pair.Split('=');
+                HexModels.Redirect(kv[0], kv[1]);
+                Debug.Log($"HEX MODEL CAPTURE remap {kv[0]} -> {kv[1]}");
+            }
+        }
+
         public static void Run()
         {
             try
             {
+                Remap();
                 var repo = Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
                 var dir = Path.GetFullPath(Path.Combine(repo, HexBoardCapture.Arg("-captureDir") ?? "asset-staging/ui-local/hex-tiles/round2/buildings/models"));
                 var size = (HexBoardCapture.Arg("-captureSize") ?? "3840x2160").Split('x');

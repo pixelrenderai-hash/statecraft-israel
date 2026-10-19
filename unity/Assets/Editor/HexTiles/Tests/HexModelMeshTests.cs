@@ -84,19 +84,32 @@ public class HexModelMeshTests
         Assert.That(holes, Is.Empty, "buildings that show the ground through their walls:\n" + string.Join("\n", holes));
     }
 
+    /// <summary>Every level an alias draws is whole, including aliases no tile places today (kit_haifa*, kit_port...).
+    /// The shipped set's own mid levels are only reported: most are holed, but the hex tiles draw only the three that are
+    /// not (b02b, b07, b28).</summary>
     [Test]
-    public void TownModelsAreWhole()
+    public void AliasedTownModelsAreWhole()
     {
-        var set = AssetDatabase.LoadAssetAtPath<TownModelSet>(TownModels.SetPath);
-        Assert.That(set, Is.Not.Null, TownModels.SetPath);
+        Assert.That(HexModels.TownSet(), Is.Not.Null, TownModels.SetPath);
         var holes = new List<string>();
-        foreach (TownModel t in System.Enum.GetValues(typeof(TownModel)))
-            foreach (var (level, mesh) in new[] { ("full", set.Mesh(t)), ("mid", set.mid[(int)t]) })
-            {
-                var m = HexMeshCheck.Of(new[] { (mesh, HexModels.TownTurn) });
-                if (m.SeeThroughShare > Tolerance) holes.Add($"{TownModels.Ids[(int)t]} {level}: {m}");
-            }
+        foreach (var (id, town, _) in HexModels.TownAliases)
+        {
+            var drawn = HexModels.Prefab(id);
+            Assert.That(drawn, Is.Not.Null, id);
+            var m = HexMeshCheck.Of(drawn!);
+            if (m.SeeThroughShare > Tolerance) holes.Add($"{id} -> {drawn!.name}: {m}");
+        }
         Assert.That(holes, Is.Empty, string.Join("\n", holes));
+    }
+
+    /// <summary>Each "@n" level an alias names is baked (HexTownLevels), so it does not silently fall back to the full
+    /// mesh; ignored on a checkout without the baked asset (the fallback draws whole buildings at full cost).</summary>
+    [Test]
+    public void NamedLevelsAreBaked()
+    {
+        if (HexModels.TownLevels() == null) Assert.Ignore("no " + HexModels.TownLevelsPath + " (HexTownLevelsBake.Bake)");
+        var missing = HexModels.TownAliases.Where(a => HexModels.TownMesh(HexModels.TownSet()!, a.town).fellBack).Select(a => $"{a.id} -> {a.town}").ToList();
+        Assert.That(missing, Is.Empty, string.Join("\n", missing));
     }
 
     /// <summary>With the town models off (or their set missing) a sandbox id draws its sandbox prefab again, or nothing
@@ -190,19 +203,17 @@ public class HexModelMeshTests
         Debug.Log("HEX MESH REPORT -> " + path + "\n" + string.Join("\n", lines));
     }
 
-    /// <summary>Each building tile's triangles on KeepsToItsTriangleBudget's hex ((2,-1), seed 1948) by which level the
-    /// town aliases draw: the sandbox kit (town models off), every alias full, every alias mid, and mid only where the
-    /// mid level is whole (within <see cref="Tolerance"/>), else full.</summary>
+    /// <summary>Each building tile's triangles on KeepsToItsTriangleBudget's hex ((2,-1), seed 1948): as the aliases draw
+    /// now, the sandbox kit (town models off), every alias full, every alias at the set's mid level. (HexTownLevelsBake's
+    /// report has the other level policies.)</summary>
     static List<string> BudgetLines()
     {
-        var lines = new List<string> { "-- triangles per building tile at hex (2,-1), seed 1948, by the level the aliases draw --",
-            $"{"tile",-22} {"budget",7} {"sandbox",8} {"all full",9} {"all mid",8} {"mid where whole",16}" };
+        var lines = new List<string> { "-- triangles per building tile at hex (2,-1), seed 1948 --",
+            $"{"tile",-22} {"budget",7} {"as drawn",9} {"sandbox",8} {"all full",9} {"all mid",8}" };
         var set = HexModels.TownSet();
         if (set == null) return lines;
         var alias = HexModels.TownAliases.ToDictionary(a => a.id, a => a.town);
-        var whole = new Dictionary<int, bool>();
-        int Index(string town) => System.Array.IndexOf(TownModels.Ids, town.Substring(HexModels.TownPrefix.Length).Replace(HexModels.MidSuffix, ""));
-        bool MidWhole(int i) => whole.TryGetValue(i, out var w) ? w : whole[i] = HexMeshCheck.Of(new[] { (set.mid[i], HexModels.TownTurn) }).SeeThroughShare <= Tolerance;
+        int Index(string town) => HexModels.ParseTown(town).index;
         foreach (var id in HexPrototypes.All.Keys.OrderBy(k => k, System.StringComparer.Ordinal))
         {
             var proto = HexPrototypes.Create(id);
@@ -223,7 +234,8 @@ public class HexModelMeshTests
                 sandbox = ctx.Placements.Sum(p => p.StandIn == StandIn.Flat ? 12 : HexModels.Triangles(p.Model, p.StandIn, p.Position));
             }
             finally { HexModels.DrawTownModels = true; HexModels.Clear(); }
-            lines.Add($"{id,-22} {proto.TriangleBudget,7} {sandbox,8} {Sum(_ => false),9} {Sum(_ => true),8} {Sum(MidWhole),16}");
+            int drawn = ctx.Placements.Sum(p => p.StandIn == StandIn.Flat ? 12 : HexModels.Triangles(p.Model, p.StandIn, p.Position));
+            lines.Add($"{id,-22} {proto.TriangleBudget,7} {drawn,9} {sandbox,8} {Sum(_ => false),9} {Sum(_ => true),8}");
         }
         return lines;
     }

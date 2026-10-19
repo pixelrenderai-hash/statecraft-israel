@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Statecraft.HexTiles
 {
-    /// <summary>PROPOSAL (lane A, 19 October 2026; not wired in): one whole level of detail per town model for the hex
-    /// tiles, in TownModel order: the lightest of Unity's generated levels that keeps the model's shape and lets no view
-    /// ray through its walls (HexTownLevelsBake). Each is null where the full mesh in TownModelSet is that level.
-    /// Baked by the editor into Resources/HexTiles/TownLevels.asset from the tracked b*-v2 models; the shipped
-    /// TownModelSet is not changed.</summary>
+    /// <summary>PROPOSAL (lane A, 19 October 2026): the generated levels of detail the hex tiles draw for the town
+    /// models, in TownModel order, one per model: the level the "town:&lt;folder&gt;@&lt;n&gt;" ids in HexModels.TownAliases
+    /// name (a whole level that keeps the model's shape: HexTownLevelsBake). Null where the aliases take the full mesh or
+    /// the set's own mid level. Baked by the editor into Resources/HexTiles/TownLevels.asset from the tracked b*-v2
+    /// models; the shipped TownModelSet is not changed. Without it the hex tiles draw the full meshes.</summary>
     public sealed class HexTownLevels : ScriptableObject
     {
         public const string ResourcesPath = "HexTiles/TownLevels";
