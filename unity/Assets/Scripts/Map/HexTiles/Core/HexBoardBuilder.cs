@@ -244,6 +244,9 @@ namespace Statecraft.HexTiles
         public T Own<T>(T o) where T : Object { owned.Add(o); return o; }
         /// <summary>Runs when the board is destroyed, last registered first (e.g. restoring the real map's heights).</summary>
         public void OnTeardown(Action undo) => teardown.Add(undo);
+        /// <summary>Runs after every other teardown step, e.g. switching the map's own dressing back on once the board has
+        /// put back what it hid, so the dressing has the last word on what shows.</summary>
+        public void AfterTeardown(Action undo) => teardown.Insert(0, undo);
         void OnDestroy() => Teardown();
 
         /// <summary>Restores everything the board changed, now and once (Destroy is deferred to the frame's end, so a

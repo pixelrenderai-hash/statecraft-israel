@@ -108,20 +108,10 @@ namespace Statecraft.HexTiles
             foreach (var m in unit.Members)
             {
                 var prefab = HexModels.Prefab(m.Model);
-                GameObject go;
-                float scale;
-                if (prefab != null)
-                {
-                    go = Object.Instantiate(prefab, parent);
-                    var b = HexModels.Bounds(go);
-                    scale = (m.ByWidth ? m.HeightShare * sizeM / Mathf.Max(b.size.x, b.size.z) : m.HeightShare * sizeM / Mathf.Max(b.size.y, 1e-4f));
-                }
-                else
-                {
-                    go = GameObject.CreatePrimitive(PrimitiveType.Capsule); go.transform.SetParent(parent, false);
-                    Object.DestroyImmediate(go.GetComponent<Collider>());
-                    scale = m.HeightShare * sizeM / 2f;
-                }
+                // A missing model (a clean checkout) draws the member's own stand-in, sized by the same fit as the model.
+                var go = prefab != null ? Object.Instantiate(prefab, parent) : StandInObject(m.StandIn, parent);
+                go.transform.localScale = Vector3.one;
+                float scale = FitScale(m, HexModels.Bounds(go), sizeM);
                 go.transform.localScale = Vector3.one * scale;
                 var animator = go.GetComponentInChildren<Animator>();
                 var clips = animator != null && animator.runtimeAnimatorController != null ? animator.runtimeAnimatorController.animationClips : Array.Empty<AnimationClip>();
@@ -132,6 +122,29 @@ namespace Statecraft.HexTiles
                     Idle = clips.FirstOrDefault(c => c.name.IndexOf("idle", StringComparison.OrdinalIgnoreCase) >= 0),
                 });
             }
+        }
+
+        /// <summary>The uniform scale that gives a member its declared size: footprint (its longer horizontal side) for a
+        /// vehicle, height for a figure. <paramref name="b"/> is measured at local scale 1.</summary>
+        internal static float FitScale(HexUnitMember m, Bounds b, float sizeM)
+        {
+            float side = m.ByWidth ? Mathf.Max(b.size.x, b.size.z) : b.size.y;
+            return m.HeightShare * sizeM / Mathf.Max(side, 1e-4f);
+        }
+
+        /// <summary>A stand-in for a missing model, standing on its pivot: a box a vehicle's proportions (long along +X, as
+        /// the Tripo vehicles face), or a capsule for a figure.</summary>
+        internal static GameObject StandInObject(StandIn kind, Transform? parent)
+        {
+            var root = new GameObject("stand-in");
+            if (parent != null) root.transform.SetParent(parent, false);
+            bool box = kind == StandIn.Box;
+            var body = GameObject.CreatePrimitive(box ? PrimitiveType.Cube : PrimitiveType.Capsule);
+            Object.DestroyImmediate(body.GetComponent<Collider>());
+            body.transform.SetParent(root.transform, false);
+            body.transform.localScale = box ? new Vector3(1f, 0.4f, 0.45f) : Vector3.one;
+            body.transform.localPosition = new Vector3(0f, box ? 0.2f : 1f, 0f);
+            return root;
         }
 
         /// <summary>Total path length in metres.</summary>

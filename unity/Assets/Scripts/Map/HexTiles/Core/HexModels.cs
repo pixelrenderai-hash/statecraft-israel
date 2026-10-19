@@ -108,9 +108,15 @@ namespace Statecraft.HexTiles
 
         public static (Mesh mesh, string colour, Matrix4x4 local)[] StandInParts(StandIn kind)
         {
-            if (standIns.TryGetValue(kind, out var p)) return p;
+            // A cached part can be gone: Unity frees code-made meshes no scene references when it unloads unused assets
+            // (a scene load), whatever a static field holds. Rebuild then; the flag below keeps that rare.
+            if (standIns.TryGetValue(kind, out var p) && p.All(part => part.mesh != null)) return p;
             (Mesh, string, Matrix4x4)[] From(HexStandIns.Shape shape, Vector3 scale) =>
-                HexStandIns.Build(shape).Select(part => (part.mesh, part.colour, Matrix4x4.Scale(scale))).ToArray();
+                HexStandIns.Build(shape).Select(part =>
+                {
+                    part.mesh.hideFlags |= HideFlags.DontUnloadUnusedAsset;
+                    return (part.mesh, part.colour, Matrix4x4.Scale(scale));
+                }).ToArray();
             return standIns[kind] = kind switch
             {
                 StandIn.Box => From(HexStandIns.Shape.Box, new Vector3(1f, 0.65f, 1f)),

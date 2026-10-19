@@ -72,6 +72,23 @@ public class HexPrototypeTests
         Assert.That(HexTilesLook.RequestedBoard(null, new[] { "app", "-hex-tiles", "tel_aviv_crop" }, false), Is.EqualTo("tel_aviv_crop"));
     }
 
+    // Owner's review of #1120: a missing model (a clean checkout) must keep the member's declared fit.
+    [TestCase(StandIn.Box, true, 0.55f)]
+    [TestCase(StandIn.Figure, false, 0.38f)]
+    public void AMissingUnitModelDrawsItsStandInAtTheDeclaredSize(StandIn kind, bool byWidth, float share)
+    {
+        var parent = new UnityEngine.GameObject("units").transform;
+        try
+        {
+            var unit = new HexUnit { Members = { new HexUnitMember { Model = "proto:no-such-model", StandIn = kind, ByWidth = byWidth, HeightShare = share } } };
+            var motion = new HexUnitMotion(unit, new[] { (0, 0) }, new FlatSurface(), parent, 1000f);
+            var b = HexModels.Bounds(motion.Objects[0]);
+            float measured = byWidth ? UnityEngine.Mathf.Max(b.size.x, b.size.z) : b.size.y;
+            Assert.That(measured, Is.EqualTo(share * 1000f).Within(1f), $"{kind}: {b.size}");
+        }
+        finally { UnityEngine.Object.DestroyImmediate(parent.gameObject); }
+    }
+
     [Test]
     public void BoardsNameKnownPrototypesAndTerrains()
     {

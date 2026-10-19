@@ -1,18 +1,19 @@
 # Civ layers and the team plan for hex tiles
 
-Status: a design note for Tal (lead designer). It decides nothing. Everything marked **Proposal** needs Tal's yes. The
-hex tiles are presentation only: an Editor-only assembly (`unity/Assets/Editor/HexTiles`) that draws what the
-deterministic simulation (`sim/`, data in `content/`) decides. Nothing here changes the shipped game, its look or the
-simulation goldens.
+Status: a design note. It decides nothing. `docs/GDD.md` and its rulings in `docs/gdd/` are the design of record, and
+anything marked **Proposal** here goes to the owner (@eyalgolan) for a ruling. The hex tiles are presentation only and
+opt-in at runtime: the game code is in `unity/Assets/Scripts/Map/HexTiles` (part of `Statecraft.Game`) and runs only
+behind `?hex-tiles` (desktop `-hex-tiles`); `unity/Assets/Editor/HexTiles` holds the editor-only captures and tests.
+They draw what the deterministic simulation (`sim/`, data in `content/`) decides. With the switch off, nothing here
+changes the game, its look or the simulation goldens.
 
 Read with `docs/hex-tiles/README.md` (the contributor contract). Scale reminder: `HexScale.HexM` = 5,000 m is the hex
 circumradius (`content/map/hexes.json` `hex_size_km: 5.0`), so a hex is about 8.7 km flat to flat. One hex is a whole
 landscape: the Bauhaus "White City" is one hex, and the Tel Aviv to Jerusalem road, from (-3,19) to (0,23), is 7 hexes.
 
-State of the working tree on 18 October, evening: `Core/` is being extended now, uncommitted. It has gained
-`ctx.PaintGround` and `ctx.PaintStroke` (ground painted into the splat), the crop layers `wheat`, `green_crop`,
-`ploughed` and `dirt`, and board-level `roads` (hex centre to hex centre, painted dirt) and `rivers` (along hex
-corners, carved as a channel). The tables below count these as "in progress".
+`Core/` has `ctx.PaintGround` and `ctx.PaintStroke` (ground painted into the splat), the crop layers `wheat`,
+`green_crop`, `ploughed` and `dirt`, and board-level `roads` (hex centre to hex centre, painted dirt) and `rivers`
+(along hex corners, carved as a channel).
 
 ## 1. Civ's layer model, mapped to ours
 
@@ -32,8 +33,8 @@ tiles (improvements) and urban districts, and an urban district with two buildin
 | Improvement / rural tile | farm, mine, pasture, plantation, camp, fishing boats | `prototype` art (`wheat_fields`, `grazing_land`, `citrus_orchard`) plus `PaintGround` crop layers | Have (as art) | Kibbutz fields; citrus plantations at Petah Tikva; Dead Sea Works as a mine |
 | District / urban quarter | campus, harbour; VII quarters | `prototype` (`tel_aviv_city`, `moshava_village`, `arab_village`) | Have (one per hex) | Bauhaus White City; Jaffa port; Jerusalem Old City |
 | Settlement | city centre | `content/map/settlements_1948.yaml` and `settlement_hexes.yaml` (owned by the sim) | Have, in the sim | Tel Aviv, Haifa, Jerusalem |
-| River | VI: on edges; VII: minor in tile, navigable fills the tile | `BoardRiver`, along hex corners, carved channel | In progress (Civ VI style) | Yarkon (north edge of Tel Aviv), Kishon (Haifa bay), Jordan |
-| Road / railroad | road, railroad | `BoardRoad`, centre to centre, painted dirt | In progress; no railway | Tel Aviv to Jerusalem road via Bab al-Wad; Jaffa to Jerusalem railway; coastal road; the Burma Road (June 1948) |
+| River | VI: on edges; VII: minor in tile, navigable fills the tile | `BoardRiver`, along hex corners, carved channel | Built (Civ VI style) | Yarkon (north edge of Tel Aviv), Kishon (Haifa bay), Jordan |
+| Road / railroad | road, railroad | `BoardRoad`, centre to centre, painted dirt | Built; no railway | Tel Aviv to Jerusalem road via Bab al-Wad; Jaffa to Jerusalem railway; coastal road; the Burma Road (June 1948) |
 | Borders / territory | coloured border on owner edges | Nothing (`owner` missing) | Missing | Yishuv, Arab, Transjordan and Egypt control; British Mandate until 15 May |
 | Units | VI: one military plus one civilian; VII: commanders pack armies | `BoardHex.unit` plus `facing`, one per hex, own layer (`HexUnitMotion`) | Have (one slot) | `palmach_squad`, `sandwich_truck`, `willys_jeep` |
 | Yields | food, production, gold icons | Nothing on the board | Missing, and should stay in the sim | Citrus exports, housing, morale (`MapActions`) |
@@ -55,7 +56,7 @@ Civ hexes read as one thing each and still form one landscape. The rules for our
 | **Ground is painted, not placed** | Fields, sand, yards and tracks go into the terrain splat (`ctx.PaintGround/PaintStroke`), not `PlaceFlat` slabs. Slabs flicker when co-planar and fail on slopes. Ground layers blend across edges (weights 0.75 to 0.95 of S) | Have; move remaining fields to paint |
 | **Shape follows the hex** | `HexBoardSurface` per-hex profiles blended over 0.5 to 1.12 S: hills round off, coasts soften | Have |
 | **Features thin out toward the edge** | Dense in the middle, sparse near the inset (0.07 S), so two forest hexes meet as one forest. A later contract option: a read-only `ctx.Neighbour(dir)` so a tile can spill toward a like neighbour | Prototype habit now; neighbour query = contract change |
-| **Roads and rivers are board layers** | Drawn once by the builder as continuous lines (roads through centres, rivers on corners), never by a prototype. Prototypes leave a corridor so a road isn't hidden | In progress |
+| **Roads and rivers are board layers** | Drawn once by the builder as continuous lines (roads through centres, rivers on corners), never by a prototype. Prototypes leave a corridor so a road isn't hidden | Built |
 | **Units are a separate layer** | Never in a tile. `HexScale.UnitSpotShare` 0.3 S keeps tall pieces off the centre. Units are larger than buildings | Have |
 | **Faint hex lines** | `HexBoardEdges`: a pale ribbon draped on land edges. Keep it faint; fade it out at close zoom | Have |
 | **Territory borders** | A coloured ribbon inset on the owner's side, only where two owners meet. A softer wash fills inside. Drawn like the edges | Missing (needs `owner`) |
