@@ -33,3 +33,21 @@ The same collection-bundle test was run on unchanged base commit `4d92aff9eb162a
 The failing non-checks branch calls a two-argument NativeArray.ReadOnly constructor, while the compiler reports a three-argument constructor requiring a safety handle. This establishes the compile-time API mismatch, not whether it comes from an editor regression or this installation's player-reference assemblies. Unity's [6000.3.21f1 release notes](https://unity.com/releases/editor/whats-new/6000.3.21f1) include Collections 2.6.8; its presence alone does not justify a blind package upgrade. No verified small asset-branch fix was found.
 
 Smallest next step: run only `CollectionImportTests.BuildBundlesWritesTheChecksBesideTheShippedBundles` on that unchanged base in a clean installation of the pinned editor, after `tools/build_sim_for_unity.py`, to distinguish a machine/install issue from a reproducible editor/package defect. Keep the branch draft until that toolchain gate is fixed and the same test passes. Do not regenerate the art, disable the test, patch cached package files or add global safety defines as a guessed workaround.
+
+## Complete 22 October asset inventory
+
+[Readiness manifest and full GLB-stage audit](generated-1948-assets-manifest.json) verifies all 19 admitted asset families against source and delivered-file hashes:7characters,3buildings,2tents,4props and3vehicles/aircraft. All were already present in this branch; the audit adds no duplicate binaries. Six have explicit gameplay mappings on this branch (3 faction figures and 3 house variants); 13 remain unplaced review candidates. The entire set remains behind owner art review and the documented bundle-build gate.
+
+| Category | Included | Gameplay mappings on branch | Review-only |
+| --- | ---: | ---: | ---: |
+| Characters | 7 | 3 | 4 |
+| Individual buildings | 3 | 3 | 0 |
+| Tents | 2 | 0 | 2 |
+| Props | 4 | 0 | 4 |
+| Vehicles/aircraft | 3 | 0 | 3 |
+
+All 7 characters include actual skinning, the existing idle animation and a separate walk-review FBX. The vehicles are the Egyptian Spitfire, Syrian R35 and Egyptian Dakota/C47; none replaces an Israeli vehicle or invents a deployment. The two tents, well, sandbags, crates and wall module are included as isolated reusable assets. House 03 retains its documented local rear-plaster backing caveat for owner review.
+
+The manifest audits all 63 staged GLB versions, not just canonical filenames, and explains why each raw master/intermediate remains outside git. Source originals, 4K masters, retarget working files and failed repair trials are preserved in staging. Plain git follows the repository's existing rules; no LFS configuration or existing asset licence was changed.
+
+Excluded from gameplay and from admitted model binaries: roof-failed houses 01/05, provisional M22 and alternate/open tent (image-only), the three whole-town concepts (image-only), warm-limestone alternate (image-only), rejected tent/image trials and the refused ship. Existing Legion is reused without generating or duplicating a replacement. Original provider master GLBs are represented by traceable FBX/512px derivatives, not copied into the repository a second time. User-supplied private reference photos are not uploaded to the repo.

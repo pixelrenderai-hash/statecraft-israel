@@ -1,0 +1,1669 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "scope": "Statecraft only; latest usable generated mesh families and complete GLB-stage audit. No Weedbirds files.",
+  "totals": {
+    "included_asset_families": 19,
+    "mapped_on_branch": 6,
+    "review_only": 13,
+    "by_category": {
+      "characters": 7,
+      "buildings": 3,
+      "tents": 2,
+      "props": 4,
+      "vehicles_aircraft": 3
+    },
+    "staged_glb_files_audited": 63,
+    "unique_glb_hashes": 63
+  },
+  "binary_policy": "Plain git follows existing repository; no LFS rules. Runtime FBXs +512px colour +owned material/prefab/controller/provenance; no duplicate GLB, 4K master, .blend, archive, private photo or third-party historical reference images added. Source hashes establish lineage.",
+  "build_gate": "Unity Collections CS7036 reproduced on unchanged base4d92aff9; see generated-1948-build-baseline.json. Not end-to-end player-ready.",
+  "assets": [
+    {
+      "number": 2,
+      "name": "Netanya two-storey balcony house",
+      "id": "generated-1948-02-netanya-two-storey-balcony-house",
+      "category": "buildings",
+      "readiness": "mapped_on_branch_pending_review",
+      "placement_reason": "Existing formation/town selection only; owner art review and bundle build gate still pending.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-02-netanya-two-storey-balcony-house",
+      "provider_model_id": "e6337e2e-8d55-4022-a880-ce47ac3bce2d",
+      "source_master_sha256": "7d884a4e4d52b7c04f6f084477a8b2876d1281dff427d75ecbddd1e0c8965e11",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/02/textured-4k.glb"
+      ],
+      "triangles": 4798,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-02-netanya-two-storey-balcony-house/generated-1948-02-netanya-two-storey-balcony-house-near.fbx",
+          "bytes": 228604,
+          "sha256": "b2358e067570c6f92d67c7cfbed859b22fb923ddf8b8b5dfdeb013475cdd1cf2"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-02-netanya-two-storey-balcony-house/generated-1948-02-netanya-two-storey-balcony-house.mat",
+          "bytes": 3949,
+          "sha256": "314fbd12a266e7f1841000f9b7ab72bbcaa60db1cb356dbb86ac9871781bccdd"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-02-netanya-two-storey-balcony-house/generated-1948-02-netanya-two-storey-balcony-house.prefab",
+          "bytes": 2755,
+          "sha256": "09258a6f1d5b47a5bb59719ba5e6e48b7ed14f37640fd35e9580454e898045ef"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-02-netanya-two-storey-balcony-house/generated-1948-02-netanya-two-storey-balcony-house_basecolor.jpg",
+          "bytes": 83497,
+          "sha256": "09bbfd1c4d7b6dbff4f5d1a877c7e1e56bc9fc4c973bd09977c6762a0f9f2be8"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-02-netanya-two-storey-balcony-house/provenance.json",
+          "bytes": 1452,
+          "sha256": "01e0e525be55616ccba2868d33ecbcba226eb52f135e1d8973702d858598d439"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Netanya flat-roof porch house",
+      "id": "generated-1948-03-netanya-flat-roof-porch-house",
+      "category": "buildings",
+      "readiness": "mapped_on_branch_pending_review",
+      "placement_reason": "Existing formation/town selection only; owner art review and bundle build gate still pending.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-03-netanya-flat-roof-porch-house",
+      "provider_model_id": "2ecd727a-53f3-4004-bc42-50dd95662148",
+      "source_master_sha256": "d59adcd4e17c8db3ab2dbb9235b6c934fdb703f849ac1ef7f183e3162841fd0e",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/qa-final/03/textured-rear-plaster-panel-candidate.glb"
+      ],
+      "triangles": 4941,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [
+        "Separate local plaster backing closes broad rear cutout; plain patch and rear appearance need owner review."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-03-netanya-flat-roof-porch-house/generated-1948-03-netanya-flat-roof-porch-house-near.fbx",
+          "bytes": 237548,
+          "sha256": "f9b30e5b633e4f2083e470f53773a990d1b2ee7bd0cd4bcd57cbb4e11dac2820"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-03-netanya-flat-roof-porch-house/generated-1948-03-netanya-flat-roof-porch-house.mat",
+          "bytes": 3947,
+          "sha256": "4bb554140c1eb3ee97f14cea1fa121f51255f1661670161788e44e66c2e6ac81"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-03-netanya-flat-roof-porch-house/generated-1948-03-netanya-flat-roof-porch-house.prefab",
+          "bytes": 2752,
+          "sha256": "7afae24d19d8bd0433933f128e67633b6b0a900098844dc6ff0d8f79eaabe492"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-03-netanya-flat-roof-porch-house/generated-1948-03-netanya-flat-roof-porch-house_basecolor.jpg",
+          "bytes": 78320,
+          "sha256": "97fbaad9681abe3cafdc1bc0db11a3dcf3ea38492e89618d8c7ae4da4e0f0179"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-03-netanya-flat-roof-porch-house/provenance.json",
+          "bytes": 1560,
+          "sha256": "8abed8eef42f8569021346b2c3a16faf6529812480d848390b238edfe34bb6dc"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Dark basalt house",
+      "id": "generated-1948-04-dark-basalt-house",
+      "category": "buildings",
+      "readiness": "mapped_on_branch_pending_review",
+      "placement_reason": "Existing formation/town selection only; owner art review and bundle build gate still pending.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-04-dark-basalt-house",
+      "provider_model_id": "4a24fbf2-f0e1-4169-beda-7606b1a270ac",
+      "source_master_sha256": "01ba4c818fc93ac1cd6e770963ae4459bf2a2d7bc6d7f5ca29ece24dc1d0d9f6",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/roof-regeneration-v4/models/04/textured-4k.glb"
+      ],
+      "triangles": 5624,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [
+        "Regenerated lighter brown-gray stone art variant; fine texture grain and historical material appearance need owner review."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-04-dark-basalt-house/generated-1948-04-dark-basalt-house-near.fbx",
+          "bytes": 202924,
+          "sha256": "af211f012c66571ef65e0598c70379082a8efda3def214205260ea8a0ff24e1a"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-04-dark-basalt-house/generated-1948-04-dark-basalt-house.mat",
+          "bytes": 3935,
+          "sha256": "d223a63c8e9c1dc532303db6217158742bb01ead4916087283790a317c3bce69"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-04-dark-basalt-house/generated-1948-04-dark-basalt-house.prefab",
+          "bytes": 2740,
+          "sha256": "002c63e50be3f5513212017be5bd0e69d458782b1218045410326a629adc146b"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-04-dark-basalt-house/generated-1948-04-dark-basalt-house_basecolor.jpg",
+          "bytes": 70255,
+          "sha256": "4e75a275294d72c2d92bc5a87e237bc1f3631db8cabcb510e30a41aa83cd1f54"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-04-dark-basalt-house/provenance.json",
+          "bytes": 1554,
+          "sha256": "e85348e3ef8bcdeaf962e677df07810b4dd7eae1b6b257497f1b40a902d6d14f"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Bedouin B \u2014 enclosed striped tent",
+      "id": "generated-1948-06-bedouin-b-enclosed-striped-tent",
+      "category": "tents",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-06-bedouin-b-enclosed-striped-tent",
+      "provider_model_id": "bb7a03d2-7702-463b-8ecf-2dc9990045a6",
+      "source_master_sha256": "f163ea5eaeeda61f6351a92c4b04b75311c648b280d7965d9734eb3155f5b921",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/06/textured-4k.glb"
+      ],
+      "triangles": 3184,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-06-bedouin-b-enclosed-striped-tent/generated-1948-06-bedouin-b-enclosed-striped-tent-near.fbx",
+          "bytes": 181308,
+          "sha256": "6c69692c25d0700a1efde4407c516730ba7615429d1942ffdd7f37e388717795"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-06-bedouin-b-enclosed-striped-tent/generated-1948-06-bedouin-b-enclosed-striped-tent.mat",
+          "bytes": 3948,
+          "sha256": "ac649d383d047c3881d69eb55c59c8e4266e1ae025231dde7ed51a58f14342f4"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-06-bedouin-b-enclosed-striped-tent/generated-1948-06-bedouin-b-enclosed-striped-tent.prefab",
+          "bytes": 2754,
+          "sha256": "95256baa4c3d29bed2249d1bcad4ba63ffcfe009ebc5b424db2f4bcd28b4acfe"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-06-bedouin-b-enclosed-striped-tent/generated-1948-06-bedouin-b-enclosed-striped-tent_basecolor.jpg",
+          "bytes": 82573,
+          "sha256": "6b649da479f7994c8a61dbcc6a20530cc1c6ca8dbd4543f55aed7ff0b962f23c"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-06-bedouin-b-enclosed-striped-tent/provenance.json",
+          "bytes": 1455,
+          "sha256": "07ac71f9083e94a731b86d02e0b0f1a7e338cbb36b37571cd462f24c14aec750"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Khaki canvas tent",
+      "id": "generated-1948-08-khaki-canvas-tent",
+      "category": "tents",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-08-khaki-canvas-tent",
+      "provider_model_id": "82aa3615-0d0b-48ad-9411-57100958e5e1",
+      "source_master_sha256": "ba0b61039a863ccb1929528a41d8e5d2f917edb11af9bb8759051757b098bc0c",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/08/textured-4k.glb"
+      ],
+      "triangles": 3988,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-08-khaki-canvas-tent/generated-1948-08-khaki-canvas-tent-near.fbx",
+          "bytes": 215916,
+          "sha256": "659fad6c9b5e807079e4144442887956cb4c71e29497514a0e8e838bdd0e0307"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-08-khaki-canvas-tent/generated-1948-08-khaki-canvas-tent.mat",
+          "bytes": 3934,
+          "sha256": "aa28239bfdb2c5044c724969c2e820d982223b26a2084e7c64d687194cb4a494"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-08-khaki-canvas-tent/generated-1948-08-khaki-canvas-tent.prefab",
+          "bytes": 2740,
+          "sha256": "e4b9129722f397bd2f36d14bfa8b48c7b3891877b775c2665bba20f4b3473a9f"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-08-khaki-canvas-tent/generated-1948-08-khaki-canvas-tent_basecolor.jpg",
+          "bytes": 45094,
+          "sha256": "d1c4e095d07772ca05b8e959fec696ed86e9d3da69552b6e8670fd0179d72a71"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-08-khaki-canvas-tent/provenance.json",
+          "bytes": 1420,
+          "sha256": "5ab13d23c9b7e2d7f6f4391be7f87a028a263fb842661b86d173c2abb9dcb830"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Stone village well",
+      "id": "generated-1948-09-stone-village-well",
+      "category": "props",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-09-stone-village-well",
+      "provider_model_id": "0f9cb0d9-38dd-4e90-9aac-5ecc69ab5fda",
+      "source_master_sha256": "d303eba126409e6fcdc9fcd87b2d33870e88113cb22cb1c76fec636f9327d26f",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/09/textured-4k.glb"
+      ],
+      "triangles": 3992,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-09-stone-village-well/generated-1948-09-stone-village-well-near.fbx",
+          "bytes": 139788,
+          "sha256": "82741d8ba21de6d07328416786b4848f9811a3e3917c58fa265d2c2fdc7ba4bb"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-09-stone-village-well/generated-1948-09-stone-village-well.mat",
+          "bytes": 3936,
+          "sha256": "1c4c962916cab2dfc7c0d2e3bdf43db1126f12203bf5e0e32dfc0b78aa713dbb"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-09-stone-village-well/generated-1948-09-stone-village-well.prefab",
+          "bytes": 2741,
+          "sha256": "3ae32b61fef2d74e4cfa5c6ae3afd4fb9a8f09f30f5a503e1fbcfa4d590a914c"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-09-stone-village-well/generated-1948-09-stone-village-well_basecolor.jpg",
+          "bytes": 87841,
+          "sha256": "3d2d19220603f538155ec721e602d1ced3700cce06aae5a9433e5cd39620ffe2"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-09-stone-village-well/provenance.json",
+          "bytes": 1422,
+          "sha256": "4560fc13e653ad0f6ff3170cc8bce56ed21c16ca55a2fa80dd4da52d03497178"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Low sandbag position",
+      "id": "generated-1948-10-low-sandbag-position",
+      "category": "props",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-10-low-sandbag-position",
+      "provider_model_id": "2bb138f2-52ac-4cb4-a301-065444aa03fe",
+      "source_master_sha256": "48b2bb1df695b535bccda23b5c00519da654be0288b42264a5e8d9c822f149d7",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/10/textured-4k.glb"
+      ],
+      "triangles": 4074,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-10-low-sandbag-position/generated-1948-10-low-sandbag-position-near.fbx",
+          "bytes": 184908,
+          "sha256": "fdb0c5a035bb1336627cfd6f6bcbc4fc47ac7a2aa200f8e47df33bab9aaa8262"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-10-low-sandbag-position/generated-1948-10-low-sandbag-position.mat",
+          "bytes": 3938,
+          "sha256": "c049f392a59e4b427423bdb494bb2923ff55fd4723579abd9d1843aa204122d9"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-10-low-sandbag-position/generated-1948-10-low-sandbag-position.prefab",
+          "bytes": 2743,
+          "sha256": "6f4177360a868167b5ded0a5c6a074aa1bee505d87ced66b9eb0c9565aa2e269"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-10-low-sandbag-position/generated-1948-10-low-sandbag-position_basecolor.jpg",
+          "bytes": 74348,
+          "sha256": "615b8ddb96caa477033751dcc9bd9c5cbcd936afdd27c6b34371d65e687441c7"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-10-low-sandbag-position/provenance.json",
+          "bytes": 1427,
+          "sha256": "e00ba90e9d00e9e1cac193f4ef9619fc1ac48ba8a013f84daaeacd13a5b15707"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "name": "Supply crate stack",
+      "id": "generated-1948-11-supply-crate-stack",
+      "category": "props",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-11-supply-crate-stack",
+      "provider_model_id": "5e45f962-e4e5-4c1c-9335-2daab762430b",
+      "source_master_sha256": "1fa6c1a4d1c521ad9f1d1f63f751016102c0f14e7f2fa2612f3fa53133a560af",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/11/textured-4k.glb"
+      ],
+      "triangles": 2126,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-11-supply-crate-stack/generated-1948-11-supply-crate-stack-near.fbx",
+          "bytes": 103628,
+          "sha256": "2e3dbb090bab45c2dc73e95be8ae73fe797507e42c1c8cc950072ee55adad202"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-11-supply-crate-stack/generated-1948-11-supply-crate-stack.mat",
+          "bytes": 3935,
+          "sha256": "8e33414adb3512ee9d9a558491ca07f36fd263ce47fd40d023c308e25907db44"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-11-supply-crate-stack/generated-1948-11-supply-crate-stack.prefab",
+          "bytes": 2741,
+          "sha256": "7fabbbdedb0d3752788a66d7b4e83b61d6f83d233f13d66fecb40fc259d83367"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-11-supply-crate-stack/generated-1948-11-supply-crate-stack_basecolor.jpg",
+          "bytes": 72700,
+          "sha256": "71d438d282c51820442453f24d5aa68405625ae885497ec0e170607c096ccb66"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-11-supply-crate-stack/provenance.json",
+          "bytes": 1426,
+          "sha256": "006a3867633b992af832b95ea4e68e5bafb0d154a803d587ce00a7a75b315d12"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "name": "Low stone wall module",
+      "id": "generated-1948-12-low-stone-wall-module",
+      "category": "props",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-12-low-stone-wall-module",
+      "provider_model_id": "98fb7740-c1a9-4f38-9fd3-dc9ec50a84da",
+      "source_master_sha256": "4c0ff30354dab1e30e8262be502548f4ad610a33a62466346977dd8184c859f9",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/12/textured-4k.glb"
+      ],
+      "triangles": 2146,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-12-low-stone-wall-module/generated-1948-12-low-stone-wall-module-near.fbx",
+          "bytes": 82588,
+          "sha256": "dd31ff8c5744d27e6f769d28529092d3f3043f55b29eec1a24e87d571519c676"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-12-low-stone-wall-module/generated-1948-12-low-stone-wall-module.mat",
+          "bytes": 3938,
+          "sha256": "e5167957e3bd9b5e9807aba892cf830edb0a52cfbbddb9457a5732a9c1788eb3"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-12-low-stone-wall-module/generated-1948-12-low-stone-wall-module.prefab",
+          "bytes": 2744,
+          "sha256": "8947c8f6c39b3e0d95d20b56bcf935a79934014aed44101b1eb87fd13c124c66"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-12-low-stone-wall-module/generated-1948-12-low-stone-wall-module_basecolor.jpg",
+          "bytes": 106269,
+          "sha256": "ea30b1b359b59f5effe378d88dbdb879b7905a7a1e3e90da5fdf1ceb0c8ddb21"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-12-low-stone-wall-module/provenance.json",
+          "bytes": 1432,
+          "sha256": "4bb88dcf90ef79bd15553be13cb7ff9b9ac65cb83dcd30ba62d1faabc55b86e4"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Egyptian Spitfire",
+      "id": "generated-1948-13-egyptian-spitfire",
+      "category": "vehicles_aircraft",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-13-egyptian-spitfire",
+      "provider_model_id": "3bced78c-274b-4af7-aed8-0b995b87c37c",
+      "source_master_sha256": "6b67d358e04c398559e87399b55b987d0fefa1d970966a979e26cad148c57c2e",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/13/textured-4k.glb"
+      ],
+      "triangles": 7177,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [
+        "Generated paint, markings and subtype details need owner/content review."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-13-egyptian-spitfire/generated-1948-13-egyptian-spitfire-near.fbx",
+          "bytes": 320012,
+          "sha256": "0567f0e82deda13de1463d7a721345b11379ab2b4d0c307c7862a30bf46bdb43"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-13-egyptian-spitfire/generated-1948-13-egyptian-spitfire.mat",
+          "bytes": 3934,
+          "sha256": "ec9c96f1cae3b561531b180130693bb2adb73f08ebb76463786a7b20d366ea85"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-13-egyptian-spitfire/generated-1948-13-egyptian-spitfire.prefab",
+          "bytes": 2740,
+          "sha256": "cd56677ee10e42b4b82c525d5d15182afb6fd06cae0028b7ccf0cc1e4f4b982b"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-13-egyptian-spitfire/generated-1948-13-egyptian-spitfire_basecolor.jpg",
+          "bytes": 86778,
+          "sha256": "d9684bf24f94cb54672736e18481683f28144e11f854aaaaa73c5a5549900e94"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-13-egyptian-spitfire/provenance.json",
+          "bytes": 1503,
+          "sha256": "568ecf217ff46d41f62156945e531adec45b9082380a3ae5e3d199250689adee"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "name": "Syrian Renault R35",
+      "id": "generated-1948-14-syrian-renault-r35",
+      "category": "vehicles_aircraft",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-14-syrian-renault-r35",
+      "provider_model_id": "9b87d05b-2354-4ce2-8969-6c856ac2e09d",
+      "source_master_sha256": "b842c074f8a3bf5095b24ac1d9a7e384ba4cbac56452af10910c400914bf2271",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/14/textured-4k.glb"
+      ],
+      "triangles": 6329,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [
+        "Generated paint, markings and subtype details need owner/content review."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-14-syrian-renault-r35/generated-1948-14-syrian-renault-r35-near.fbx",
+          "bytes": 294780,
+          "sha256": "a0230ada07d3b70a31975ba44956641c150ed9570f4eb875d6b542c737abe1c8"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-14-syrian-renault-r35/generated-1948-14-syrian-renault-r35.mat",
+          "bytes": 3935,
+          "sha256": "4d9554fa4211b70b121f7cc240216e142e4a335e66523c51a7505a7ff1f22a65"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-14-syrian-renault-r35/generated-1948-14-syrian-renault-r35.prefab",
+          "bytes": 2740,
+          "sha256": "e358a26057402587ed45437cc9eb5add2a73ed6949efdff5e5b0162192e7a5fa"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-14-syrian-renault-r35/generated-1948-14-syrian-renault-r35_basecolor.jpg",
+          "bytes": 72681,
+          "sha256": "b7ebeea92a7b2a0c6fae63da4da768cc47e5657587f3eacfc9842b5e35dd0c65"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-14-syrian-renault-r35/provenance.json",
+          "bytes": 1507,
+          "sha256": "1c21622098b059e28fed7bf3e67dd04919ebe8088a47347862f51d83cbc615d9"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "name": "Egyptian Dakota C47",
+      "id": "generated-1948-16-egyptian-dakota-c47",
+      "category": "vehicles_aircraft",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No sourced placement mapping added.",
+      "folder": "unity/Assets/Art/Generated1948Review/generated-1948-16-egyptian-dakota-c47",
+      "provider_model_id": "01377dc9-a051-4991-a492-86c856201fea",
+      "source_master_sha256": "cc191b7f8c53a92eee593fc65dba32a7928f13f0d27c200428d1815856e168aa",
+      "source_master_staging_paths": [
+        "remaining-batch-v2/models/16/textured-4k.glb"
+      ],
+      "triangles": 6854,
+      "rigged": false,
+      "rig_preset": null,
+      "runtime_actions": [],
+      "separate_review_actions": [],
+      "caveats": [
+        "Generated paint, markings and subtype details need owner/content review."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-16-egyptian-dakota-c47/generated-1948-16-egyptian-dakota-c47-near.fbx",
+          "bytes": 299324,
+          "sha256": "730878fab23fe1cbed035b76bc59b691b7973bbd042ee75df4fefc267cb1f092"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-16-egyptian-dakota-c47/generated-1948-16-egyptian-dakota-c47.mat",
+          "bytes": 3936,
+          "sha256": "2af29b9eb4f529e3e293147fd3a7ba2db3549177806e3fd60cd81ca6456b29c9"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-16-egyptian-dakota-c47/generated-1948-16-egyptian-dakota-c47.prefab",
+          "bytes": 2742,
+          "sha256": "2367f8af78664fb65a2a5f97d8bfc40ad90aeb666585681b42b1b6d76dc380ab"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-16-egyptian-dakota-c47/generated-1948-16-egyptian-dakota-c47_basecolor.jpg",
+          "bytes": 73770,
+          "sha256": "3a7c8f032425c36c5ca7dd657402c0e38098588d5f7f6ff0afd45892047da5f9"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/generated-1948-16-egyptian-dakota-c47/provenance.json",
+          "bytes": 1507,
+          "sha256": "e20626f6f3c0762e19d84d082d572849a7375902bc7afed011804ef8f7c8d487"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "name": "figure-egyptian-infantry-1948-v1",
+      "id": "figure-egyptian-infantry-1948-v1",
+      "category": "characters",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "Simultaneous sourced Egyptian Isdud/Majdal anchors need owner presentation decision.",
+      "folder": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1",
+      "provider_model_id": "446ca561-c4e6-4d07-93b6-0c29baf69672",
+      "source_master_sha256": "7470a17c90b62af78ad225aaa2073c05686748f39819d46089d57ac831b66ab5",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/17/rigged-source.glb"
+      ],
+      "triangles": 7282,
+      "rigged": true,
+      "rig_preset": "Mixamo Compatible (65 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1-far.fbx",
+          "bytes": 71324,
+          "sha256": "9f0eeb18fb7eeb3eee7c65f847a57057d540f85eb23d324633def22b459f8387"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1-far.prefab",
+          "bytes": 2740,
+          "sha256": "bde768e5c6b2169e779582a3351b5b7cef0157168c6e311baeac17860de6f070"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1-near.controller",
+          "bytes": 2058,
+          "sha256": "bf272893841c38568e1132cae106565f08d690618a68744e8ed4ccf3f35ecda9"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1-near.fbx",
+          "bytes": 1051596,
+          "sha256": "9d60e109aba42ee07da49faa2db8c0e87fe10f94673fd2aac9346626a3af8200"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1-near.prefab",
+          "bytes": 3127,
+          "sha256": "11b4c0c2be354c9eaaede3ab43593381f2ac535de9d13f5b911c20d50e7039b8"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1-walk.fbx",
+          "bytes": 864412,
+          "sha256": "73d9d626d3da6686985f36a61fd005a795c7e3949055d6b887488b72b63a9682"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1.mat",
+          "bytes": 3931,
+          "sha256": "964dd0f14e97efd985d63c919222b3fb3849728a8f447e807ff0dc67f402584c"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/figure-egyptian-infantry-1948-v1_basecolor.jpg",
+          "bytes": 85133,
+          "sha256": "e1888778ff605870159f3aadf898a77d26b6e30e905d545d97559705b04d0f34"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-egyptian-infantry-1948-v1/provenance.json",
+          "bytes": 1599,
+          "sha256": "68f25353a4821fb91896d1e87f556bb7c9287833cd75671aed79a65e35b22541"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "name": "figure-syrian-infantry-1948-v1",
+      "id": "figure-syrian-infantry-1948-v1",
+      "category": "characters",
+      "readiness": "mapped_on_branch_pending_review",
+      "placement_reason": "Existing formation/town selection only; owner art review and bundle build gate still pending.",
+      "folder": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1",
+      "provider_model_id": "68adee8c-a678-4960-944b-639240e8038e",
+      "source_master_sha256": "014f00a2bc50b1dbe9915af46e5caada48637b71aa4986b8a9d14d34055c1f89",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/18/rigged-source.glb"
+      ],
+      "triangles": 7616,
+      "rigged": true,
+      "rig_preset": "Mixamo Compatible (65 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1-far.fbx",
+          "bytes": 68460,
+          "sha256": "fec4f4f945a390acb93b038d6f7bbaba5d3ec81872a12792f677ecbbb7dbb6c1"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1-far.prefab",
+          "bytes": 2738,
+          "sha256": "f7b1834a130907632aea38ac2d8693b7d6788e218ab70432d72faf8b1a2445e5"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1-near.controller",
+          "bytes": 2053,
+          "sha256": "a86aa8b03f5a3a8512187b3854882496fd64030fa0582edc568bd1b1a6a8ff96"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1-near.fbx",
+          "bytes": 1056636,
+          "sha256": "5988f296e660bbb19a63409a09d163abe22cc8ec806c1545a29b38975931f531"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1-near.prefab",
+          "bytes": 3126,
+          "sha256": "8598dfa70bd3e53b117d5ac1638fbb2ae6e442962f25794a11976a726dd7cd99"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1-walk.fbx",
+          "bytes": 869260,
+          "sha256": "e394231fe8a3529292ad0d958beac258681eb93f31ebe705cb8f8afbd858a9a2"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1.mat",
+          "bytes": 3930,
+          "sha256": "196f6ede73d9906dfeae19b3c64d91c03fffb4f968251310cfb86034415b2c54"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/figure-syrian-infantry-1948-v1_basecolor.jpg",
+          "bytes": 89674,
+          "sha256": "48a745ba9924c7eaf143db2db72410a02c0c47ab265c39dcf4e36d0d8a6866ff"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/provenance.json",
+          "bytes": 1492,
+          "sha256": "fa1aa7632e65d842f88da2e2fed5035439dd83463b05f1a977f95f0510b8fe43"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "name": "figure-ala-infantry-1948-v1",
+      "id": "figure-ala-infantry-1948-v1",
+      "category": "characters",
+      "readiness": "mapped_on_branch_pending_review",
+      "placement_reason": "Existing formation/town selection only; owner art review and bundle build gate still pending.",
+      "folder": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1",
+      "provider_model_id": "5745fb8a-0d14-4488-a06e-59e7bfaacf78",
+      "source_master_sha256": "ae1132515c83100e1af3d0bef52d72a031f4b8ea6defa32d6046ec2dbd148f20",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/19/rigged-source.glb"
+      ],
+      "triangles": 7480,
+      "rigged": true,
+      "rig_preset": "Mixamo Compatible (65 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [
+        "Far headcloth has a minor dark speck at the larger review size; accepted at sampled 24/48px, owner review remains."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1-far.fbx",
+          "bytes": 69644,
+          "sha256": "65216b9286acb257d00af23b374be378da2e6e311926c955c6f6f763bcb1202e"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1-far.prefab",
+          "bytes": 2735,
+          "sha256": "6472918ee82d8f05125f6a65c2f33de2632a456dddb5d9c73b8bec3b684203ba"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1-near.controller",
+          "bytes": 2042,
+          "sha256": "a2a6368380f1b72df9affac7605cba0b188ecd97cdc942fa568a6ae2577c5751"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1-near.fbx",
+          "bytes": 1075660,
+          "sha256": "6d7083847b9f300da118393d5cc7e3fbd6fee9fff298a5542a78883fb1d045c2"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1-near.prefab",
+          "bytes": 3123,
+          "sha256": "e618db4c6e8497dc12ca0dd93e6f2d0a0b199e2e77a0d7fbbf2b790a29e6abdb"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1-walk.fbx",
+          "bytes": 886876,
+          "sha256": "7cea04dcaa6857bf02c8c60a97150c4c505eadaa56ee9eb29cd822116cd887e3"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1.mat",
+          "bytes": 3927,
+          "sha256": "cd35751eeeaae5f3ce0ebac60cb82a18336c6d534871fa3f4e0365694d1be2c1"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/figure-ala-infantry-1948-v1_basecolor.jpg",
+          "bytes": 86802,
+          "sha256": "c2cc64df0c94046423cd2c5e1f42ba039720820cfd318741f39de557dfbb6dd2"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/provenance.json",
+          "bytes": 1477,
+          "sha256": "64bf2f99bea34d183eb770a2864b90501203fd7b84aaeb60829af96cf5d6a26e"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "name": "figure-iraqi-infantry-1948-v1",
+      "id": "figure-iraqi-infantry-1948-v1",
+      "category": "characters",
+      "readiness": "mapped_on_branch_pending_review",
+      "placement_reason": "Existing formation/town selection only; owner art review and bundle build gate still pending.",
+      "folder": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1",
+      "provider_model_id": "14f2a010-b22a-43a5-9029-0385dd7cec2d",
+      "source_master_sha256": "f32b3ea2b331d3e997b785fab9009628cc5ee3325470ca54ad50a1e3f54fb6d8",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/20/rigged-source.glb"
+      ],
+      "triangles": 7569,
+      "rigged": true,
+      "rig_preset": "Unity Humanoid Compatible (67 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1-far.fbx",
+          "bytes": 59308,
+          "sha256": "3abe789c990536e4f615db995e6abc3bd991783467dee2c3ad95604dc98427bd"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1-far.prefab",
+          "bytes": 2736,
+          "sha256": "22d9ef888091130309162809692c68148289401da47ba2e4ae1aceed6e0441dd"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1-near.controller",
+          "bytes": 2053,
+          "sha256": "01bbb7fc3a34f2d933544f46dbad2aaa2afde735ec232595a41b7f319ac129dc"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1-near.fbx",
+          "bytes": 965180,
+          "sha256": "39156b10041b0a3695730befcf450da3ff281e5bf7f1e899eb591c8377e507f8"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1-near.prefab",
+          "bytes": 3126,
+          "sha256": "69ea82ff8560bc563d3f5eb8315818709d2f0dd9d1ac8ba858f73697306ff12a"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1-walk.fbx",
+          "bytes": 772188,
+          "sha256": "4793c5325cea861c71b316ad8f7bbe5825b5caff38bf60ed5d119ac46fbfdda5"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1.mat",
+          "bytes": 3928,
+          "sha256": "af565154ee72993db7448925d1408ea49ffa39fe9ddbbf72948f168bf8811131"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/figure-iraqi-infantry-1948-v1_basecolor.jpg",
+          "bytes": 71225,
+          "sha256": "67426b3e76f132a27da76b9cac2e94058a2d7a71e600f35c34d90c44ce47fc32"
+        },
+        {
+          "path": "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/provenance.json",
+          "bytes": 1495,
+          "sha256": "62fcf4c127b37feb2582af21940941d8a710f595fe977bcf88926a80fc43d632"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "name": "figure-lebanese-regular-1948-v1",
+      "id": "figure-lebanese-regular-1948-v1",
+      "category": "characters",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "Lebanese regular row has no deployment anchors.",
+      "folder": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1",
+      "provider_model_id": "6f415898-3172-4e42-9824-133a31c66a04",
+      "source_master_sha256": "b84b4e45e954fdf9bcdd568caf761bb763f7a5b4945957fe54ec9bde8bde8748",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/21/rigged-source.glb"
+      ],
+      "triangles": 6948,
+      "rigged": true,
+      "rig_preset": "Unity Humanoid Compatible (67 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1-far.fbx",
+          "bytes": 63516,
+          "sha256": "9195025fdd130dde0ce3638d2d560b556893531bbd4e9f347a89549536e44b0f"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1-far.prefab",
+          "bytes": 2739,
+          "sha256": "2662b915351a21714a6b58a25d059a7643613a972dcc63fbd6e771c47e225253"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1-near.controller",
+          "bytes": 2057,
+          "sha256": "7e58135a6e2cf9933d9a99cab4903c7607ea6e0a907914ff9feb0cc35d2e7d09"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1-near.fbx",
+          "bytes": 950620,
+          "sha256": "3cf692cc672fb25725dc5978efbc19933b52b6d7e5bfd8b2fccbac9b5a523f9c"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1-near.prefab",
+          "bytes": 3126,
+          "sha256": "47b6111dbf56614b2a311beb3991fde4742d72b2544e20f7613f5d24f6dedaba"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1-walk.fbx",
+          "bytes": 761884,
+          "sha256": "cefe3c827cf3af50f64d4e1a8fb385eac13c7b41a3de84c963a9bf83b0bf47b9"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1.mat",
+          "bytes": 3930,
+          "sha256": "f93eb9e3a52decb9015a19c87ccc5c5c747ee5b0265c1eab51226c62e44b92d3"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/figure-lebanese-regular-1948-v1_basecolor.jpg",
+          "bytes": 66391,
+          "sha256": "5a905b06b6030d0d8054e9520d2c8c818f0580aaa331444866179a9bd407ff8a"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-lebanese-regular-1948-v1/provenance.json",
+          "bytes": 1537,
+          "sha256": "a2ff0d2f50431afa48faa2aef437ffcefc7c57976a73f382110f83886d046831"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "name": "figure-bedouin-civilian-1948-v1",
+      "id": "figure-bedouin-civilian-1948-v1",
+      "category": "characters",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "No global civilian replacement authorized.",
+      "folder": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1",
+      "provider_model_id": "b3e14af5-3fb5-464d-afc4-02f7642f2827",
+      "source_master_sha256": "941d0f7e435b238ee8098abc4be665dec62e34a9b4cd3d824c5fb45385f01c88",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/22/rigged-source.glb"
+      ],
+      "triangles": 7306,
+      "rigged": true,
+      "rig_preset": "Unity Humanoid Compatible (67 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [
+        "Skinned robe has no cloth simulation; sampled deformation passed, review-only."
+      ],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1-far.fbx",
+          "bytes": 69356,
+          "sha256": "5d53c727ec0233eb750c6e19c2f61ec85ada6e07dde77757b0d076ea2cb19c2c"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1-far.prefab",
+          "bytes": 2738,
+          "sha256": "25144b475e78a55e1a70ccdf7386d88cd5634adb8785772c72126b0fac608b4e"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1-near.controller",
+          "bytes": 2052,
+          "sha256": "14b15d3d6597e77ecca71a68a2006b7caf266bd900d764f4664da0a57df2466a"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1-near.fbx",
+          "bytes": 1059644,
+          "sha256": "4b877283fce894ff37717cc26d1c7e97d9eb1b047b935676fc5a34f252551476"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1-near.prefab",
+          "bytes": 3128,
+          "sha256": "8fae0c247279c92de3aa406970a3101fb4bc9039c532de2c146673cad5d43613"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1-walk.fbx",
+          "bytes": 874140,
+          "sha256": "991f85bd75cbe0beb18c68b742a3fe19bcd5819e95e545bdb418507d1f463b2a"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1.mat",
+          "bytes": 3930,
+          "sha256": "c931f3ee6897f9e693281d67be390d2380aaea91a6c1dd38d8ba057605b76a8e"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/figure-bedouin-civilian-1948-v1_basecolor.jpg",
+          "bytes": 74287,
+          "sha256": "e406e6fa940267748716e715587fe1e244ac466289e42faa154f9119aee07e93"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-bedouin-civilian-1948-v1/provenance.json",
+          "bytes": 1537,
+          "sha256": "3494ddbb9d2a33181e6ac3c0f6ef2b3a12483d47dae7528952decfc7408a0160"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "name": "figure-local-arab-irregular-1948-v1",
+      "id": "figure-local-arab-irregular-1948-v1",
+      "category": "characters",
+      "readiness": "unplaced_review_candidate",
+      "placement_reason": "Existing local irregular preserved; no deployment row created.",
+      "folder": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1",
+      "provider_model_id": "df89407e-1955-4eb9-b0e2-5b40f4fee9cd",
+      "source_master_sha256": "9cc53176b1c00a41ea7d9afc7712aa3aecc0de11247a1abe1f7bdab1e9a387d7",
+      "source_master_staging_paths": [
+        "rig-integration-v1/rigged/24/rigged-source.glb"
+      ],
+      "triangles": 7508,
+      "rigged": true,
+      "rig_preset": "Unity Humanoid Compatible (67 bones)",
+      "runtime_actions": [
+        "idle"
+      ],
+      "separate_review_actions": [
+        "walk"
+      ],
+      "caveats": [],
+      "files": [
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1-far.fbx",
+          "bytes": 61756,
+          "sha256": "6172ded469774f5e68c99aaa9345cbb0681e9929551cee6e2a33241fef511266"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1-far.prefab",
+          "bytes": 2744,
+          "sha256": "2708938e46364926356b4db922c0450619cb8577e2f94051c172dfc6be0ba0d1"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1-near.controller",
+          "bytes": 2058,
+          "sha256": "397d762b288aa989eab64f941eb9ace8984c6246ff48844fe7635a91f5638388"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1-near.fbx",
+          "bytes": 969788,
+          "sha256": "b1c01346078b0d224fe7a9f90e8d389764ca787a26ace6af661832d01436c5e7"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1-near.prefab",
+          "bytes": 3131,
+          "sha256": "bf0fa29ac7a565eebb12575dc2975d5352fa39c2840d0dad1d2f9e42bfd42121"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1-walk.fbx",
+          "bytes": 777516,
+          "sha256": "540c6191a96aede278359ba77e719ff87f7807929e83b30524cb2c10835fe204"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1.mat",
+          "bytes": 3934,
+          "sha256": "48c41640d9d681b168f7c4b16209db71490034bb14365983b1b165f2a3eb7ea1"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/figure-local-arab-irregular-1948-v1_basecolor.jpg",
+          "bytes": 88832,
+          "sha256": "40d443aa07bb885e3adbec973704a57d713c2dd46d938485841325cde61b9757"
+        },
+        {
+          "path": "unity/Assets/Art/Generated1948Review/figure-local-arab-irregular-1948-v1/provenance.json",
+          "bytes": 1557,
+          "sha256": "bdbab6d67699aae364beb43a1d9cdbf21bc511c07f9a5fe856c036ada58dac7c"
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "number": 1,
+      "name": "Tiled-roof porch pilot",
+      "state": "generated mesh held",
+      "reason": "Genuine roof holes; diagnostic backing not production-cleared."
+    },
+    {
+      "number": 5,
+      "name": "Courtyard house",
+      "state": "generated mesh held",
+      "reason": "Latest geometry has missing upward roof strip; old plain patches are not finished textured replacements."
+    },
+    {
+      "number": 7,
+      "name": "Open Bedouin tent alternate A",
+      "state": "image concept only",
+      "reason": "Enclosed B selected; no duplicate 3D generated."
+    },
+    {
+      "number": 15,
+      "name": "M22 Locust provisional",
+      "state": "image concept only",
+      "reason": "Silhouette drift/provisional identity; excluded from paid batch."
+    },
+    {
+      "number": 23,
+      "name": "Existing Arab Legion",
+      "state": "existing model reused",
+      "reason": "Already in game; no new mesh or unnecessary replacement."
+    },
+    {
+      "number": 25,
+      "name": "Tiberias whole-town concept",
+      "state": "image concept only",
+      "reason": "No 3D generated; individual buildings preferred."
+    },
+    {
+      "number": 26,
+      "name": "Safed whole-town concept",
+      "state": "image concept only",
+      "reason": "No 3D generated; individual buildings preferred."
+    },
+    {
+      "name": "Netanya whole-town concept",
+      "state": "image concept only",
+      "reason": "Reference split into three separate houses; no whole-town3D."
+    },
+    {
+      "name": "Warm limestone enemy-house alternate",
+      "state": "image concept only",
+      "reason": "Extra visual direction, not authorized as an extra paid mesh."
+    },
+    {
+      "name": "Rejected interior-derived Bedouin tent",
+      "state": "rejected image concept",
+      "reason": "Owner rejected exterior shape; replaced by exterior-reference A/B concepts."
+    },
+    {
+      "name": "Emir Farouq",
+      "state": "provider refused; no generated mesh",
+      "reason": "Content-guidelines refusal preserved; never retried or bypassed."
+    }
+  ],
+  "source_mesh_audit": [
+    {
+      "path": "remaining-batch-v2/models/02/source-untextured.glb",
+      "sha256": "cae692bdbff855c316d6469d7eaa1d0ac7720202a14382cb615751fd336a7738",
+      "bytes": 109684,
+      "asset_number": 2,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/02/textured-4k.glb",
+      "sha256": "7d884a4e4d52b7c04f6f084477a8b2876d1281dff427d75ecbddd1e0c8965e11",
+      "bytes": 5459088,
+      "asset_number": 2,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/03/source-untextured.glb",
+      "sha256": "b48384f7160ddd606e33fc3dbc289efe9646d1b2bc28cd944682c979f72829a6",
+      "bytes": 107112,
+      "asset_number": 3,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/03/textured-4k.glb",
+      "sha256": "e37c527c3859cfdd83a4947754297e18c847f072978607c1ada75a6a51bca87d",
+      "bytes": 5603748,
+      "asset_number": 3,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/04/source-untextured.glb",
+      "sha256": "ce3f99aa7dcc1373c77b4b49c3f48ef55e7218ee21ef87db4a496c6b5b022474",
+      "bytes": 110160,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/04/textured-4k-auto-uv-v2.glb",
+      "sha256": "8646cf1409d77ad952d3dfaca007d59200da4be5a17228dacbcb8e0137a7fbb3",
+      "bytes": 6098068,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/04/textured-4k.glb",
+      "sha256": "ef604e2c78519157ae01951a1c0b5b751e5ec7a4c909805c364fb1f4b6d85289",
+      "bytes": 6281944,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/04/textured-closed-roof-v3.glb",
+      "sha256": "a3ef0a5b8df19d5ada052c7d76d23bd5166db6801b764ea1f96f7fdc5a91f64f",
+      "bytes": 5460340,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/04/textured-original-singlemesh-v3.glb",
+      "sha256": "a121fec97179fded65894477eb3ea1ac5925f6167df9e91bcf418e82bb5de699",
+      "bytes": 5457968,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/05/source-untextured.glb",
+      "sha256": "32d6852d4d584d3545ff935fd8ac3c8ea2b8ef600ff65f456792f464d143ba3b",
+      "bytes": 110244,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "remaining-batch-v2/models/05/textured-4k-auto-uv-v2.glb",
+      "sha256": "3306c752a3af1718d363b211c15d482f00942c7f54537c0fdf3bb781c0258f1a",
+      "bytes": 4941536,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "remaining-batch-v2/models/05/textured-4k.glb",
+      "sha256": "5196e491b754439cc019c4c18fd15be17b32b4a9341692efb3c18e92315fb562",
+      "bytes": 4928356,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "remaining-batch-v2/models/05/textured-closed-roof-v3.glb",
+      "sha256": "0b8272e072ff7fdbaa24dff9bf7604ac01785601023c2ec7dbf4e16dc5827ff5",
+      "bytes": 5348160,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "remaining-batch-v2/models/05/textured-original-singlemesh-v3.glb",
+      "sha256": "0373291ef4d7feb6577a7c6d9de97438de6fab1f7ebe23680f755ffcc210f212",
+      "bytes": 5344060,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "remaining-batch-v2/models/06/source-untextured.glb",
+      "sha256": "fd4b5a3aa75d7a8c266f3689eeaabdb5285947180b05f2b14c2fa3f90d737bde",
+      "bytes": 75308,
+      "asset_number": 6,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/06/textured-4k.glb",
+      "sha256": "f163ea5eaeeda61f6351a92c4b04b75311c648b280d7965d9734eb3155f5b921",
+      "bytes": 5381896,
+      "asset_number": 6,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/08/source-untextured.glb",
+      "sha256": "dd436ac195a041f4a0ecbdfa5eca9c4ea900e17f78ac51876643a1ef4186b889",
+      "bytes": 81812,
+      "asset_number": 8,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/08/textured-4k.glb",
+      "sha256": "ba0b61039a863ccb1929528a41d8e5d2f917edb11af9bb8759051757b098bc0c",
+      "bytes": 4131544,
+      "asset_number": 8,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/09/source-untextured.glb",
+      "sha256": "3a20250760ea4ebf3ba25cbf3824e59ad7c75b3a717ad9af399d17396e8f6548",
+      "bytes": 76652,
+      "asset_number": 9,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/09/textured-4k.glb",
+      "sha256": "d303eba126409e6fcdc9fcd87b2d33870e88113cb22cb1c76fec636f9327d26f",
+      "bytes": 5086184,
+      "asset_number": 9,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/10/source-untextured.glb",
+      "sha256": "536f3e836595c4ffe526b913f87b6503fe3950ca10c5f60746b81614dc9742fe",
+      "bytes": 74672,
+      "asset_number": 10,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/10/textured-4k.glb",
+      "sha256": "48b2bb1df695b535bccda23b5c00519da654be0288b42264a5e8d9c822f149d7",
+      "bytes": 6253580,
+      "asset_number": 10,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/11/source-untextured.glb",
+      "sha256": "d4f3a98931319cf4faa42da6252422173f82c6b13a30c484f79a7bde90f1aa8b",
+      "bytes": 42776,
+      "asset_number": 11,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/11/textured-4k.glb",
+      "sha256": "1fa6c1a4d1c521ad9f1d1f63f751016102c0f14e7f2fa2612f3fa53133a560af",
+      "bytes": 5195768,
+      "asset_number": 11,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/12/source-untextured.glb",
+      "sha256": "d169e39f47f80beba955ec588037336671af622adddf15b701c04a4f93604246",
+      "bytes": 40328,
+      "asset_number": 12,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/12/textured-4k.glb",
+      "sha256": "4c0ff30354dab1e30e8262be502548f4ad610a33a62466346977dd8184c859f9",
+      "bytes": 6158388,
+      "asset_number": 12,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/13/source-untextured.glb",
+      "sha256": "7e6ce9439459bed5edf25b5875e58d6ac3d1d88d413e4147ec1d2e3527e609ed",
+      "bytes": 142036,
+      "asset_number": 13,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/13/textured-4k.glb",
+      "sha256": "6b67d358e04c398559e87399b55b987d0fefa1d970966a979e26cad148c57c2e",
+      "bytes": 4212972,
+      "asset_number": 13,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/14/source-untextured.glb",
+      "sha256": "8be7d78bc2ccff4d94b38394b291e0692c348237b3dff66e9d071a93d2eaec33",
+      "bytes": 131624,
+      "asset_number": 14,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/14/textured-4k.glb",
+      "sha256": "b842c074f8a3bf5095b24ac1d9a7e384ba4cbac56452af10910c400914bf2271",
+      "bytes": 4398512,
+      "asset_number": 14,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/16/source-untextured.glb",
+      "sha256": "d20b9e8b41848b72e0d42eb6be65cfd473706fdf1ef8f86d63c10d3efbfd6659",
+      "bytes": 136928,
+      "asset_number": 16,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/16/textured-4k.glb",
+      "sha256": "cc191b7f8c53a92eee593fc65dba32a7928f13f0d27c200428d1815856e168aa",
+      "bytes": 3917128,
+      "asset_number": 16,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/models/17/source-untextured.glb",
+      "sha256": "cc74f3c9d117b6a6de266296b6dca99b824c2b8dd00292771eb9fe2b4ab5af47",
+      "bytes": 137436,
+      "asset_number": 17,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/17/textured-4k.glb",
+      "sha256": "186211547c67c9334db6578944e76d670255094577b1dc22242ca72ac7c6c6ea",
+      "bytes": 4598848,
+      "asset_number": 17,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/18/source-untextured.glb",
+      "sha256": "fa0b35527844bc8d485ff647b00ac4d145401b731daa3ad7aa7e3a104dfb01f8",
+      "bytes": 140112,
+      "asset_number": 18,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/18/textured-4k.glb",
+      "sha256": "0d65785bd4a4834465f6149ea0fa55cd355748360ea0f4e6246d5514562ce633",
+      "bytes": 5398276,
+      "asset_number": 18,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/19/source-untextured.glb",
+      "sha256": "6722c03dbb2582504aab755d2983f5cda542b296e1998423aa6d93ad536eb7cd",
+      "bytes": 137204,
+      "asset_number": 19,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/19/textured-4k.glb",
+      "sha256": "43ef1596d5f0c28614c9c0610f3f699c444a84fc4db83bc907759b1a1e49b3d4",
+      "bytes": 5639476,
+      "asset_number": 19,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/20/source-untextured.glb",
+      "sha256": "3aec78b8cf28edc7b894cd516802fd17b3f6f6dc0a73c842e52ff20a1019c0b2",
+      "bytes": 138512,
+      "asset_number": 20,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/20/textured-4k.glb",
+      "sha256": "8eab3b8ecf675e6a36757520667c086d758af8f5c6ca246fc234c7d3f0a650cc",
+      "bytes": 3828432,
+      "asset_number": 20,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/21/source-untextured.glb",
+      "sha256": "29277d5664a201ffec50235c313d8b3e1f3b1b928315841c94e1b1fb094ece70",
+      "bytes": 130776,
+      "asset_number": 21,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/21/textured-4k.glb",
+      "sha256": "a231fe01a517c7c5def25053ffbd9e10354f3b124be581131ed053a2769fc944",
+      "bytes": 3951184,
+      "asset_number": 21,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/22/source-untextured.glb",
+      "sha256": "f54628d4b69df84b1172653fdf820522079a2234246990ca79e062f0416d270c",
+      "bytes": 135104,
+      "asset_number": 22,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/models/22/textured-4k.glb",
+      "sha256": "b06d977da54106a9925dd3413d117498237c4ca567cbdc9985787187a1783be6",
+      "bytes": 5202440,
+      "asset_number": 22,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/qa/04/flat-roof-cap-candidate.glb",
+      "sha256": "fa7c335097de5708a650623f0be6d04c8fe9ab2f135f611956654b1910508630",
+      "bytes": 112520,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/qa/05/flat-roof-cap-candidate.glb",
+      "sha256": "b7246ede6e1057c45089053a7506569d8c2e6913fed6e8887c8980388cbc6596",
+      "bytes": 114332,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "remaining-batch-v2/qa-final/03/textured-rear-backing-candidate.glb",
+      "sha256": "e138fcf5142e4945ec9846f7774c437474812cec40a59160dc1408dec136da13",
+      "bytes": 5605660,
+      "asset_number": 3,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/qa-final/03/textured-rear-plaster-panel-candidate.glb",
+      "sha256": "d59adcd4e17c8db3ab2dbb9235b6c934fdb703f849ac1ef7f183e3162841fd0e",
+      "bytes": 5605676,
+      "asset_number": 3,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/roof-regeneration-v4/models/04/source-untextured.glb",
+      "sha256": "92276bc91b6473f9da3ef1c1992d981bba80e754f50e3c4778b03df92f707839",
+      "bytes": 104640,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "remaining-batch-v2/roof-regeneration-v4/models/04/textured-4k.glb",
+      "sha256": "01ba4c818fc93ac1cd6e770963ae4459bf2a2d7bc6d7f5ca29ece24dc1d0d9f6",
+      "bytes": 6953948,
+      "asset_number": 4,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "remaining-batch-v2/roof-regeneration-v4/models/05/source-untextured.glb",
+      "sha256": "472f7d1bd4341ce57ee669f1a96b95947fa392ad2db9070910ab89df2c1ee2c3",
+      "bytes": 111332,
+      "asset_number": 5,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "3d-pilot-v1/house/source-untextured.glb",
+      "sha256": "31434cf7ddbef966d4c4fe0b747e496072dd56c67aba20cecf79d45269490c91",
+      "bytes": 112112,
+      "asset_number": 1,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "3d-pilot-v1/house/textured-4k.glb",
+      "sha256": "a005f5b927375c34d8d3ce603076481d6d6d04777d6e3730f6d26b8957dbc98d",
+      "bytes": 5064628,
+      "asset_number": 1,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "3d-pilot-v1/local-irregular/source-untextured.glb",
+      "sha256": "3bff8495b7fee6125245adffb2eaf5265bb31850753bc9171480bc0cc1dd3ca4",
+      "bytes": 139128,
+      "asset_number": 24,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "3d-pilot-v1/local-irregular/textured-4k.glb",
+      "sha256": "ac67c7aafc6e98f76f35426efa09b5ff84fd8af8c2b7058f45a5cc4b1f29c45f",
+      "bytes": 5242208,
+      "asset_number": 24,
+      "included_binary": false,
+      "disposition": "Superseded geometry/texture/repair stage; preserve in staging, use the single canonical committed derivative."
+    },
+    {
+      "path": "3d-pilot-v1/roof-diagnosis/house-roof-underlay-CANDIDATE.glb",
+      "sha256": "5e526fee166737abc45de46c1ff7e43c9c3d46d6421a9ad3766479a0eb8e432d",
+      "bytes": 5070896,
+      "asset_number": 1,
+      "included_binary": false,
+      "disposition": "Held roof or diagnostic repair; not safe to admit."
+    },
+    {
+      "path": "rig-integration-v1/rigged/17/rigged-source.glb",
+      "sha256": "7470a17c90b62af78ad225aaa2073c05686748f39819d46089d57ac831b66ab5",
+      "bytes": 4800332,
+      "asset_number": 17,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "rig-integration-v1/rigged/18/rigged-source.glb",
+      "sha256": "014f00a2bc50b1dbe9915af46e5caada48637b71aa4986b8a9d14d34055c1f89",
+      "bytes": 5593764,
+      "asset_number": 18,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "rig-integration-v1/rigged/19/rigged-source.glb",
+      "sha256": "ae1132515c83100e1af3d0bef52d72a031f4b8ea6defa32d6046ec2dbd148f20",
+      "bytes": 5845852,
+      "asset_number": 19,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "rig-integration-v1/rigged/20/rigged-source.glb",
+      "sha256": "f32b3ea2b331d3e997b785fab9009628cc5ee3325470ca54ad50a1e3f54fb6d8",
+      "bytes": 3947336,
+      "asset_number": 20,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "rig-integration-v1/rigged/21/rigged-source.glb",
+      "sha256": "b84b4e45e954fdf9bcdd568caf761bb763f7a5b4945957fe54ec9bde8bde8748",
+      "bytes": 4069460,
+      "asset_number": 21,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "rig-integration-v1/rigged/22/rigged-source.glb",
+      "sha256": "941d0f7e435b238ee8098abc4be665dec62e34a9b4cd3d824c5fb45385f01c88",
+      "bytes": 5392004,
+      "asset_number": 22,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    },
+    {
+      "path": "rig-integration-v1/rigged/24/rigged-source.glb",
+      "sha256": "9cc53176b1c00a41ea7d9afc7712aa3aecc0de11247a1abe1f7bdab1e9a387d7",
+      "bytes": 5363936,
+      "asset_number": 24,
+      "included_binary": false,
+      "disposition": "Canonical master represented by the committed FBX/JPEG derivative; raw 4K GLB retained in staging, not duplicated in git."
+    }
+  ],
+  "concept_policy": "Selected concept images are represented by their hash-linked 3D derivatives and committed review images. Raw concepts, failed image trials, source reference photos and superseded review sheets stay in staging; image-only subjects above are not claimed as completed models."
+}
