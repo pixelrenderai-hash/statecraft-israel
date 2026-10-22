@@ -1,0 +1,432 @@
+{
+    "kind": "Actual Unity game-map renders; editor, no HUD; not a WebGL/player capture",
+    "state": "1948-05-15",
+    "contentHash": "5a890d25446e7dbe04bb464500d3e719579c5c5bd56882d69191cbc405e391b7",
+    "seed": "1948",
+    "utc": "2026-10-22T19:46:04.9305940Z",
+    "width": 1920,
+    "height": 1080,
+    "baseline": "Original B13a/B17 house choices; ALA uses C09; Egypt/Syria/Iraq have no figure",
+    "overrides": "In-memory catalog entries only; restored in finally; no assets or scenes saved",
+    "frames": [
+        {
+            "file": "netanya-balcony06-after.png",
+            "label": "netanya: NetanyaBalcony2026",
+            "version": "after",
+            "quality": "PC",
+            "town": "netanya",
+            "changedModel": "NetanyaBalcony2026",
+            "lookAt": {
+                "x": 63416.73828125,
+                "y": 1462.3883056640625,
+                "z": 318403.25
+            },
+            "cameraPosition": {
+                "x": 62747.0234375,
+                "y": 6058.65478515625,
+                "z": 314605.125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 6000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1500,
+            "submittedTownTriangles": 1170533
+        },
+        {
+            "file": "netanya-porch06-after.png",
+            "label": "netanya: NetanyaPorch2026",
+            "version": "after",
+            "quality": "PC",
+            "town": "netanya",
+            "changedModel": "NetanyaPorch2026",
+            "lookAt": {
+                "x": 63305.69921875,
+                "y": 1462.3883056640625,
+                "z": 318843.03125
+            },
+            "cameraPosition": {
+                "x": 62635.984375,
+                "y": 6058.65478515625,
+                "z": 315044.90625
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 6000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1500,
+            "submittedTownTriangles": 1170533
+        },
+        {
+            "file": "tiberias-stone06-after.png",
+            "label": "tiberias: TiberiasStone2026",
+            "version": "after",
+            "quality": "PC",
+            "town": "tiberias",
+            "changedModel": "TiberiasStone2026",
+            "lookAt": {
+                "x": 127104.765625,
+                "y": 827.7064208984375,
+                "z": 369512.15625
+            },
+            "cameraPosition": {
+                "x": 126435.0546875,
+                "y": 5423.97314453125,
+                "z": 365714.03125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 6000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 2375,
+            "submittedTownTriangles": 628505
+        },
+        {
+            "file": "netanya12-after.png",
+            "label": "netanya town context",
+            "version": "after",
+            "quality": "PC",
+            "town": "netanya",
+            "changedModel": "",
+            "lookAt": {
+                "x": 62397.84765625,
+                "y": 1365.476318359375,
+                "z": 318286.8125
+            },
+            "cameraPosition": {
+                "x": 61058.421875,
+                "y": 10558.009765625,
+                "z": 310690.53125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 12000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1500,
+            "submittedTownTriangles": 294920
+        },
+        {
+            "file": "tiberias12-after.png",
+            "label": "tiberias town context",
+            "version": "after",
+            "quality": "PC",
+            "town": "tiberias",
+            "changedModel": "",
+            "lookAt": {
+                "x": 126686.5390625,
+                "y": 890.5438232421875,
+                "z": 369790.3125
+            },
+            "cameraPosition": {
+                "x": 125347.109375,
+                "y": 10083.0771484375,
+                "z": 362194.03125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 12000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 2375,
+            "submittedTownTriangles": 454785
+        },
+        {
+            "file": "ala20-after.png",
+            "label": "ALA: current own-side infantry versus previous C09",
+            "version": "after",
+            "quality": "PC",
+            "town": "",
+            "changedModel": "figure-ala-infantry-1948-v1",
+            "lookAt": {
+                "x": 125573.8828125,
+                "y": 3957.62939453125,
+                "z": 408723.125
+            },
+            "cameraPosition": {
+                "x": 123341.5078125,
+                "y": 19278.517578125,
+                "z": 396062.6875
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 20000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1208,
+            "submittedTownTriangles": 230728
+        },
+        {
+            "file": "ala60-after.png",
+            "label": "ALA at gameplay zoom",
+            "version": "after",
+            "quality": "PC",
+            "town": "",
+            "changedModel": "figure-ala-infantry-1948-v1",
+            "lookAt": {
+                "x": 125573.8828125,
+                "y": 3957.62939453125,
+                "z": 408723.125
+            },
+            "cameraPosition": {
+                "x": 118876.75,
+                "y": 49920.296875,
+                "z": 370741.78125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 60000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 0,
+            "submittedTownTriangles": 0
+        },
+        {
+            "file": "netanya-balcony06-before.png",
+            "label": "netanya: NetanyaBalcony2026",
+            "version": "before",
+            "quality": "PC",
+            "town": "netanya",
+            "changedModel": "NetanyaBalcony2026",
+            "lookAt": {
+                "x": 63416.73828125,
+                "y": 1462.3883056640625,
+                "z": 318403.25
+            },
+            "cameraPosition": {
+                "x": 62747.0234375,
+                "y": 6058.65478515625,
+                "z": 314605.125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 6000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1503,
+            "submittedTownTriangles": 1169997
+        },
+        {
+            "file": "netanya-porch06-before.png",
+            "label": "netanya: NetanyaPorch2026",
+            "version": "before",
+            "quality": "PC",
+            "town": "netanya",
+            "changedModel": "NetanyaPorch2026",
+            "lookAt": {
+                "x": 63305.69921875,
+                "y": 1462.3883056640625,
+                "z": 318843.03125
+            },
+            "cameraPosition": {
+                "x": 62635.984375,
+                "y": 6058.65478515625,
+                "z": 315044.90625
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 6000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1503,
+            "submittedTownTriangles": 1169997
+        },
+        {
+            "file": "tiberias-stone06-before.png",
+            "label": "tiberias: TiberiasStone2026",
+            "version": "before",
+            "quality": "PC",
+            "town": "tiberias",
+            "changedModel": "TiberiasStone2026",
+            "lookAt": {
+                "x": 127104.765625,
+                "y": 827.7064208984375,
+                "z": 369512.15625
+            },
+            "cameraPosition": {
+                "x": 126435.0546875,
+                "y": 5423.97314453125,
+                "z": 365714.03125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 6000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 2375,
+            "submittedTownTriangles": 628532
+        },
+        {
+            "file": "netanya12-before.png",
+            "label": "netanya town context",
+            "version": "before",
+            "quality": "PC",
+            "town": "netanya",
+            "changedModel": "",
+            "lookAt": {
+                "x": 62397.84765625,
+                "y": 1365.476318359375,
+                "z": 318286.8125
+            },
+            "cameraPosition": {
+                "x": 61058.421875,
+                "y": 10558.009765625,
+                "z": 310690.53125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 12000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1503,
+            "submittedTownTriangles": 288786
+        },
+        {
+            "file": "tiberias12-before.png",
+            "label": "tiberias town context",
+            "version": "before",
+            "quality": "PC",
+            "town": "tiberias",
+            "changedModel": "",
+            "lookAt": {
+                "x": 126686.5390625,
+                "y": 890.5438232421875,
+                "z": 369790.3125
+            },
+            "cameraPosition": {
+                "x": 125347.109375,
+                "y": 10083.0771484375,
+                "z": 362194.03125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 12000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 2375,
+            "submittedTownTriangles": 454785
+        },
+        {
+            "file": "ala20-before.png",
+            "label": "ALA: current own-side infantry versus previous C09",
+            "version": "before",
+            "quality": "PC",
+            "town": "",
+            "changedModel": "figure-ala-infantry-1948-v1",
+            "lookAt": {
+                "x": 125573.8828125,
+                "y": 3957.62939453125,
+                "z": 408723.125
+            },
+            "cameraPosition": {
+                "x": 123341.5078125,
+                "y": 19278.517578125,
+                "z": 396062.6875
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 20000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 1208,
+            "submittedTownTriangles": 230728
+        },
+        {
+            "file": "ala60-before.png",
+            "label": "ALA at gameplay zoom",
+            "version": "before",
+            "quality": "PC",
+            "town": "",
+            "changedModel": "figure-ala-infantry-1948-v1",
+            "lookAt": {
+                "x": 125573.8828125,
+                "y": 3957.62939453125,
+                "z": 408723.125
+            },
+            "cameraPosition": {
+                "x": 118876.75,
+                "y": 49920.296875,
+                "z": 370741.78125
+            },
+            "cameraEuler": {
+                "x": 50.0,
+                "y": 9.999999046325684,
+                "z": 0.0
+            },
+            "distanceM": 60000.0,
+            "fov": 35.0,
+            "pitch": 50.0,
+            "yaw": 10.0,
+            "submittedTownInstances": 0,
+            "submittedTownTriangles": 0
+        }
+    ],
+    "afterModels": [
+        "netanya:B13aTwoStorey=10",
+        "netanya:B28WaterTower=1",
+        "netanya:NetanyaBalcony2026=11",
+        "netanya:NetanyaPorch2026=3",
+        "tiberias:B17CourtyardHouse=24",
+        "tiberias:TiberiasStone2026=27"
+    ],
+    "beforeModels": [
+        "netanya:B13aTwoStorey=27",
+        "netanya:B28WaterTower=1",
+        "tiberias:B17CourtyardHouse=51"
+    ]
+}

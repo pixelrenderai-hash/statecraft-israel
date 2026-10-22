@@ -8,6 +8,8 @@ checks this (see `CONTRIBUTING.md`).
 
 ## [Unreleased]
 
+- Add distinct rigged Syrian, ALA and Iraqi infantry to their existing formations and separate Netanya/Tiberias house variants; retain other generated assets as unplaced review candidates with provenance and validation. Egyptian placement and unresolved roofs remain held.
+
 ## [0.2.1] - 2026-10-22
 
 ### Fixed

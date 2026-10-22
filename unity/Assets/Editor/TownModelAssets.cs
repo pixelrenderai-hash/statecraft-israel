@@ -28,9 +28,9 @@ namespace Statecraft.Game.EditorTools
             set.mid = new Mesh[n]; set.far = new Mesh[n]; set.farthest = new Mesh[n];
             for (int i = 0; i < n; i++)
             {
-                string id = TownModels.Ids[i], dir = $"{TownModels.Folder}/{id}";
-                foreach (var o in AssetDatabase.LoadAllAssetsAtPath($"{dir}/{id}.fbx")) if (o is Mesh m) set.meshes[i] = m;
-                set.materials[i] = AssetDatabase.LoadAssetAtPath<Material>($"{dir}/{id}.mat");
+                string id = TownModels.Ids[i];
+                foreach (var o in AssetDatabase.LoadAllAssetsAtPath(TownModels.ModelPath(id))) if (o is Mesh m) set.meshes[i] = m;
+                set.materials[i] = AssetDatabase.LoadAssetAtPath<Material>(TownModels.MaterialPath(id));
                 var levels = Object.Instantiate(set.meshes[i]);
                 MeshLodUtility.GenerateMeshLods(levels, -1);
                 var full = set.meshes[i].bounds;

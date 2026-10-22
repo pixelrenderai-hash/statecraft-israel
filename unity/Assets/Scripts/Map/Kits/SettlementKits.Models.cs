@@ -194,7 +194,7 @@ namespace Statecraft.Game.Map.Kits
                 case Style.TownBlock: return TownModels.Netanya;
                 case Style.StoneBlock: return TownModels.Jerusalem;
                 case Style.OldHouse: return TownModels.ForArchetype(Archetype.OldTown, s);
-                case Style.Village: return TownModels.Stone;
+                case Style.Village: return TownModels.ForArchetype(Archetype.ArabTown, s);
                 case Style.Templer: return TownModels.Templer;
                 default: return TownModels.Houses(s);
             }

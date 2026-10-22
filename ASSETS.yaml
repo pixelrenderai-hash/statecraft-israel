@@ -6,6 +6,34 @@
 # Globs use fnmatch: '*' also matches '/'. Portrait rows live in ASSETS.portraits.yaml (scripts/oss/commons_licences.py).
 # ai_generated: true marks AI output (the future Steam/itch.io disclosure is generated from it).
 rules:
+  - glob: "unity/Assets/Art/Collection/figure-syrian-infantry-1948-v1/*"
+    licence: CC0-1.0
+    ai_generated: true
+    source: "Tripo Studio Smart Mesh P2.0, paid plan, generated 22 October 2026 by Tal Heuberger. New Egyptian, Syrian, ALA and Iraqi infantry; exact stable model IDs and source/output hashes are recorded in each provenance.json. Rigging uses actual provider skin weights; existing C09 idle and walk clips are locally retargeted in Blender 5.2.2. Near geometry is preserved; separately reviewed far derivatives follow the collection 1500-triangle maximum, with 512px colour maps. Original source files and 4K maps remain outside git."
+    status: verified
+    artist: "Tal Heuberger"
+    note: "New generated assets only; does not change the licences or provenance of existing figures. Art variations are proposals and do not establish historical uniform colours."
+  - glob: "unity/Assets/Art/Collection/figure-ala-infantry-1948-v1/*"
+    licence: CC0-1.0
+    ai_generated: true
+    source: "Tripo Studio Smart Mesh P2.0, paid plan, generated 22 October 2026 by Tal Heuberger. New Egyptian, Syrian, ALA and Iraqi infantry; exact stable model IDs and source/output hashes are recorded in each provenance.json. Rigging uses actual provider skin weights; existing C09 idle and walk clips are locally retargeted in Blender 5.2.2. Near geometry is preserved; separately reviewed far derivatives follow the collection 1500-triangle maximum, with 512px colour maps. Original source files and 4K maps remain outside git."
+    status: verified
+    artist: "Tal Heuberger"
+    note: "New generated assets only; does not change the licences or provenance of existing figures. Art variations are proposals and do not establish historical uniform colours."
+  - glob: "unity/Assets/Art/Collection/figure-iraqi-infantry-1948-v1/*"
+    licence: CC0-1.0
+    ai_generated: true
+    source: "Tripo Studio Smart Mesh P2.0, paid plan, generated 22 October 2026 by Tal Heuberger. New Egyptian, Syrian, ALA and Iraqi infantry; exact stable model IDs and source/output hashes are recorded in each provenance.json. Rigging uses actual provider skin weights; existing C09 idle and walk clips are locally retargeted in Blender 5.2.2. Near geometry is preserved; separately reviewed far derivatives follow the collection 1500-triangle maximum, with 512px colour maps. Original source files and 4K maps remain outside git."
+    status: verified
+    artist: "Tal Heuberger"
+    note: "New generated assets only; does not change the licences or provenance of existing figures. Art variations are proposals and do not establish historical uniform colours."
+  - glob: "unity/Assets/Art/Generated1948Review/*/*"
+    licence: CC0-1.0
+    ai_generated: true
+    artist: "Tal Heuberger"
+    source: "Tripo Studio, Smart Mesh P2.0, generated 22 October 2026 from the owner's generated concepts. Per-model provenance.json records stable provider model IDs, source image/GLB hashes and exported runtime hashes. Offline Blender 5.2.2 conversion preserves static triangles and UVs. Four review-only characters retain actual skin weights and near geometry, with locally retargeted C09 idle/walk actions and separate reviewed far derivatives at most 1500 triangles; they create no deployments. Base colour maps are separate 512px JPEG derivatives. Original 4K masters remain outside the repository."
+    status: verified
+    note: "AI-only outputs, CC0/no rights claimed under D1 and the existing paid Tripo output-rights convention. Isolated review candidates, not archival reconstructions or approved new historical placements. The failed courtyard roof is excluded; the stone house is the lighter textured-roof revision. No original asset or licence row is replaced."
   # --- AI-generated concept art: CC0 / no rights claimed (LICENSING.md); published 2026-10-10 before D5 was checked ---
   - glob: "promo/final/0[1-8]-*.png"
     licence: CC0-1.0
@@ -55,6 +83,12 @@ rules:
     source: "Reference sheets composed for the edit model (cabinet 1948, defense 1955) from the public-domain portraits in promo/ref/people/"
     status: verified
     note: "Decision D-P: the owner confirms the sheets contain only the public-domain portraits and our plain layout. D-P (owner, 17 Oct 2026)."
+  - glob: "docs/images/generated-1948-*.jpg"
+    licence: CC-BY-SA-4.0
+    ai_generated: false
+    source: "Actual Unity 6000.3.25f1 editor renders, 22 October 2026. Generated1948GameplayEvidence captures the real MapScene using identical 15 May 1948 state, seed 1948, PC quality, 1920x1080 camera poses before and after in-memory catalog changes; paired images are resized equally to 960x540. No HUD, player or WebGL claim. Camera/state evidence is docs/generated-1948-capture-evidence.json. Character sheets combine Generated1948Characters actual Animator idle/walk and static far renders, explicitly labeled asset previews, not gameplay. The depicted AI-made models and their source licences are recorded above; map terrain/landuse provenance remains in NOTICE and the existing manifests."
+    status: verified
+    note: "Review evidence only. CC BY-SA 4.0 follows existing map-render treatment because the map shows CC BY-SA 4.0 derived bakes; original asset licences are unchanged."
   # --- Our own captures and drawings: CC BY 4.0 ---
   - glob: "promo/final/09-m2-flythrough.mp4"
     licence: CC-BY-4.0
